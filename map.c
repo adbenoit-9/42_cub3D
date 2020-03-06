@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:42:10 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/03/05 15:30:31 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/03/06 17:12:55 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	add_map(char *line, t_all **all)
 int	add_info(char *line, t_all **all, int i)
 {
 	int j;
-	int k;
 
 	j = 0; 
 	if (!((*all)->info[i] = malloc(sizeof(char) * (ft_strlen(line) + 1))))
