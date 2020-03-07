@@ -78,7 +78,10 @@ int		raycast_wall(t_all **all)
 int	create_image(t_all **all)
 {
 	if ((*all)->img.ptr != NULL)
+	{
 		mlx_destroy_image((*all)->mlx, (*all)->img.ptr);
+		mlx_clear_window((*all)->mlx, (*all)->win);
+	}
 	(*all)->img.ptr = mlx_new_image((*all)->mlx, (*all)->r[X], (*all)->r[Y]);
 	(*all)->img.bpp = 32;
 	(*all)->img.size_line = (*all)->r[X] * 4;
@@ -99,5 +102,6 @@ int start(t_all **all)
 	(*all)->img.ptr = NULL;
 	(*all)->grid.plane[X] = ((*all)->player.dir[X] == 0) ? 0.66 : 0;
 	(*all)->grid.plane[Y] = ((*all)->player.dir[Y] == 0) ? 0.66 : 0;
+	create_image(all);
 	return (NO_ERR);
 }

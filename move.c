@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:35:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/03/03 19:07:52 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/03/06 17:40:18 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,11 @@ void	direct_SD(int key, t_all **all)
 
 int		ft_deal_key(int key, t_all **all)
 {
-	printf("key = %d\n", key);
 	if (key == ESC)
+	{
 		mlx_destroy_window((*all)->mlx, (*all)->win);
+		exit(EXIT_SUCCESS);
+	}
 	else
 	{
 		ft_view(key, all);
