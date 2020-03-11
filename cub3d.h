@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:45:39 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/03/05 18:10:31 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/03/11 19:07:50 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,30 @@ typedef struct	s_sprite
 	int		screen;
 }				t_sprite;
 
+typedef struct	s_im_head
+{
+	int			size_imh;
+	int			w;
+	int			h;
+	short		plan;
+	short		bpp;
+	int			comp;
+	int			sizeim;
+	int			hres;
+	int			vres;
+	int			cpalette;
+	int			cipalette;
+}				t_im_head;
+
+typedef struct s_bmp
+{
+	char		sign[2];
+	int			size;
+	int			rsv;
+	int			offset;
+	t_im_head	im_head;
+}				t_bmp;
+
 typedef struct	s_all
 {
 	char			**info;
@@ -166,6 +190,7 @@ typedef struct	s_all
 	int				err;
 	int				fd;
 	int				ret;
+	int				save;
 	enum e_state	state;
 	t_player		player;
 	void			*mlx;
@@ -183,7 +208,7 @@ typedef int		(*t_function)(char *, t_all **);
 int				ft_strlen(char *str);
 int				ft_strncmp(char *s1, char *s2, int n);
 int				ft_parsing(t_all **all);
-int				open_f(char *arg, t_all **all);
+int				open_f(char *arg, t_all **all, int save);
 int				map(char *line, t_all **all);
 int				info(char *line, t_all **all);
 void			ft_putnbr_fd(int n, int fd);
@@ -214,5 +239,7 @@ void			side_dist(t_all **all);
 double			**realloc_doub(double **ptr, int newsize);
 void			put_sprite(t_all **all);
 void			raycast_sprite(t_all **all);
+void			save_bmp(t_all **all);
+void			ft_bzero(void *s, size_t n);
 
 #endif

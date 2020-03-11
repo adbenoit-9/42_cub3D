@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:45:43 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/03/05 15:19:05 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/03/11 19:23:07 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,13 @@ int		ft_parsing(t_all **all)
 	return (0);
 }
 
-int		open_f(char *arg, t_all **all)
+int		open_f(char *arg, t_all **all, int save)
 {
 	int	i;
 
 	if (!((*all) = (t_all *)malloc(sizeof(t_all))))
 		return (PARS_ERR);
+	(*all)->save = save;
 	(*all)->ret = 1;
 	(*all)->i_map = 0;
 	(*all)->err = NO_ERR;

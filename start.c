@@ -103,5 +103,7 @@ int start(t_all **all)
 	(*all)->grid.plane[X] = ((*all)->player.dir[X] == 0) ? 0.66 : 0;
 	(*all)->grid.plane[Y] = ((*all)->player.dir[Y] == 0) ? 0.66 : 0;
 	create_image(all);
+	if ((*all)->save == 1)
+		save_bmp(all);
 	return (NO_ERR);
 }
