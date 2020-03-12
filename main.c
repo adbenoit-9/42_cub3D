@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:33:01 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/03/11 19:11:56 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/03/12 20:01:57 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ int		main(int ac, char **av)
 	all->mlx = mlx_init();
 	all->win = mlx_new_window(all->mlx, all->r[X], all->r[Y], "Cub3D");
 	start(&all);
-	mlx_hook(all->win, 2, 0, ft_deal_key, &all);
+	mlx_hook(all->win, 17, 1L << 0, ft_close, &all);
 	//exit(EXIT_SUCCESS);
 	//printf("win = %p\n", all->win);
+	mlx_hook(all->win, KEY_PRESS, 1L << 0, ft_key_press, &all);
+	mlx_hook(all->win, KEY_RELEASE, 1L << 1, ft_deal_key, &all);
 	mlx_loop(all->mlx);
 	//printf("loop = %d\n", mlx_loop(all->mlx));
 	return (0);

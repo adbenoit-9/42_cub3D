@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:45:39 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/03/11 19:07:50 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/03/12 20:02:02 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
+# define KEY_PRESS 2
+# define KEY_RELEASE 3
 
 # define ROTSPEED 0.1
 # define MOVESPEED 0.2
@@ -178,6 +180,16 @@ typedef struct s_bmp
 	t_im_head	im_head;
 }				t_bmp;
 
+typedef struct	s_key
+{
+	int	left;
+	int	right;
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+}				t_key;
+
 typedef struct	s_all
 {
 	char			**info;
@@ -191,6 +203,7 @@ typedef struct	s_all
 	int				fd;
 	int				ret;
 	int				save;
+	t_key			key;
 	enum e_state	state;
 	t_player		player;
 	void			*mlx;
@@ -231,6 +244,7 @@ int				start(t_all **all);
 void			hit_wall(t_all **all);
 double			wall_dist(t_all **all);
 int				ft_deal_key(int key, t_all **all);
+int				ft_key_press(int key, t_all **all);
 int				create_image(t_all **all);
 void			put_text(t_all **all);
 void			complete_text(t_all **all);
@@ -241,5 +255,10 @@ void			put_sprite(t_all **all);
 void			raycast_sprite(t_all **all);
 void			save_bmp(t_all **all);
 void			ft_bzero(void *s, size_t n);
+void			ft_view(t_all **all);
+void			direct_wa(t_all **all);
+void			direct_sd(t_all **all);
+void			ft_move(t_all **all);
+int				ft_close(t_all **all);
 
 #endif

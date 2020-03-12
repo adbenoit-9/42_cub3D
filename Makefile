@@ -6,7 +6,7 @@
 #    By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/03/11 19:20:58 by adbenoit         ###   ########.fr        #
+#    Updated: 2020/03/12 17:40:56 by adbenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= cub3d
 
 SRC_PATH	= .
 
-SRC_NAME	= check_info.c ft_atoi.c ft_memcpy.c ft_realloc.c ft_strtrim.c ft_error.c ft_putnbr_fd.c ft_space.c get_next_line.c get_next_line_utils.c map.c parsing.c main.c start.c raycast.c move.c sprite.c texture.c bmp.c ft_bzero.c
+SRC_NAME	= check_info.c ft_atoi.c ft_memcpy.c ft_realloc.c ft_strtrim.c ft_error.c ft_putnbr_fd.c ft_space.c get_next_line.c get_next_line_utils.c map.c parsing.c main.c start.c raycast.c move.c sprite.c texture.c bmp.c ft_bzero.c ft_key_press.c
 
 OBJ_PATH	= obj
 
