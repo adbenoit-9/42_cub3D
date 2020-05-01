@@ -41,26 +41,6 @@ void		ft_error(t_all **all, char *line, int err)
 	exit(EXIT_SUCCESS);
 }
 
-int			map_error(t_all **all, char *line)
-{
-	int j;
-
-	j = 0;
-	if ((*all)->state == END)
-	{
-		while ((*all)->map[(*all)->i_map - 1][j])
-		{
-			if ((*all)->map[(*all)->i_map - 1][j] != WALL && (*all)->map[(*all)->i_map - 1][j] != HOLE)
-				ft_error(all, line, PARS_ERR);
-			j++;
-		}
-		return (NO_ERR);
-	}
-	if (!((*all)->map = realloc_tab((*all)->map, (*all)->i_map + 2)))
-		ft_error(all, line, MAL_ERR);
-	return (NO_ERR);
-}
-
 void		print_err(int err)
 {
 	char *err_mess[NB_ERR] = {"Parsing problem.", "Please enter a correct file.", "Memory problem.", "Please enter corrects arguments.", "Please enter corrects paths."};

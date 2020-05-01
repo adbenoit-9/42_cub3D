@@ -10,13 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= cub3d
+NAME		= cub3d
 
 INC			= includes/
 
-INC_BONUS	= includes/bonus/
-
-HEADER	= $(INC)cub3d.h
+HEADER		= $(INC)cub3d.h
 
 SRCS_PATH	= srcs
 
@@ -97,6 +95,12 @@ MLX	= $(MLX_DIR)/libmlx.a
 
 MLX_LIBS	= -lmlx -lXext -lX11
 
+SRC			= $(addprefix $(SRCS_PATH)/,$(SRCS_NAME))
+SRC			+= $(addprefix $(RAY_PATH)/,$(RAY_NAME))
+SRC			+= $(addprefix $(UTILS_PATH)/,$(UTILS_NAME))
+SRC			+= $(addprefix $(OBL_PATH)/,$(OBL_NAME))
+SRC			+= $(addprefix $(PARSO_PATH)/,$(PARS_NAME))
+
 OBJ	= $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
 OBJ_B	= $(addprefix $(OBJ_B_PATH)/,$(OBJ_B_NAME))
@@ -120,61 +124,73 @@ $(NAME):	$(OBJ)
 ######### OBLIGATOIRE #############
 
 $(OBJ_PATH)/%.o:	$(UTILS_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m| \033[0;1m"
+	@printf "\033[34;1m* \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_PATH)/%.o:	$(PARSO_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m| \033[0;1m"
+	@printf "\033[34;1m* \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_PATH)/%.o:	$(SRCS_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m| \033[0;1m"
+	@printf "\033[34;1m* \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_PATH)/%.o:	$(RAY_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m| \033[0;1m"
+	@printf "\033[34;1m° \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_PATH)/%.o:	$(OBL_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m| \033[0;1m"
+	@printf "\033[34;1m° \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 ######### BONUS #############
 
 $(OBJ_B_PATH)/%.o:	$(UTILS_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m| \033[0;1m"
+	@printf "\033[34;1m_ \033[0;1m"
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
-	@$(CC) $(CFLAGS) -I$(INC_BONUS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_B_PATH)/%.o:	$(PARSB_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m| \033[0;1m"
+	@printf "\033[34;1m_ \033[0;1m"
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
-	@$(CC) $(CFLAGS) -I$(INC_BONUS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_B_PATH)/%.o:	$(SRCS_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m| \033[0;1m"
+	@printf "\033[34;1m_ \033[0;1m"
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
-	@$(CC) $(CFLAGS) -I$(INC_BONUS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_B_PATH)/%.o:	$(RAY_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m| \033[0;1m"
+	@printf "\033[34;1m_ \033[0;1m"
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
-	@$(CC) $(CFLAGS) -I$(INC_BONUS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_B_PATH)/%.o:	$(BONUS_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m| \033[0;1m"
+	@printf "\033[34;1m_ \033[0;1m"
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
-	@$(CC) $(CFLAGS) -I$(INC_BONUS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+
+debug:
+	@echo SRC = $(SRC)
+	@echo OBJ_B_NAME = $(OBJ_B_NAME)
+	@echo "HEADER = $(HEADER)"
 
 clean:
 	@make -C $(MLX_DIR) clean
 	@rm -f $(OBJ)
+	@rm -f $(OBJ_B)
 	@rm -rf $(OBJ_PATH)
+	@rm -rf $(OBJ_B_PATH)
 	@echo "\033[33;1m$(NAME)\033[0;1m: objects deleted\033[0m"
 
 fclean:	clean

@@ -31,7 +31,16 @@
 # define INF_F "F"
 # define INF_C "C"
 
+# define BON_P0 "P0"
+# define BON_P1 "P1"
+# define BON_P2 "P2"
+# define BON_P3 "P3"
+# define BON_S1 "S1"
+# define BON_SA "SA"
+# define BON_D "D"
+
 # define NB_INFO 8
+# define NB_BON 7
 
 # define NO 3
 # define SO 1
@@ -41,6 +50,14 @@
 # define R 5
 # define F 6
 # define C 7
+
+# define P0 0
+# define P1 1
+# define P2 2
+# define P3 3
+# define S1 4
+# define SA 5
+# define D  6
 
 # define WALL '1'
 # define OBJ '2'
@@ -79,8 +96,8 @@
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
 
-# define ROTSPEED 0.1
-# define MOVESPEED 0.2
+# define ROTSPEED 0.2
+# define MOVESPEED 0.3
 
 enum	e_state
 {
@@ -192,6 +209,12 @@ typedef struct	s_key
 	int	d;
 }				t_key;
 
+typedef struct	s_bonus
+{
+	t_text			weap;
+	char			*path[7];
+}				t_bonus;
+
 typedef struct	s_all
 {
 	char			**info;
@@ -214,7 +237,7 @@ typedef struct	s_all
 	t_img			img;
 	t_text			text;
 	t_sprite		sp;
-	t_text		weap;
+	t_bonus			bonus;
 
 }				t_all;
 
@@ -276,6 +299,5 @@ int				ft_key_press(int key, t_all **all);
 void			add_mini_map(t_all **all);
 void    		print_weapon(t_all **all, int pull);
 void    		put_weapon(t_all **all);
-
 
 #endif
