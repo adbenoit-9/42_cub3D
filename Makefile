@@ -12,41 +12,167 @@
 
 NAME	= cub3d
 
-SRC_PATH	= .
+INC			= includes/
 
-SRC_NAME	= check_info.c ft_atoi.c ft_memcpy.c ft_realloc.c ft_strtrim.c ft_error.c ft_putnbr_fd.c ft_space.c get_next_line.c get_next_line_utils.c map.c parsing.c main.c start.c raycast.c move.c sprite.c texture.c bmp.c ft_bzero.c ft_key_press.c
+INC_BONUS	= includes/bonus/
+
+HEADER	= $(INC)cub3d.h
+
+SRCS_PATH	= srcs
+
+UTILS_PATH	= srcs/utils
+
+PARSO_PATH	= srcs/obligatory/parsing
+
+OBL_PATH	= srcs/obligatory
+
+RAY_PATH	= srcs/raycasting
+
+BONUS_PATH	= srcs/bonus
+
+PARSB_PATH	= srcs/bonus/parsing
+
+
+SRCS_NAME	=	main.c\
+				move.c\
+				bmp_file.c
+
+BONUS_NAME	=	create_img_bonus.c\
+				ft_deal_key_bonus.c\
+				ft_error_bonus.c\
+				mini_map_bonus.c\
+				start_bonus.c\
+				weapon_bonus.c
+
+PARS_NAME	=	check_info.c\
+				ft_space.c\
+				ft_strtrim.c\
+				map.c\
+				pars_error.c\
+				parsing.c
+
+OBL_NAME	=	create_img.c\
+				ft_deal_key.c\
+				ft_error.c\
+				start.c
+
+RAY_NAME	=	sprite.c\
+				texture.c\
+				wall.c\
+				wall_utils.c
+
+
+UTILS_NAME	=	ft_atoi.c\
+				ft_bzero.c\
+				ft_memcpy.c\
+				ft_putnbr_fd.c\
+				ft_realloc.c\
+				ft_rgb.c\
+				get_next_line.c\
+				get_next_line_utils.c
 
 OBJ_PATH	= obj
 
-OBJ_NAME	= $(SRC_NAME:.c=.o)
+OBJ_B_PATH	= obj/bonus
+
+OBJ_NAME	= $(UTILS_NAME:.c=.o)
+OBJ_NAME	+= $(PARS_NAME:.c=.o)
+OBJ_NAME	+= $(SRCS_NAME:.c=.o)
+OBJ_NAME	+= $(OBL_NAME:.c=.o)
+OBJ_NAME	+= $(RAY_NAME:.c=.o)
+
+OBJ_B_NAME	= $(UTILS_NAME:.c=.o)
+OBJ_B_NAME	+= $(PARS_NAME:.c=.o)
+OBJ_B_NAME	+= $(SRCS_NAME:.c=.o)
+OBJ_B_NAME	+= $(BONUS_NAME:.c=.o)
+OBJ_B_NAME	+= $(RAY_NAME:.c=.o)
 
 CC	= gcc
 
 CFLAGS	= -Wall -Werror -Wextra
 
-MLX_DIR	= ressources/minilibx
+MLX_DIR	= minilibx
 
 MLX	= $(MLX_DIR)/libmlx.a
 
-MLX_LIBS	= -lmlx -framework OpenGL -framework AppKit -lz
-
-SRC	= $(addprefix $(SRC_PATH)/,$(SR_NAME))
+MLX_LIBS	= -lmlx -lXext -lX11
 
 OBJ	= $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
-all: $(NAME)
+OBJ_B	= $(addprefix $(OBJ_B_PATH)/,$(OBJ_B_NAME))
+
+all: $(MLX) $(NAME)
+
+bonus: $(MLX) $(OBJ_B)
+	@printf "\n"
+	@$(CC) -o $(NAME) $(OBJ_B) $(MLX) -framework OpenGL -framework AppKit
+	@echo "Compilation of \033[33;1m$(NAME) bonus\033[0;1m: [\033[1;32mOK\033[0;1m]"
+
+$(MLX) :
+	@make -C $(MLX_DIR) $(MLX_LIBS)
+	@echo "Compilation of \033[33;1m$(MLX_DIR)\033[0;1m: [\033[1;32mOK\033[0;1m]"
 
 $(NAME):	$(OBJ)
 	@printf "\n"
-	@$(CC) $^ -lmlx -framework OpenGL -framework AppKit -lz -o $@
+	@$(CC) -o $(NAME) $(OBJ) $(MLX) -framework OpenGL -framework AppKit
 	@echo "Compilation of \033[33;1m$(NAME)\033[0;1m: [\033[1;32mOK\033[0;1m]"
 
-$(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
+######### OBLIGATOIRE #############
+
+$(OBJ_PATH)/%.o:	$(UTILS_PATH)/%.c $(HEADER)
 	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+
+$(OBJ_PATH)/%.o:	$(PARSO_PATH)/%.c $(HEADER)
+	@printf "\033[34;1m| \033[0;1m"
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+
+$(OBJ_PATH)/%.o:	$(SRCS_PATH)/%.c $(HEADER)
+	@printf "\033[34;1m| \033[0;1m"
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+
+$(OBJ_PATH)/%.o:	$(RAY_PATH)/%.c $(HEADER)
+	@printf "\033[34;1m| \033[0;1m"
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+
+$(OBJ_PATH)/%.o:	$(OBL_PATH)/%.c $(HEADER)
+	@printf "\033[34;1m| \033[0;1m"
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+
+######### BONUS #############
+
+$(OBJ_B_PATH)/%.o:	$(UTILS_PATH)/%.c $(HEADER)
+	@printf "\033[34;1m| \033[0;1m"
+	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
+	@$(CC) $(CFLAGS) -I$(INC_BONUS) -c $< -o $@
+
+$(OBJ_B_PATH)/%.o:	$(PARSB_PATH)/%.c $(HEADER)
+	@printf "\033[34;1m| \033[0;1m"
+	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
+	@$(CC) $(CFLAGS) -I$(INC_BONUS) -c $< -o $@
+
+$(OBJ_B_PATH)/%.o:	$(SRCS_PATH)/%.c $(HEADER)
+	@printf "\033[34;1m| \033[0;1m"
+	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
+	@$(CC) $(CFLAGS) -I$(INC_BONUS) -c $< -o $@
+
+$(OBJ_B_PATH)/%.o:	$(RAY_PATH)/%.c $(HEADER)
+	@printf "\033[34;1m| \033[0;1m"
+	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
+	@$(CC) $(CFLAGS) -I$(INC_BONUS) -c $< -o $@
+
+$(OBJ_B_PATH)/%.o:	$(BONUS_PATH)/%.c $(HEADER)
+	@printf "\033[34;1m| \033[0;1m"
+	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
+	@$(CC) $(CFLAGS) -I$(INC_BONUS) -c $< -o $@
 
 clean:
+	@make -C $(MLX_DIR) clean
 	@rm -f $(OBJ)
 	@rm -rf $(OBJ_PATH)
 	@echo "\033[33;1m$(NAME)\033[0;1m: objects deleted\033[0m"
