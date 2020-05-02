@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:45:39 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/03/12 20:02:02 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/02 13:04:15 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@
 # define BON_P1 "P1"
 # define BON_P2 "P2"
 # define BON_P3 "P3"
+# define BON_P4 "P4"
 # define BON_S1 "S1"
 # define BON_SA "SA"
 # define BON_D "D"
 
 # define NB_INFO 8
-# define NB_BON 7
+# define NB_BON 8
 
 # define NO 3
 # define SO 1
@@ -55,20 +56,24 @@
 # define P1 1
 # define P2 2
 # define P3 3
-# define S1 4
-# define SA 5
-# define D  6
+# define P4 4
+# define S1 5
+# define SA 6
+# define D  7
 
 # define WALL '1'
 # define OBJ '2'
 # define EMPT '0'
-# define HOLE '3'
+# define HOLE ' '
 # define NORTH 'N'
 # define SOUTH 'S'
 # define EAST 'E'
 # define WEST 'W'
+# define OBJ1 '3'
+# define DOOR 'D'
 
 # define NB_CHAR 8
+# define NB_CHAR_B 10
 
 # define END_MAP -3
 # define END_INFO -2
@@ -87,6 +92,7 @@
 # define Y 1
 
 # define ESC 53
+# define TAB 48
 # define RIGHT 124
 # define LEFT 123
 # define KEY_W 13
@@ -96,12 +102,13 @@
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
 
-# define ROTSPEED 0.2
-# define MOVESPEED 0.3
+# define ROTSPEED 0.05
+# define MOVESPEED 0.1
 
 enum	e_state
 {
 	INFO,
+	BONUS,
 	MAP,
 	END
 };
@@ -140,6 +147,7 @@ typedef struct	s_grid
 
 typedef struct	s_img
 {
+	int		dim[2];
 	void	*ptr;
 	int		*data;
 	int		bpp;
@@ -203,6 +211,7 @@ typedef struct	s_key
 {
 	int	left;
 	int	right;
+	int	tab;
 	int	w;
 	int	a;
 	int	s;
@@ -212,7 +221,10 @@ typedef struct	s_key
 typedef struct	s_bonus
 {
 	t_text			weap;
-	char			*path[7];
+	char			**path;
+	int				pull;
+	int				life;
+	t_img			heart;
 }				t_bonus;
 
 typedef struct	s_all
@@ -261,7 +273,6 @@ int				ft_strlen(char *str);
 int				ft_strncmp(char *s1, char *s2, int n);
 
 //parsing
-char			*ft_modify(char *s1, char set);
 int				add_col(t_all **all, char *line, int ident);
 int				add_r(t_all **all, char *line);
 int				ft_parsing(t_all **all);
@@ -295,9 +306,14 @@ int 			key_init(t_all **all);
 int				ft_key_release(int key, t_all **all);
 int				ft_key_press(int key, t_all **all);
 
+
 //bonus
 void			add_mini_map(t_all **all);
+void			ft_pull_weapon(t_all **all);
+void    		print_hearts(t_all **all);
 void    		print_weapon(t_all **all, int pull);
+void    		put_heart(t_all **all);
 void    		put_weapon(t_all **all);
+int				bonus(char *line, t_all **all);
 
 #endif

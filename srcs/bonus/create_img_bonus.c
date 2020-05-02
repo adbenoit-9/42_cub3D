@@ -17,8 +17,10 @@ int		create_image(t_all **all)
 	raycast_wall(all);
 	raycast_sprite(all);
 	add_mini_map(all);
-	print_weapon(all, 0);
+	print_weapon(all, (*all)->bonus.pull);
+	print_hearts(all);
 	mlx_put_image_to_window((*all)->mlx, (*all)->win, (*all)->img.ptr, 0, 0);
+	ft_pull_weapon(all);
 	ft_move(all);
 	return (NO_ERR);
 }

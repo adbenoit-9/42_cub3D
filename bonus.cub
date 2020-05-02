@@ -10,9 +10,10 @@ C 120,120,255
 S1 ./xpm/dye_powder_light_blue.xpm
 SA ./xpm/spider_eye_fermented.xpm
 P0 ./xpm/bow_pulling_0.xpm
-P1 ./xpm/bow_pulling_1.xpm 
-P2 ./xpm/bow_pulling_2.xpm
-P3 ./xpm/bow_pull_3.xpm
+P1 ./xpm/bow_pulling_0.xpm
+P2 ./xpm/bow_standby.xpm
+P3 ./xpm/bow_standby.xpm
+P4 ./xpm/bow_pull_3.xpm
 D ./xpm/door_iron.xpm
 
 
@@ -24,7 +25,7 @@ D ./xpm/door_iron.xpm
 111111111011000001110000000000001
 100030000011000001110111111111111
 11110111111111010000000010001
-11110111111111011101010000001
+111101D1111111011101010000001
 11000000110101011100000010201
 10002000000000001100000010001
 10000000000000001101010010001

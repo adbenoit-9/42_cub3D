@@ -1,0 +1,102 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/04 14:45:43 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/02 11:24:09 by Adeline          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int		ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+int	ft_strncmp(char *s1, char *s2, int n)
+{
+	int i;
+
+	i = 0;
+	while (i < n && s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	if (i != n)
+		return (0);
+	return (1);
+}
+
+int		ft_parsing(t_all **all)
+{
+	char				*line;
+	static t_function	process[3] = {info, bonus, map};
+
+	line = NULL;
+	if ((*all)->ret == 0)
+		return (0);
+	(*all)->ret = get_next_line((*all)->fd, &line);
+	if ((*all)->i_map == END_MAP && line[0] == 0)
+		ft_error(all, line, PARS_ERR);
+	else if (line[0] == 0)
+	{
+		if ((*all)->i_map > 0)
+		{
+			(*all)->state = END;
+			map_error(all, line);
+		}
+		free(line);
+		ft_parsing(all);
+	}
+	else if (line[0] != 0 && (*all)->state == END)
+		ft_error(all, line, PARS_ERR);
+	else
+		process[(*all)->state](line, all);
+	return (NO_ERR);
+}
+
+int		open_f(char *arg, t_all **all, int save)
+{
+	int	i;
+
+	if (!((*all) = (t_all *)malloc(sizeof(t_all))))
+		ft_error(all, NULL, MAL_ERR);
+	all_null(all);
+	(*all)->save = save;
+	(*all)->ret = 1;
+	(*all)->i_map = 0;
+	(*all)->state = INFO;
+	(*all)->pos = 0;
+	if (!((*all)->info = malloc(sizeof(char *) * (NB_INFO + 1))))
+		ft_error(all, NULL, MAL_ERR);
+	if (!((*all)->bonus.path = malloc(sizeof(char *) * (NB_BON + 1))))
+		ft_error(all, NULL, MAL_ERR);
+	i = 0;
+	(*all)->map = 0;
+	(*all)->r[0] = -1;
+	(*all)->r[1] = -1;
+	(*all)->c = -1;
+	(*all)->f = -1;
+	(*all)->sp.count = 0;
+	while (i <= NB_INFO)
+	{
+		(*all)->info[i] = 0;
+		i++;
+	}
+	if (((*all)->fd = open(arg, O_RDONLY)) == -1)
+		ft_error(all, NULL, FILE_ERR);
+	ft_parsing(all);
+	close((*all)->fd);
+	return (NO_ERR);
+}

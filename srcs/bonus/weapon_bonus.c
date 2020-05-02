@@ -1,35 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   weapon_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/01 22:57:19 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/02 13:02:33 by Adeline          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void    put_bonus_weapon(t_all **all)
+void    put_weapon(t_all **all)
 {
+	int i;
+
 	(*all)->bonus.weap.bpp = 32;
 	(*all)->bonus.weap.endian = 0;
-	add_dim_xpm(all, "./xpm/bow_pulling_0.xpm", &(*all)->bonus.weap.dim[0][X], &(*all)->bonus.weap.dim[0][Y]);
-	(*all)->bonus.weap.size_line = (*all)->bonus.weap.dim[0][X] * 4;
-	if (((*all)->bonus.weap.ptr = mlx_xpm_file_to_image((*all)->mlx, "./xpm/bow_pulling_0.xpm", &(*all)->bonus.weap.dim[0][X], &(*all)->bonus.weap.dim[0][Y])) == NULL)
-		ft_error(all, NULL, FILE_ERR);
-	(*all)->bonus.weap.data[0] = (int *)mlx_get_data_addr((*all)->bonus.weap.ptr, &(*all)->bonus.weap.bpp, &(*all)->bonus.weap.size_line, &(*all)->bonus.weap.endian);
-
-    add_dim_xpm(all, "./xpm/bow_pulling_1.xpm", &(*all)->bonus.weap.dim[1][X], &(*all)->bonus.weap.dim[1][Y]);
-	(*all)->bonus.weap.size_line = (*all)->bonus.weap.dim[1][X] * 4;
-	if (((*all)->bonus.weap.ptr = mlx_xpm_file_to_image((*all)->mlx, "./xpm/bow_pulling_1.xpm", &(*all)->bonus.weap.dim[1][X], &(*all)->bonus.weap.dim[1][Y])) == NULL)
-		ft_error(all, NULL, FILE_ERR);
-	(*all)->bonus.weap.data[1] = (int *)mlx_get_data_addr((*all)->bonus.weap.ptr, &(*all)->bonus.weap.bpp, &(*all)->bonus.weap.size_line, &(*all)->bonus.weap.endian);
-
-    add_dim_xpm(all, "./xpm/bow_pulling_2.xpm", &(*all)->bonus.weap.dim[2][X], &(*all)->bonus.weap.dim[2][Y]);
-	(*all)->bonus.weap.size_line = (*all)->bonus.weap.dim[2][X] * 4;
-	if (((*all)->bonus.weap.ptr = mlx_xpm_file_to_image((*all)->mlx, "./xpm/bow_pulling_2.xpm", &(*all)->bonus.weap.dim[2][X], &(*all)->bonus.weap.dim[2][Y])) == NULL)
-		ft_error(all, NULL, FILE_ERR);
-	(*all)->bonus.weap.data[2] = (int *)mlx_get_data_addr((*all)->bonus.weap.ptr, &(*all)->bonus.weap.bpp, &(*all)->bonus.weap.size_line, &(*all)->bonus.weap.endian);
-
-    add_dim_xpm(all, "./xpm/bow_pull_3.xpm", &(*all)->bonus.weap.dim[3][X], &(*all)->bonus.weap.dim[3][Y]);
-	(*all)->bonus.weap.size_line = (*all)->bonus.weap.dim[3][X] * 4;
-	if (((*all)->bonus.weap.ptr = mlx_xpm_file_to_image((*all)->mlx, "./xpm/bow_pull_3.xpm", &(*all)->bonus.weap.dim[3][X], &(*all)->bonus.weap.dim[3][Y])) == NULL)
-		ft_error(all, NULL, FILE_ERR);
-	(*all)->bonus.weap.data[3] = (int *)mlx_get_data_addr((*all)->bonus.weap.ptr, &(*all)->bonus.weap.bpp, &(*all)->bonus.weap.size_line, &(*all)->bonus.weap.endian);
+	i = 0;
+	while (i < 5)
+	{
+		add_dim_xpm(all, (*all)->bonus.path[i], &(*all)->bonus.weap.dim[i][X], &(*all)->bonus.weap.dim[i][Y]);
+		(*all)->bonus.weap.size_line = (*all)->bonus.weap.dim[i][X] * 4;
+		if (((*all)->bonus.weap.ptr = mlx_xpm_file_to_image((*all)->mlx, (*all)->bonus.path[i], &(*all)->bonus.weap.dim[i][X], &(*all)->bonus.weap.dim[i][Y])) == NULL)
+			ft_error(all, NULL, FILE_ERR);
+		(*all)->bonus.weap.data[i] = (int *)mlx_get_data_addr((*all)->bonus.weap.ptr, &(*all)->bonus.weap.bpp, &(*all)->bonus.weap.size_line, &(*all)->bonus.weap.endian);
+		i++;
+	}
 }
 
-void    print_bonus_weapon(t_all **all, int pull)
+void    print_weapon(t_all **all, int pull)
 {
 	int		start[2];
 	int		end[2];

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_error_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 18:48:03 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/03/03 17:52:53 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/02 11:33:37 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void		ft_error(t_all **all, char *line, int err)
 	line = NULL;
 	free_tab((*all)->map);
 	free_tab((*all)->info);
+	free_tab((*all)->bonus.path);
 	free((*all)->wall.dist);
 	//free((*all)->img.data);
 	free((*all)->text.ptr);
@@ -29,6 +30,7 @@ void		ft_error(t_all **all, char *line, int err)
 	//free((*all)->sp.dist);
 	free(*all);
 	if (err != NO_ERR)
+		printf("%s\n", line);
 		print_err(err);
 	if ((*all)->img.ptr)
 	{

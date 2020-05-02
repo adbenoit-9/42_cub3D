@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+         #
+#    By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/03/12 17:40:56 by adbenoit         ###   ########.fr        #
+#    Updated: 2020/05/02 13:05:12 by Adeline          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ SRCS_PATH	= srcs
 
 UTILS_PATH	= srcs/utils
 
-PARSO_PATH	= srcs/obligatory/parsing
 
 OBL_PATH	= srcs/obligatory
 
@@ -28,30 +27,31 @@ RAY_PATH	= srcs/raycasting
 
 BONUS_PATH	= srcs/bonus
 
-PARSB_PATH	= srcs/bonus/parsing
 
 
-SRCS_NAME	=	main.c\
+SRCS_NAME	=	bmp_file.c\
+				main.c\
 				move.c\
-				bmp_file.c
+				parsing.c
 
 BONUS_NAME	=	create_img_bonus.c\
 				ft_deal_key_bonus.c\
 				ft_error_bonus.c\
+				life_bonus.c\
 				mini_map_bonus.c\
+				pars_bonus.c\
+				pars_error_bonus.c\
+				pars_info_bonus.c\
+				pars_map_bonus.c\
 				start_bonus.c\
 				weapon_bonus.c
-
-PARS_NAME	=	check_info.c\
-				ft_space.c\
-				ft_strtrim.c\
-				map.c\
-				pars_error.c\
-				parsing.c
 
 OBL_NAME	=	create_img.c\
 				ft_deal_key.c\
 				ft_error.c\
+				pars_error.c\
+				pars_info.c\
+				pars_map.c\
 				start.c
 
 RAY_NAME	=	sprite.c\
@@ -66,6 +66,7 @@ UTILS_NAME	=	ft_atoi.c\
 				ft_putnbr_fd.c\
 				ft_realloc.c\
 				ft_rgb.c\
+				ft_strtrim.c\
 				get_next_line.c\
 				get_next_line_utils.c
 
@@ -74,13 +75,13 @@ OBJ_PATH	= obj
 OBJ_B_PATH	= obj/bonus
 
 OBJ_NAME	= $(UTILS_NAME:.c=.o)
-OBJ_NAME	+= $(PARS_NAME:.c=.o)
+OBJ_NAME	+= $(PARSO_NAME:.c=.o)
 OBJ_NAME	+= $(SRCS_NAME:.c=.o)
 OBJ_NAME	+= $(OBL_NAME:.c=.o)
 OBJ_NAME	+= $(RAY_NAME:.c=.o)
 
 OBJ_B_NAME	= $(UTILS_NAME:.c=.o)
-OBJ_B_NAME	+= $(PARS_NAME:.c=.o)
+OBJ_B_NAME	+= $(PARSB_NAME:.c=.o)
 OBJ_B_NAME	+= $(SRCS_NAME:.c=.o)
 OBJ_B_NAME	+= $(BONUS_NAME:.c=.o)
 OBJ_B_NAME	+= $(RAY_NAME:.c=.o)
@@ -99,7 +100,7 @@ SRC			= $(addprefix $(SRCS_PATH)/,$(SRCS_NAME))
 SRC			+= $(addprefix $(RAY_PATH)/,$(RAY_NAME))
 SRC			+= $(addprefix $(UTILS_PATH)/,$(UTILS_NAME))
 SRC			+= $(addprefix $(OBL_PATH)/,$(OBL_NAME))
-SRC			+= $(addprefix $(PARSO_PATH)/,$(PARS_NAME))
+SRC			+= $(addprefix $(PARSO_PATH)/,$(PARSO_NAME))
 
 OBJ	= $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
@@ -124,58 +125,53 @@ $(NAME):	$(OBJ)
 ######### OBLIGATOIRE #############
 
 $(OBJ_PATH)/%.o:	$(UTILS_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m* \033[0;1m"
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
-
-$(OBJ_PATH)/%.o:	$(PARSO_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m* \033[0;1m"
+	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_PATH)/%.o:	$(SRCS_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m* \033[0;1m"
+	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_PATH)/%.o:	$(RAY_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m° \033[0;1m"
+	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_PATH)/%.o:	$(OBL_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m° \033[0;1m"
+	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 ######### BONUS #############
 
 $(OBJ_B_PATH)/%.o:	$(UTILS_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m_ \033[0;1m"
+	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_B_PATH)/%.o:	$(PARSB_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m_ \033[0;1m"
+	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_B_PATH)/%.o:	$(SRCS_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m_ \033[0;1m"
+	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_B_PATH)/%.o:	$(RAY_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m_ \033[0;1m"
+	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(OBJ_B_PATH)/%.o:	$(BONUS_PATH)/%.c $(HEADER)
-	@printf "\033[34;1m_ \033[0;1m"
+	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@

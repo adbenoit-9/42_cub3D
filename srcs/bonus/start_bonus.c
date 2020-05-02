@@ -17,6 +17,8 @@ void	all_null(t_all **all)
 	(*all)->sp.ptr = NULL;
 	//(*all)->sp.data = NULL;
 	(*all)->sp.dist = NULL;
+	(*all)->bonus.pull = 4;
+	(*all)->bonus.life = 5;
 }
 
 static void ft_putdir(t_all **all, char o)
@@ -45,6 +47,7 @@ void	start(t_all **all)
 	put_text(all);
 	put_sprite(all);
 	put_weapon(all);
+	put_heart(all);
 	create_image(all);
 	if ((*all)->save == 1)
 		save_bmp(all);
