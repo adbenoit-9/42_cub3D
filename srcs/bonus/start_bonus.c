@@ -21,7 +21,7 @@ void	all_null(t_all **all)
 	(*all)->bonus.life = 5;
 }
 
-static void ft_putdir(t_all **all, char o)
+void ft_putdir(t_all **all, char o)
 {
 
 	(*all)->player.dir[X] = 0;
@@ -41,13 +41,48 @@ static void ft_putdir(t_all **all, char o)
 
 void	start(t_all **all)
 {
+	int i;
+
+	i = 0;
+	(*all)->bonus.loop = 0;
+	(*all)->bonus.col = 0;
+	if (!((*all)->bonus.sp.dead = malloc(sizeof(int) * (*all)->bonus.sp.count)))
+		ft_error(all, NULL, MAL_ERR);
+	if (!((*all)->bonus.sa.dead = malloc(sizeof(int) * (*all)->bonus.sa.count)))
+		ft_error(all, NULL, MAL_ERR);
+	if (!((*all)->sp.dead = malloc(sizeof(int) * (*all)->sp.count)))
+		ft_error(all, NULL, MAL_ERR);
+	if (!((*all)->bonus.sp.see = malloc(sizeof(int) * (*all)->bonus.sp.count)))
+		ft_error(all, NULL, MAL_ERR);
+	if (!((*all)->sp.see = malloc(sizeof(int) * (*all)->sp.count)))
+		ft_error(all, NULL, MAL_ERR);
+	if (!((*all)->bonus.sa.see = malloc(sizeof(int) * (*all)->bonus.sa.count)))
+		ft_error(all, NULL, MAL_ERR);
+	while (i < (*all)->sp.count)
+	{
+		(*all)->sp.see[i] = 0;
+		(*all)->bonus.sa.see[i] = 0;
+		(*all)->sp.dead[i] = 0;
+		(*all)->bonus.sa.dead[i] = 1;
+		i++;
+	}
+	i = 0;
+	while (i < (*all)->bonus.sp.count)
+	{
+		(*all)->bonus.sp.see[i] = 0;
+		(*all)->bonus.sp.dead[i] = 0;
+		i++;
+	}
 	ft_putdir(all, (*all)->player.o);
 	(*all)->grid.plane[X] = ((*all)->player.dir[X] == 0) ? 0.66 : 0;
 	(*all)->grid.plane[Y] = ((*all)->player.dir[Y] == 0) ? 0.66 : 0;
 	put_text(all);
-	put_sprite(all);
+	put_sprite(all, &(*all)->sp, (*all)->info[S]);
+	put_sprite(all, &(*all)->bonus.sp, (*all)->bonus.path[S1]);
+	put_sprite(all, &(*all)->bonus.sa, (*all)->bonus.path[SA]);
 	put_weapon(all);
-	put_heart(all);
+	put_img(all, &(*all)->bonus.heart, "./xpm/heart.xpm");
+	put_img(all, &(*all)->bonus.dead, "./xpm/play_again_button.xpm");
 	create_image(all);
 	if ((*all)->save == 1)
 		save_bmp(all);

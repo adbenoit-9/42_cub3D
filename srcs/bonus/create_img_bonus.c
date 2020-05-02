@@ -1,7 +1,28 @@
 #include "cub3d.h"
 
+static void	print_state_sprite(t_all **all, t_sprite *sp)
+{
+	double	invdet;
+	int		i;
+
+	i = 0;
+	add_dist(all, sp);
+	add_dist(all, &(*all)->bonus.sa);
+	invdet = 1.0 / ((*all)->grid.plane[X] * (*all)->player.dir[Y] - (*all)->player.dir[X] * (*all)->grid.plane[Y]);
+	while (i < sp->count)
+	{
+		//printf("sprite %d is %d\n", i, sp->dead[i]);
+		if (sp->dead[i] == 0)
+			raycast_sprite(all, sp, invdet, i);
+		if (sp->dead[i] == 1)
+			raycast_sprite(all, &(*all)->bonus.sa, invdet, i);
+		i++;
+	}
+}
+
 int		create_image(t_all **all)
 {
+	(*all)->bonus.loop++;
 	if ((*all)->img.ptr != NULL)
 	{
 		mlx_destroy_image((*all)->mlx, (*all)->img.ptr);
@@ -15,7 +36,8 @@ int		create_image(t_all **all)
 	(*all)->img.data = (int *)mlx_get_data_addr((*all)->img.ptr, &(*all)->img.bpp, &(*all)->img.size_line, &(*all)->img.endian);
 	(*all)->grid.column = 0;
 	raycast_wall(all);
-	raycast_sprite(all);
+	print_state_sprite(all, &(*all)->sp);
+	print_state_sprite(all, &(*all)->bonus.sp);
 	add_mini_map(all);
 	print_weapon(all, (*all)->bonus.pull);
 	print_hearts(all);

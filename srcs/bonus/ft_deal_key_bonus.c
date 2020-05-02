@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:32:27 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/02 13:35:47 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/02 23:06:53 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ int	ft_key_press(int key, t_all **all)
 {
 	if (key == ESC)
 		ft_error(all, NULL, NO_ERR);
-	if (key == TAB)
+	if (key == TAB && (*all)->bonus.life != 0)
 		(*all)->key.tab = 1;
-	if (key == LEFT)
+	if (key == LEFT && (*all)->bonus.life != 0)
 		(*all)->key.left = 1;
-	if (key == RIGHT)
+	if (key == RIGHT && (*all)->bonus.life != 0)
 		(*all)->key.right = 1;
-	if (key == KEY_W)
+	if (key == KEY_W && (*all)->bonus.life != 0)
 		(*all)->key.w = 1;
-	if (key == KEY_A)
+	if (key == KEY_A && (*all)->bonus.life != 0)
 		(*all)->key.a = 1;
-	if (key == KEY_S)
+	if (key == KEY_S && (*all)->bonus.life != 0)
 		(*all)->key.s = 1;
-	if (key == KEY_D)
+	if (key == KEY_D && (*all)->bonus.life != 0)
 		(*all)->key.d = 1;
 	return (NO_ERR);
 }
@@ -54,15 +54,25 @@ int	ft_key_release(int key, t_all **all)
 
 void	ft_pull_weapon(t_all **all)
 {
-	static int loop;
+	int i;
 
 	if ((*all)->key.tab == 1)
 	{
-		loop = 0;
+		(*all)->bonus.loop = 0;
 		(*all)->bonus.pull = -1;
 	}
-	if ((*all)->bonus.pull < 4)
-		(*all)->bonus.pull++;;
+	if ((*all)->bonus.pull < 4 && (*all)->bonus.loop == ((*all)->bonus.pull + 1) * 4)
+		(*all)->bonus.pull++;
+	i = 0;
+	while (i < (*all)->sp.count)
+	{
+		if ((*all)->bonus.pull == 3 && (*all)->sp.see[i] == 1)
+		{
+			(*all)->sp.dead[i] = 1;
+			(*all)->bonus.col = 0;
+		}
+		i++;
+	}
 }
 
 int		ft_close(t_all **all)

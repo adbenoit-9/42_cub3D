@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 23:52:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/02 11:35:58 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/02 23:32:36 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int     bonus(char *line, t_all **all)
 	i = 0;
 	while (i < NB_BON)
 	{
-		size = i < 6 ? 2 : 1;
+		size = i < 7 ? 2 : 1;
 		if (ft_strncmp(str_info[i], line, size) == 1)
 		{
 			line = ft_strtrim(line, " ", size);

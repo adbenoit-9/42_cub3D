@@ -3,71 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 18:34:57 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/03/05 18:31:31 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/02 19:06:58 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static int	find_dim(int *i, char *line)
-{
-	char	*nb;
-	int		k;
-	int		j;
-	int		dim;
-
-	k = 0;
-	while(line[k + *i] >= '0' && line[k + *i] <= '9')
-		k++;
-	if (!(nb = malloc(sizeof(char) * (k + 1))))
-		return (-1);
-	j = 0;
-	while(line[*i] >= '0' && line[*i] <= '9')
-	{
-		nb[j] = line[*i];
-		(*i)++;
-		j++;
-	}
-	nb[j] = 0;
-	dim = ft_atoi(nb);
-	//free(nb);
-	nb = NULL;
-	return (dim);
-}
-
-void	add_dim_xpm(t_all **all, char *path, int *dimX, int *dimY)
-{
-	int		i;
-	char	*line;
-	char	*tmp;
-	int		fd;
-
-	i = 0;
-	line = NULL;
-	fd = open(path, O_RDONLY);
-	while (i < 4)
-	{
-		//free(line);
-		line = NULL;
-		if (get_next_line(fd, &line) != 1)
-			ft_error(all, line, PATH_ERR);
-		i++;
-	}
-	while (get_next_line(fd, &tmp) == 1)
-		free(tmp);
-	i = 1;
-	if ((*dimX = find_dim(&i, line)) == -1)
-		ft_error(all, line, PATH_ERR);
-	i++;
-	if ((*dimY = find_dim(&i, line)) == -1)
-		ft_error(all, line, PATH_ERR);
-	//free(line);
-	line = NULL;
-	close(fd);
-}
 
 void	put_text(t_all **all)
 {

@@ -30,7 +30,7 @@ void		raycast_wall(t_all **all)
 		textpos = (start - (*all)->r[Y] / 2 + (*all)->wall.slice_h / 2) * step;
 		while (i < start)
 		{
-			(*all)->img.data[(*all)->grid.column + (*all)->r[X] * i] = (*all)->c;
+			(*all)->img.data[(*all)->grid.column + (*all)->r[X] * i] = (*all)->c + (*all)->bonus.col;
 			i++;
 		}
 		while (start < end)
@@ -38,13 +38,13 @@ void		raycast_wall(t_all **all)
 			(*all)->text.pos[Y] = (int)textpos;
 			textpos += step;
 			(*all)->img.data[(*all)->grid.column + (*all)->r[X] * start] = 
-					(*all)->text.data[(*all)->wall.side][(int)((*all)->text.dim[(*all)->wall.side][X] * (*all)->text.pos[Y] + (*all)->text.pos[X])];
+					(*all)->text.data[(*all)->wall.side][(int)((*all)->text.dim[(*all)->wall.side][X] * (*all)->text.pos[Y] + (*all)->text.pos[X])] + (*all)->bonus.col;
 			start++;
 		}
 		i = start;
 		while (i < (*all)->r[Y])
 	{
-		(*all)->img.data[(*all)->grid.column + (*all)->r[X] * i] = (*all)->f;
+		(*all)->img.data[(*all)->grid.column + (*all)->r[X] * i] = (*all)->f + (*all)->bonus.col;
 		i++;
 	}
 		(*all)->grid.column++;

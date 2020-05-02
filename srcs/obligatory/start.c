@@ -43,7 +43,7 @@ void	start(t_all **all)
 	(*all)->grid.plane[X] = ((*all)->player.dir[X] == 0) ? 0.66 : 0;
 	(*all)->grid.plane[Y] = ((*all)->player.dir[Y] == 0) ? 0.66 : 0;
 	put_text(all);
-	put_sprite(all);
+	put_sprite(all, &(*all)->sp, (*all)->info[S]);
 	create_image(all);
 	if ((*all)->save == 1)
 		save_bmp(all);

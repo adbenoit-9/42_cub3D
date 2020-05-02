@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:35:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/03/12 20:02:28 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/02 16:15:37 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	ft_forward(t_all **all)
 	{
 		(*all)->player.map[X] += (*all)->player.dir[X] * MOVESPEED;
 		(*all)->player.map[Y] += (*all)->player.dir[Y] * MOVESPEED;
+		//printf("(%d, %f)\n", (int)4.5, (*all)->player.map[Y]);
 	}
 }
 

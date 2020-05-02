@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:45:43 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/02 11:24:09 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/03 00:28:58 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int		open_f(char *arg, t_all **all, int save)
 	(*all)->c = -1;
 	(*all)->f = -1;
 	(*all)->sp.count = 0;
+	(*all)->bonus.sp.count = 0;
+	(*all)->bonus.sa.count = 0;
 	while (i <= NB_INFO)
 	{
 		(*all)->info[i] = 0;

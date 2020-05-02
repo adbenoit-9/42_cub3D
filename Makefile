@@ -6,7 +6,7 @@
 #    By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/05/02 13:05:12 by Adeline          ###   ########.fr        #
+#    Updated: 2020/05/02 19:33:26 by Adeline          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ BONUS_PATH	= srcs/bonus
 
 
 SRCS_NAME	=	bmp_file.c\
+				deal_image.c\
 				main.c\
 				move.c\
 				parsing.c
@@ -43,6 +44,7 @@ BONUS_NAME	=	create_img_bonus.c\
 				pars_error_bonus.c\
 				pars_info_bonus.c\
 				pars_map_bonus.c\
+				play_again_bonus.c\
 				start_bonus.c\
 				weapon_bonus.c
 

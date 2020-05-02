@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:42:10 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/02 11:21:11 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/03 00:49:21 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,23 @@ int	add_map(char *line, t_all **all)
 		if (line[i] == OBJ)
 		{
 			(*all)->sp.count++;
+			(*all)->bonus.sa.count++;
 			if (!((*all)->sp.coor = realloc_doub((*all)->sp.coor, (*all)->sp.count)))
 				ft_error(all, line, MAL_ERR);
 			(*all)->sp.coor[(*all)->sp.count - 1][X] = i + 0.5;
 			(*all)->sp.coor[(*all)->sp.count - 1][Y] = (*all)->i_map + 0.5;
+			if (!((*all)->bonus.sa.coor = realloc_doub((*all)->bonus.sa.coor, (*all)->bonus.sa.count)))
+				ft_error(all, line, MAL_ERR);
+			(*all)->bonus.sa.coor[(*all)->bonus.sa.count - 1][X] = i + 0.5;
+			(*all)->bonus.sa.coor[(*all)->bonus.sa.count - 1][Y] = (*all)->i_map + 0.5;
+		}
+		else if (line[i] == OBJ1)
+		{
+			(*all)->bonus.sp.count++;
+			if (!((*all)->bonus.sp.coor = realloc_doub((*all)->bonus.sp.coor, (*all)->bonus.sp.count)))
+				ft_error(all, line, MAL_ERR);
+			(*all)->bonus.sp.coor[(*all)->bonus.sp.count - 1][X] = i + 0.5;
+			(*all)->bonus.sp.coor[(*all)->bonus.sp.count - 1][Y] = (*all)->i_map + 0.5;
 		}
 		(*all)->map[(*all)->i_map][i] = line[i];
 		i++;
@@ -77,6 +90,8 @@ int	map(char *line, t_all **all)
 		{
 			(*all)->player.map[X] = j + 0.5;
 			(*all)->player.map[Y] = (*all)->i_map + 0.5;
+			(*all)->player.pos[X] = j + 0.5;
+			(*all)->player.pos[Y] = (*all)->i_map + 0.5;
 			(*all)->player.o = line[j];
 			(*all)->pos++;
 		}

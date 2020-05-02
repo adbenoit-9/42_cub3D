@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:45:39 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/02 13:04:15 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/02 22:49:30 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@
 # define KEY_D 2
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
+# define KEY_MOUSE 2
 
 # define ROTSPEED 0.05
 # define MOVESPEED 0.1
@@ -116,9 +117,9 @@ enum	e_state
 typedef struct	s_player
 {
 	double	map[2];
+	double	pos[2];
 	double	dir[2];
 	double	old_dir[2];
-	double	pos[2];
 	char	o;
 }				t_player;
 
@@ -181,6 +182,8 @@ typedef struct	s_sprite
 	int		w;
 	int		h;
 	int		screen;
+	int		*dead;
+	int		*see;
 }				t_sprite;
 
 typedef struct	s_im_head
@@ -220,11 +223,17 @@ typedef struct	s_key
 
 typedef struct	s_bonus
 {
+	int				loop;
+	int				loop2;
 	t_text			weap;
 	char			**path;
 	int				pull;
 	int				life;
 	t_img			heart;
+	t_sprite		sp;
+	t_sprite		sa;
+	t_img			dead;
+	int				col;
 }				t_bonus;
 
 typedef struct	s_all
@@ -286,16 +295,20 @@ int				open_f(char *arg, t_all **all, int save);
 double			dist_screen(t_all **all, int x, int y);
 double			wall_dist(t_all **all);
 void			add_dim_xpm(t_all **all, char *path, int *dimX, int *dimY);
+void			add_dist(t_all **all, t_sprite *sp);
 void			complete_text(t_all **all);
 void			complete_wall_inf(t_all **all);
 void			direct_sd(t_all **all);
 void			direct_wa(t_all **all);
 void			ft_move(t_all **all);
+void 			ft_putdir(t_all **all, char o);
 void			ft_view(t_all **all);
 void			hit_wall(t_all **all);
-void			put_sprite(t_all **all);
+void			print_sprite(t_all **all, t_sprite *sp);
+void    		put_img(t_all **all, t_img *img, char *path);
+void			put_sprite(t_all **all, t_sprite *sp, char *path);
 void			put_text(t_all **all);
-void			raycast_sprite(t_all **all);
+void			raycast_sprite(t_all **all, t_sprite *sp, double invdet, int i);
 void			raycast_wall(t_all **all);
 void			save_bmp(t_all **all);
 void			side_dist(t_all **all);
@@ -310,10 +323,11 @@ int				ft_key_press(int key, t_all **all);
 //bonus
 void			add_mini_map(t_all **all);
 void			ft_pull_weapon(t_all **all);
+void   			print_play_again(t_all **all);
 void    		print_hearts(t_all **all);
 void    		print_weapon(t_all **all, int pull);
-void    		put_heart(t_all **all);
 void    		put_weapon(t_all **all);
 int				bonus(char *line, t_all **all);
+int     		ft_mouse(int button, int x, int y, t_all **all);
 
 #endif
