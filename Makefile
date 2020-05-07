@@ -6,7 +6,7 @@
 #    By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/05/02 19:33:26 by Adeline          ###   ########.fr        #
+#    Updated: 2020/05/06 21:10:18 by Adeline          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,26 +31,32 @@ BONUS_PATH	= srcs/bonus
 
 SRCS_NAME	=	bmp_file.c\
 				deal_image.c\
+				init.c\
 				main.c\
 				move.c\
 				parsing.c
 
-BONUS_NAME	=	create_img_bonus.c\
+BONUS_NAME	=	all_sprite_bonus.c\
+				create_img_bonus.c\
+				door_bonus.c\
 				ft_deal_key_bonus.c\
 				ft_error_bonus.c\
 				life_bonus.c\
+				mlx_handle_bonus.c\
 				mini_map_bonus.c\
 				pars_bonus.c\
 				pars_error_bonus.c\
 				pars_info_bonus.c\
 				pars_map_bonus.c\
 				play_again_bonus.c\
+				raycast_door_bonus.c\
 				start_bonus.c\
 				weapon_bonus.c
 
 OBL_NAME	=	create_img.c\
 				ft_deal_key.c\
 				ft_error.c\
+				mlx_handle.c\
 				pars_error.c\
 				pars_info.c\
 				pars_map.c\
@@ -111,6 +117,7 @@ OBJ_B	= $(addprefix $(OBJ_B_PATH)/,$(OBJ_B_NAME))
 all: $(MLX) $(NAME)
 
 bonus: $(MLX) $(OBJ_B)
+	@rm -rf $(NAME)
 	@printf "\n"
 	@$(CC) -o $(NAME) $(OBJ_B) $(MLX) -framework OpenGL -framework AppKit
 	@echo "Compilation of \033[33;1m$(NAME) bonus\033[0;1m: [\033[1;32mOK\033[0;1m]"

@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:45:43 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/03 00:28:58 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/05 14:32:40 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,14 @@ int		ft_parsing(t_all **all)
 	static t_function	process[3] = {info, bonus, map};
 
 	line = NULL;
-	if ((*all)->ret == 0)
-		return (0);
 	(*all)->ret = get_next_line((*all)->fd, &line);
-	if ((*all)->i_map == END_MAP && line[0] == 0)
-		ft_error(all, line, PARS_ERR);
-	else if (line[0] == 0)
+	if (line[0] == 0)
 	{
-		if ((*all)->i_map > 0)
+		if ((*all)->ret == 0)
 		{
 			(*all)->state = END;
 			map_error(all, line);
+			return (NO_ERR);
 		}
 		free(line);
 		ft_parsing(all);
@@ -68,34 +65,10 @@ int		ft_parsing(t_all **all)
 
 int		open_f(char *arg, t_all **all, int save)
 {
-	int	i;
-
 	if (!((*all) = (t_all *)malloc(sizeof(t_all))))
 		ft_error(all, NULL, MAL_ERR);
-	all_null(all);
+	init_all(all);
 	(*all)->save = save;
-	(*all)->ret = 1;
-	(*all)->i_map = 0;
-	(*all)->state = INFO;
-	(*all)->pos = 0;
-	if (!((*all)->info = malloc(sizeof(char *) * (NB_INFO + 1))))
-		ft_error(all, NULL, MAL_ERR);
-	if (!((*all)->bonus.path = malloc(sizeof(char *) * (NB_BON + 1))))
-		ft_error(all, NULL, MAL_ERR);
-	i = 0;
-	(*all)->map = 0;
-	(*all)->r[0] = -1;
-	(*all)->r[1] = -1;
-	(*all)->c = -1;
-	(*all)->f = -1;
-	(*all)->sp.count = 0;
-	(*all)->bonus.sp.count = 0;
-	(*all)->bonus.sa.count = 0;
-	while (i <= NB_INFO)
-	{
-		(*all)->info[i] = 0;
-		i++;
-	}
 	if (((*all)->fd = open(arg, O_RDONLY)) == -1)
 		ft_error(all, NULL, FILE_ERR);
 	ft_parsing(all);

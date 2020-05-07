@@ -6,13 +6,13 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 12:42:55 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/03 01:03:41 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/07 17:56:39 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "cub3d.h"
 
-static void lose_win_life(t_all **all)
+static void win_life(t_all **all)
 {
     int i;
     int x;
@@ -21,36 +21,52 @@ static void lose_win_life(t_all **all)
     i = 0;
     x = (int)(*all)->player.map[X];
     y = (int)(*all)->player.map[Y];
-    while (i < (*all)->sp.count)
+    while (i < (*all)->bonus.all_sp.count)
     {
-        if (x == (int)(*all)->sp.coor[i][X] && y == (int)(*all)->sp.coor[i][Y] && (*all)->sp.dead[i] == 0)
+        if (x == (int)(*all)->bonus.all_sp.coor[i][X] && y == (int)(*all)->bonus.all_sp.coor[i][Y] && (*all)->bonus.all_sp.dead[i] == 0 && (*all)->bonus.all_sp.type[i] == OBJ)
         {
-            if (((*all)->bonus.loop2 > 25) && (*all)->bonus.life > 0)
-            {
-                (*all)->bonus.col = 100;
-                (*all)->bonus.life--;
-                (*all)->bonus.loop2 = 0;
-            }
-        }
-        i++;
-    }
-    i = 0;
-    while (i < (*all)->bonus.sp.count)
-    {
-        if (x == (int)(*all)->bonus.sp.coor[i][X] && y == (int)(*all)->bonus.sp.coor[i][Y] && (*all)->sp.dead[i] == 0)
-        {
-            if ((*all)->bonus.life < 5)
+            if ((*all)->bonus.life < 4)
+                (*all)->bonus.life += 2;
+            else if ((*all)->bonus.life == 4)
                 (*all)->bonus.life++;
-            (*all)->bonus.sp.dead[i] = 2;
+            (*all)->bonus.all_sp.dead[i] = 1;
             (*all)->bonus.col = 0;
         }
         i++;
     }
-    if ((*all)->bonus.loop2 > 25)
+}
+
+void    lose_life(t_all **all, char c)
+{
+    int i;
+
+    i = 0;
+    if (c == OBJ1 && (*all)->bonus.loop2 > 35 && (*all)->bonus.life > 0 && (*all)->bonus.all_sp.dead[i] == 0)
+    {
+        (*all)->bonus.life--;
+        (*all)->bonus.col = 100;
         (*all)->bonus.loop2 = 0;
+    }
+    else
+    {
+        while (i < (*all)->bonus.all_sp.count)
+        {
+            if ((*all)->bonus.all_sp.see[i] == 1 && (*all)->bonus.all_sp.type[i] == OBJ1 && (*all)->bonus.all_sp.dead[i] == 0)
+            {
+                if (((*all)->bonus.loop2 > 60) && (*all)->bonus.life > 0)
+                {
+                    (*all)->bonus.col = 100;
+                    (*all)->bonus.life--;
+                    (*all)->bonus.loop2 = 0;
+                }
+            }
+            i++;
+        }
+    }
+    if ((*all)->bonus.loop2 > 3)
+        (*all)->bonus.col = 0;
     if ((*all)->bonus.life == 0)
-        print_play_again(all);
-    (*all)->bonus.loop2++;
+        print_play_again(all, &(*all)->bonus.dead, 3, 2);
 }
 
 void    print_hearts(t_all **all)
@@ -64,7 +80,7 @@ void    print_hearts(t_all **all)
     int     i;
 
     i = 0;
-    lose_win_life(all);
+    win_life(all);
     h = abs((int)((*all)->r[Y] / 20));
     w = abs((int)((*all)->r[Y] / 20));
     start[X] = (*all)->r[X] - w / 2;

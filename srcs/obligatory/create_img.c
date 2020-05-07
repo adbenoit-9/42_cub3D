@@ -14,7 +14,7 @@ int		create_image(t_all **all)
 	(*all)->img.endian = 0;
 	(*all)->img.data = (int *)mlx_get_data_addr((*all)->img.ptr, &(*all)->img.bpp, &(*all)->img.size_line, &(*all)->img.endian);
 	(*all)->grid.column = 0;
-	raycast_wall(all);
+	ft_wall(all);
 	print_sprite(all, &(*all)->sp);
 	mlx_put_image_to_window((*all)->mlx, (*all)->win, (*all)->img.ptr, 0, 0);
 	ft_move(all);

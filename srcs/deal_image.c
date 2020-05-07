@@ -41,17 +41,20 @@ void	add_dim_xpm(t_all **all, char *path, int *dimX, int *dimY)
 		//free(line);
 		line = NULL;
 		if (get_next_line(fd, &line) != 1)
+		{
+			printf("path = %s\n", path);
 			ft_error(all, line, PATH_ERR);
+		}
 		i++;
 	}
 	while (get_next_line(fd, &tmp) == 1)
 		free(tmp);
 	i = 1;
 	if ((*dimX = find_dim(&i, line)) == -1)
-		ft_error(all, line, PATH_ERR);
+		ft_error(all, line, FIND_ERR);
 	i++;
 	if ((*dimY = find_dim(&i, line)) == -1)
-		ft_error(all, line, PATH_ERR);
+		ft_error(all, line, FIND_ERR);
 	//free(line);
 	line = NULL;
 	close(fd);

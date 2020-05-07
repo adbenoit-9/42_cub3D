@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 23:52:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/02 23:32:36 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/06 18:21:30 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,15 @@ static int  add_path(char *line, t_all **all, int i)
 
 int     bonus(char *line, t_all **all)
 {
-	static char *str_info[NB_BON] = {BON_P0, BON_P1, BON_P2, BON_P3, BON_P4, BON_S1, BON_SA, BON_D};
+	static char *str_info[NB_BON] = {BON_P0, BON_P1, BON_P2, BON_P3, BON_P4, BON_S1, BON_SA, BON_DN, BON_DS, BON_DE, BON_DW};
 	int			i;
-	int			size;
 
 	i = 0;
 	while (i < NB_BON)
 	{
-		size = i < 7 ? 2 : 1;
-		if (ft_strncmp(str_info[i], line, size) == 1)
+		if (ft_strncmp(str_info[i], line, 3) == 1)
 		{
-			line = ft_strtrim(line, " ", size);
+			line = ft_strtrim(line, " ", 3);
 			return (add_path(line, all, i));
 		}
 		i++;

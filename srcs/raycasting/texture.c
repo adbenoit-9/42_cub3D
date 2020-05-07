@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 18:34:57 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/02 19:06:58 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/06 18:35:23 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	put_text(t_all **all)
 
 void	complete_text(t_all **all)
 {
-	(*all)->wall.dist[(*all)->grid.column] = wall_dist(all);
+	(*all)->wall.dist[(*all)->grid.column] = wall_dist(all, &(*all)->wall);
 	if ((*all)->wall.side % 2 == 0)
 		(*all)->wall.hit = (*all)->player.map[Y] + (*all)->wall.dist[(*all)->grid.column] * (*all)->wall.raydir[Y];
 	else

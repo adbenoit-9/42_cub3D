@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 18:48:03 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/02 11:33:37 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/05 17:16:36 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,29 @@
 
 void		ft_error(t_all **all, char *line, int err)
 {
-	free(line);
-	line = NULL;
-	free_tab((*all)->map);
-	free_tab((*all)->info);
-	free_tab((*all)->bonus.path);
-	free((*all)->wall.dist);
-	//free((*all)->img.data);
-	free((*all)->text.ptr);
-	//free((*all)->text.data);
-	//free_tab((char **)(*all)->sp.pos);
-	//free_tab((char **)(*all)->sp.coor);
-	free((*all)->sp.ptr);
-	//free((*all)->sp.data);
-	//free((*all)->sp.dist);
-	free(*all);
+	if (err == 5)
+	{
+		printf("line = %s\n", line);
+		printf("map parsing failed at %d\n", (*all)->i_map);
+		
+	}
+	// printf("%s\n", line);
+	// free(line);
+	// line = NULL;
+	// free_tab((*all)->map);
+	// free_tab((*all)->info);
+	// free_tab((*all)->bonus.path);
+	// free((*all)->wall.dist);
+	// free((*all)->img.data);
+	// free((*all)->text.ptr);
+	// free((*all)->text.data);
+	// free_tab((char **)(*all)->sp.pos);
+	// free_tab((char **)(*all)->sp.coor);
+	// free((*all)->sp.ptr);
+	// free((*all)->sp.data);
+	// free((*all)->sp.dist);
+	// free(*all);
 	if (err != NO_ERR)
-		printf("%s\n", line);
 		print_err(err);
 	if ((*all)->img.ptr)
 	{
@@ -45,7 +51,7 @@ void		ft_error(t_all **all, char *line, int err)
 
 void		print_err(int err)
 {
-	char *err_mess[NB_ERR] = {"Parsing problem.", "Please enter a correct file.", "Memory problem.", "Please enter corrects arguments.", "Please enter corrects paths."};
+	char *err_mess[NB_ERR] = {"Parsing problem.", "Please enter a correct file.", "Memory problem.", "Please enter corrects arguments.", "Please enter corrects paths.", "Error is here."};
 
 	if (err >= 0)
 	{

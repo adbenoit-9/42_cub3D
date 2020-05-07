@@ -24,12 +24,14 @@ static void     complete_mm(t_all **all, int *j, int *i, int dim, int x, int y)
     k = 0;
     while (k < dim)
     {
-        if ((*all)->map[x][y]== '1')
+        if ((*all)->map[x][y]== WALL || (*all)->map[x][y]== DOOR)
         {
             col = (*all)->img.data[*j + (*all)->r[X] * *i];
             (*all)->img.data[*i + (*all)->r[X] * *j] = ft_rgb(151, 153, 131);
         }
         if (y == (int)(*all)->player.map[X] && x == (int)(*all)->player.map[Y])
+            (*all)->img.data[*i + (*all)->r[X] * *j] = ft_rgb(33, 81, 116);
+        if ((*all)->map[x][y]== OBJ1)
             (*all)->img.data[*i + (*all)->r[X] * *j] = ft_rgb(213, 84, 84);
         k++;
         (*i)++;

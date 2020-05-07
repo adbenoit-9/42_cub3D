@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:42:10 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/03 00:49:21 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/06 21:45:41 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,10 @@ int	add_map(char *line, t_all **all)
 		if (line[i] == OBJ)
 		{
 			(*all)->sp.count++;
-			(*all)->bonus.sa.count++;
 			if (!((*all)->sp.coor = realloc_doub((*all)->sp.coor, (*all)->sp.count)))
 				ft_error(all, line, MAL_ERR);
 			(*all)->sp.coor[(*all)->sp.count - 1][X] = i + 0.5;
 			(*all)->sp.coor[(*all)->sp.count - 1][Y] = (*all)->i_map + 0.5;
-			if (!((*all)->bonus.sa.coor = realloc_doub((*all)->bonus.sa.coor, (*all)->bonus.sa.count)))
-				ft_error(all, line, MAL_ERR);
-			(*all)->bonus.sa.coor[(*all)->bonus.sa.count - 1][X] = i + 0.5;
-			(*all)->bonus.sa.coor[(*all)->bonus.sa.count - 1][Y] = (*all)->i_map + 0.5;
 		}
 		else if (line[i] == OBJ1)
 		{
@@ -84,7 +79,7 @@ int	map(char *line, t_all **all)
 		if ((*all)->i_map == 0 && line[j] != WALL && line[j] != HOLE)
 			ft_error(all, line, PARS_ERR);
 		i = 0;
-		while (i < NB_CHAR && line[j] != str_char[i])
+		while (i < NB_CHAR_B && line[j] != str_char[i])
 			i++;
 		if (i > 5 && i < NB_CHAR_B)
 		{
@@ -95,7 +90,8 @@ int	map(char *line, t_all **all)
 			(*all)->player.o = line[j];
 			(*all)->pos++;
 		}
-		if (i == NB_CHAR)
+		//printf("%c - %d, i = %d / %d, EAST = %c\n", line[j], j, i, NB_CHAR, EAST);
+		if (i == NB_CHAR_B)
 			ft_error(all, line, PARS_ERR);
 		j++;
 	}
