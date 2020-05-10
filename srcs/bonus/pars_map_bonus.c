@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:42:10 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/06 21:45:41 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/09 14:11:17 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,23 @@ int	add_map(char *line, t_all **all)
 		ft_error(all, line, MAL_ERR);
 	while (line[i])
 	{
-		if (line[i] == OBJ)
+		if (line[i] == OBJ || line[i] == OBJ1)
 		{
 			(*all)->sp.count++;
 			if (!((*all)->sp.coor = realloc_doub((*all)->sp.coor, (*all)->sp.count)))
 				ft_error(all, line, MAL_ERR);
+			if (!((*all)->sp.type = realloc((*all)->sp.type, (*all)->sp.count + 1)))
+				ft_error(all, NULL, MAL_ERR);
 			(*all)->sp.coor[(*all)->sp.count - 1][X] = i + 0.5;
 			(*all)->sp.coor[(*all)->sp.count - 1][Y] = (*all)->i_map + 0.5;
-		}
-		else if (line[i] == OBJ1)
-		{
-			(*all)->bonus.sp.count++;
-			if (!((*all)->bonus.sp.coor = realloc_doub((*all)->bonus.sp.coor, (*all)->bonus.sp.count)))
-				ft_error(all, line, MAL_ERR);
-			(*all)->bonus.sp.coor[(*all)->bonus.sp.count - 1][X] = i + 0.5;
-			(*all)->bonus.sp.coor[(*all)->bonus.sp.count - 1][Y] = (*all)->i_map + 0.5;
+			if (line[i] == OBJ)
+				(*all)->sp.type[(*all)->sp.count - 1] = OBJ;
+			else
+			{
+				(*all)->sp.type[(*all)->sp.count - 1] = OBJ1;
+				(*all)->bonus.foe++;
+			}
+			(*all)->sp.type[(*all)->sp.count] = 0;
 		}
 		(*all)->map[(*all)->i_map][i] = line[i];
 		i++;
@@ -85,8 +87,6 @@ int	map(char *line, t_all **all)
 		{
 			(*all)->player.map[X] = j + 0.5;
 			(*all)->player.map[Y] = (*all)->i_map + 0.5;
-			(*all)->player.pos[X] = j + 0.5;
-			(*all)->player.pos[Y] = (*all)->i_map + 0.5;
 			(*all)->player.o = line[j];
 			(*all)->pos++;
 		}

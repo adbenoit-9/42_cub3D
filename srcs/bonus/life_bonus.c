@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 12:42:55 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/07 17:56:39 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/09 14:02:53 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ static void win_life(t_all **all)
     i = 0;
     x = (int)(*all)->player.map[X];
     y = (int)(*all)->player.map[Y];
-    while (i < (*all)->bonus.all_sp.count)
+    while (i < (*all)->sp.count)
     {
-        if (x == (int)(*all)->bonus.all_sp.coor[i][X] && y == (int)(*all)->bonus.all_sp.coor[i][Y] && (*all)->bonus.all_sp.dead[i] == 0 && (*all)->bonus.all_sp.type[i] == OBJ)
+        if (x == (int)(*all)->sp.coor[i][X] && y == (int)(*all)->sp.coor[i][Y] && (*all)->sp.dead[i] == 0 && (*all)->sp.type[i] == OBJ)
         {
             if ((*all)->bonus.life < 4)
                 (*all)->bonus.life += 2;
             else if ((*all)->bonus.life == 4)
                 (*all)->bonus.life++;
-            (*all)->bonus.all_sp.dead[i] = 1;
+            (*all)->sp.dead[i] = 1;
             (*all)->bonus.col = 0;
         }
         i++;
@@ -41,7 +41,7 @@ void    lose_life(t_all **all, char c)
     int i;
 
     i = 0;
-    if (c == OBJ1 && (*all)->bonus.loop2 > 35 && (*all)->bonus.life > 0 && (*all)->bonus.all_sp.dead[i] == 0)
+    if (c == OBJ1 && (*all)->bonus.loop2 > 35 && (*all)->bonus.life > 0 && (*all)->sp.dead[i] == 0)
     {
         (*all)->bonus.life--;
         (*all)->bonus.col = 100;
@@ -49,9 +49,9 @@ void    lose_life(t_all **all, char c)
     }
     else
     {
-        while (i < (*all)->bonus.all_sp.count)
+        while (i < (*all)->sp.count)
         {
-            if ((*all)->bonus.all_sp.see[i] == 1 && (*all)->bonus.all_sp.type[i] == OBJ1 && (*all)->bonus.all_sp.dead[i] == 0)
+            if ((*all)->sp.see[i] == 1 && (*all)->sp.type[i] == OBJ1 && (*all)->sp.dead[i] == 0)
             {
                 if (((*all)->bonus.loop2 > 60) && (*all)->bonus.life > 0)
                 {

@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:10:15 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/07 00:28:18 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/09 14:25:29 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ static void	sort_sprite(t_sprite *sp)
 				tmp = sp->dist[i];
 				sp->dist[i] = sp->dist[i + 1];
 				sp->dist[i + 1] = tmp;
-				tmp = sp->pos[i][X];
-				sp->pos[i][X] = sp->pos[i + 1][X];
-				sp->pos[i + 1][X] = tmp;
-				tmp = sp->pos[i][Y];
-				sp->pos[i][Y] = sp->pos[i + 1][Y];
-				sp->pos[i + 1][Y] = tmp;
+				tmp = sp->coor[i][X];
+				sp->coor[i][X] = sp->coor[i + 1][X];
+				sp->coor[i + 1][X] = tmp;
+				tmp = sp->coor[i][Y];
+				sp->coor[i][Y] = sp->coor[i + 1][Y];
+				sp->coor[i + 1][Y] = tmp;
 			}
 			i++;
 		}
@@ -55,20 +55,18 @@ static void	sort_sprite(t_sprite *sp)
 	}
 }
 
-static void	add_dist(t_all **all, t_sprite *sp)
+void	add_dist(t_all **all, t_sprite *sp, void (*sort)(t_sprite *))
 {
 	int i;
 
 	i = 0;
-	if (!(sp->dist = malloc(sizeof(double) * sp->count)))
-		ft_error(all, NULL, MAL_ERR);
-	i = 0;
 	while (i < sp->count)
 	{
-		sp->dist[i] = pow((*all)->player.map[X] - sp->coor[i][X], 2) + pow((*all)->player.map[Y] - sp->coor[i][Y], 2);
+		sp->dist[i] = pow((*all)->player.map[X] - sp->coor[i][X], 2) +
+					pow((*all)->player.map[Y] - sp->coor[i][Y], 2);
 		i++;
 	}
-	sort_sprite(sp);
+	sort(sp);
 }
 
 void	print_sprite(t_all **all, t_sprite *sp)
@@ -77,7 +75,7 @@ void	print_sprite(t_all **all, t_sprite *sp)
 	int		i;
 
 	i = 0;
-	add_dist(all, sp);
+	add_dist(all, sp, sort_sprite);
 	invdet = 1.0 / ((*all)->grid.plane[X] * (*all)->player.dir[Y] - (*all)->player.dir[X] * (*all)->grid.plane[Y]);
 	while (i < sp->count)
 	{

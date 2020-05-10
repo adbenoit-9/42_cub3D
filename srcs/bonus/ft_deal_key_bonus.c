@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:32:27 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/07 17:47:30 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/08 15:48:44 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,33 +54,6 @@ int	ft_key_release(int key, t_all **all)
 	if (key == KEY_F)
 		(*all)->key.f = 0;
 	return (NO_ERR);
-}
-
-void	ft_pull_weapon(t_all **all)
-{
-	int i;
-
-	if ((*all)->key.space == 1)
-	{
-		(*all)->bonus.loop = 0;
-		(*all)->bonus.pull = -1;
-	}
-	if ((*all)->bonus.pull < 4 && (*all)->bonus.loop == ((*all)->bonus.pull + 1) * 4)
-		(*all)->bonus.pull++;
-	i = 0;
-	while (i < (*all)->bonus.all_sp.count)
-	{
-		if ((*all)->bonus.pull == 1 && (*all)->bonus.all_sp.see[i] == 1 && (*all)->bonus.all_sp.type[i] == OBJ1 && (*all)->bonus.all_sp.dead[i] == 0)
-		{
-			(*all)->bonus.foe--;
-			(*all)->bonus.all_sp.dead[i] = 1;
-			(*all)->map[(int)(*all)->bonus.all_sp.coor[i][Y]][(int)(*all)->bonus.all_sp.coor[i][X]] = DEAD;
-			break ;
-		}
-		i++;
-	}
-	if ((*all)->bonus.foe == 0)
-        print_play_again(all, &(*all)->bonus.win, 1, 1);
 }
 
 int		ft_close(t_all **all)

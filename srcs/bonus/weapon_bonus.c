@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 22:57:19 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/02 19:14:49 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/09 14:03:42 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,31 @@ void    print_weapon(t_all **all, int pull)
         index[X]++;
 		start[X]++;
     }
+}
+
+void	ft_pull_weapon(t_all **all)
+{
+	int i;
+
+	if ((*all)->key.space == 1)
+	{
+		(*all)->bonus.loop = 0;
+		(*all)->bonus.pull = -1;
+	}
+	if ((*all)->bonus.pull < 4 && (*all)->bonus.loop == ((*all)->bonus.pull + 1) * 4)
+		(*all)->bonus.pull++;
+	i = 0;
+	while (i < (*all)->sp.count)
+	{
+		if ((*all)->bonus.pull == 1 && (*all)->sp.see[i] == 1 && (*all)->sp.type[i] == OBJ1 && (*all)->sp.dead[i] == 0)
+		{
+			(*all)->bonus.foe--;
+			(*all)->sp.dead[i] = 1;
+			(*all)->map[(int)(*all)->sp.coor[i][Y]][(int)(*all)->sp.coor[i][X]] = DEAD;
+			break ;
+		}
+		i++;
+	}
+	if ((*all)->bonus.foe == 0)
+        print_play_again(all, &(*all)->bonus.win, 1, 1);
 }

@@ -16,9 +16,8 @@ void	raycast_wall(t_all **all, int column)
 	if (start < 0)
 		start = 0;
 	end = (*all)->wall.slice_h / 2 + (*all)->r[Y] / 2;
-	if (end >= (*all)->r[Y])
+	if (end >= (*all)->r[Y] || end < 0)
 		end = (*all)->r[Y] - 1;
-
 	step = 1.0 * (*all)->text.dim[(*all)->wall.side][Y] / (*all)->wall.slice_h;
 	textpos = (start - (*all)->r[Y] / 2 + (*all)->wall.slice_h / 2) * step;
 	while (i < start)

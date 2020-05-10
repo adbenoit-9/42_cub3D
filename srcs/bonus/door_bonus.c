@@ -57,7 +57,7 @@ void open_door(t_all **all)
 		dir[X] = -1;
 		dir[Y] = 0;
 	}
-	if ((*all)->key.f == 1 && ((*all)->map[y + dir[Y]][x + dir[X]] == OPEN)
+	if ((*all)->key.f == 1 && (*all)->map[y + dir[Y]][x + dir[X]] == OPEN)
 	{
 		(*all)->map[y + dir[Y]][x + dir[X]] = DOOR;
 		(*all)->map[y + new[Y]][x + new[X]] = (*all)->bonus.door.tmp;

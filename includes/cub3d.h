@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:45:39 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/07 17:38:17 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/09 14:12:43 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,12 @@
 # define BON_DS "DS "
 # define BON_DE "DE "
 # define BON_DW "DW "
+# define BON_LIFE "LI "
+# define BON_LOSE "LO "
+# define BON_WIN "WI "
 
 # define NB_INFO 8
-# define NB_BON 11
+# define NB_BON 14
 
 # define NO 1
 # define SO 3
@@ -66,6 +69,9 @@
 # define DS 8
 # define DE 9
 # define DW 10
+# define LIFE 11
+# define LOSE 12
+# define WIN 13
 
 # define WALL '1'
 # define OBJ '2'
@@ -128,16 +134,13 @@ enum	e_state
 typedef struct	s_player
 {
 	double	map[2];
-	double	pos[2];
 	double	dir[2];
-	double	move[2];
 	double	old_dir[2];
 	char	o;
 }				t_player;
 
 typedef struct	s_wall
 {
-	double	angle;
 	double	delta_dist[2];
 	double	side_dist[2];
 	double	*dist;
@@ -259,9 +262,8 @@ typedef struct	s_bonus
 	int				pull;
 	int				life;
 	t_img			heart;
-	t_sprite		sp;
+	t_sprite		s1;
 	t_sprite		sa;
-	t_sprite		all_sp;
 	t_img			dead;
 	t_img			win;
 	int				foe;
@@ -300,6 +302,7 @@ typedef int		(*t_function)(char *, t_all **);
 void	init_all(t_all **all);
 int		mlx_handle(t_all *all);
 void    complete_all(t_all **all, t_sprite *sp);
+void 	ft_putdir(t_all **all, char o);
 
 //utils
 double			**realloc_doub(double **ptr, int newsize);
@@ -341,6 +344,7 @@ int				open_f(char *arg, t_all **all, int save);
 double			dist_screen(t_all **all, int x, int y);
 double			wall_dist(t_all **all, t_wall *wall);
 void			add_dim_xpm(t_all **all, char *path, int *dimX, int *dimY);
+void			add_dist(t_all **all, t_sprite *sp, void (*sort)(t_sprite *));
 void			complete_text(t_all **all);
 void			complete_wall_inf(t_all **all, t_wall *wall);
 void			ft_move(t_all **all);
@@ -367,8 +371,9 @@ void			add_mini_map(t_all **all);
 void			open_door(t_all **all);
 void			ft_door(t_all **all);
 void			ft_pull_weapon(t_all **all);
+void			init_all_sprite(t_all **all, t_sprite *sp);
 void    		lose_life(t_all **all, char c);
-void			print_all_sprites(t_all **all, t_sprite *sp1, t_sprite *sp2);
+void			print_all_sprites(t_all **all, t_sprite *sp);
 void    		print_play_again(t_all **all, t_img *im, int k1, int k2);
 void    		print_hearts(t_all **all);
 void    		print_weapon(t_all **all, int pull);

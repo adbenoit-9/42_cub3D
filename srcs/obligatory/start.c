@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static void ft_putdir(t_all **all, char o)
+void	ft_putdir(t_all **all, char o)
 {
 	if (o == 'N')
 	{

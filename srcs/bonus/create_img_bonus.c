@@ -20,7 +20,7 @@ int		create_image(t_all **all)
 	(*all)->grid.column = 0;
 	ft_door(all);
 	open_door(all);
-	print_all_sprites(all, &(*all)->sp, &(*all)->bonus.sp);
+	print_all_sprites(all, &(*all)->sp);
 	add_mini_map(all);
 	print_weapon(all, (*all)->bonus.pull);
 	print_hearts(all);
@@ -29,9 +29,9 @@ int		create_image(t_all **all)
 	mlx_put_image_to_window((*all)->mlx, (*all)->win, (*all)->img.ptr, 0, 0);
 	ft_move(all);
 	i = 0;
-	while (i < (*all)->bonus.all_sp.count)
+	while (i < (*all)->sp.count)
 	{
-		(*all)->bonus.all_sp.see[i] = 0;
+		(*all)->sp.see[i] = 0;
 		i++;
 	}
 	return (NO_ERR);

@@ -33,6 +33,37 @@ void    print_play_again(t_all **all, t_img *im, int k1, int k2)
     }
 }
 
+static void reinit_map(t_all **all)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while ((*all)->map[i])
+    {
+        j = 0;
+        while ((*all)->map[i][j])
+        {
+            if ((*all)->map[i][j] == OPEN)
+                (*all)->map[i][j] = DOOR;
+            if ((*all)->map[i][j] == WALL_DOOR)
+                (*all)->map[i][j] = WALL;
+            if ((*all)->map[i][j] == DEAD)
+            {
+                (*all)->bonus.foe++;
+                (*all)->map[i][j] = OBJ1;
+            }
+            if ((*all)->map[i][j] == (*all)->player.o)
+            {
+                (*all)->player.map[X] = j + 0.5;
+			    (*all)->player.map[Y] = i + 0.5;
+            }
+            j++;
+        }
+        i++;
+    }
+}
+
 int     ft_mouse(int button, int x, int y, t_all **all)
 {
     int start[2];
@@ -55,19 +86,18 @@ int     ft_mouse(int button, int x, int y, t_all **all)
     }
     if (button == 1 && ((*all)->bonus.life == 0 || (*all)->bonus.foe == 0) && x > start[X] && x < end[X] && y > start[Y] && y < end[Y])
     {
+        reinit_map(all);
+        ft_putdir(all, (*all)->player.o);
+        (*all)->grid.plane[X] = ((*all)->player.dir[X] == 0) ? 0.66 : 0;
+	    (*all)->grid.plane[Y] = ((*all)->player.dir[Y] == 0) ? 0.66 : 0;
         (*all)->bonus.col = 0;
-        (*all)->player.map[X] = (*all)->player.pos[X];
-		(*all)->player.map[Y] = (*all)->player.pos[Y];
         (*all)->bonus.c = 0;
-        //ft_putdir(all, (*all)->player.o);
-        create_image(all);
         (*all)->bonus.life = 5;
-        (*all)->bonus.foe = (*all)->bonus.sp.count;
 	    i = 0;
-	    while (i < (*all)->bonus.all_sp.count)
+	    while (i < (*all)->sp.count)
 	    {
-		    (*all)->bonus.all_sp.see[i] = 0;
-		    (*all)->bonus.all_sp.dead[i] = 0;
+		    (*all)->sp.see[i] = 0;
+		    (*all)->sp.dead[i] = 0;
 		    i++;
 	    }
     }

@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:35:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/07 16:02:46 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/09 18:07:35 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	ft_forward(t_all **all)
 {
 	char c;
 
-	c = (*all)->map[(int)((*all)->player.map[Y] + (*all)->player.dir[Y] * MOVESPEED)][(int)((*all)->player.map[X] + (*all)->player.dir[X] * MOVESPEED)];
+	c = (*all)->map[(int)((*all)->player.map[Y] + (*all)->player.dir[Y]
+		* MOVESPEED)][(int)((*all)->player.map[X] + (*all)->player.dir[X] * MOVESPEED)];
 	(*all)->bonus.c = c;
 	if (c != WALL && c != DOOR && c != WALL_DOOR && c != OBJ1)
 	{
@@ -49,7 +50,8 @@ void	ft_leftward(t_all **all)
 {
 	char c;
 
-	c = (*all)->map[(int)((*all)->player.map[Y] - (*all)->player.dir[X] * MOVESPEED)][(int)((*all)->player.map[X] + (*all)->player.dir[Y] * MOVESPEED)];
+	c = (*all)->map[(int)((*all)->player.map[Y] - (*all)->player.dir[X] *
+		MOVESPEED)][(int)((*all)->player.map[X] + (*all)->player.dir[Y] * MOVESPEED)];
 	(*all)->bonus.c = c;
 	if (c != WALL && c != DOOR && c != WALL_DOOR && c != OBJ1)
 	{
@@ -62,7 +64,8 @@ void	ft_backward(t_all **all)
 {
 	char c;
 
-	c = (*all)->map[(int)((*all)->player.map[Y] - (*all)->player.dir[Y] * MOVESPEED)][(int)((*all)->player.map[X] - (*all)->player.dir[X] * MOVESPEED)];
+	c = (*all)->map[(int)((*all)->player.map[Y] - (*all)->player.dir[Y] *
+		MOVESPEED)][(int)((*all)->player.map[X] - (*all)->player.dir[X] * MOVESPEED)];
 	(*all)->bonus.c = c;
 	if (c != WALL && c != DOOR && c != WALL_DOOR && c != OBJ1)
 	{
@@ -75,7 +78,8 @@ void	ft_rightward(t_all **all)
 {
 	char c;
 
-	c = (*all)->map[(int)(int)((*all)->player.map[Y] + (*all)->player.dir[X] * MOVESPEED)][(int)((*all)->player.map[X] - (*all)->player.dir[Y] * MOVESPEED)];
+	c = (*all)->map[(int)((*all)->player.map[Y] + (*all)->player.dir[X] *
+		MOVESPEED)][(int)((*all)->player.map[X] - (*all)->player.dir[Y] * MOVESPEED)];
 	(*all)->bonus.c = c;
 	if (c != WALL && c != DOOR && c != WALL_DOOR && c != OBJ1)
 	{
