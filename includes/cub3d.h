@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:45:39 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/09 14:12:43 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/14 19:10:07 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,8 @@ typedef struct	s_sprite
 	int		*dead;
 	int		*see;
 	char	*type;
+	int		index;
+	double	transf[2];
 }				t_sprite;
 
 typedef struct	s_im_head
@@ -294,6 +296,7 @@ typedef struct	s_all
 	t_text			text;
 	t_sprite		sp;
 	t_bonus			bonus;
+	double 			invdet;
 
 }				t_all;
 
@@ -307,13 +310,14 @@ void 	ft_putdir(t_all **all, char o);
 //utils
 double			**realloc_doub(double **ptr, int newsize);
 void			all_null(t_all **all);
-void			free_tab(char **tab);
+void			free_tab_char(char **ptr);
+void			free_tab_nb(void **ptr, int size);
 void			ft_bzero(void *s, size_t n);
 void			ft_error(t_all **all, char *line, int err);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			ft_putnbr_fd(int n, int fd);
+void			*ft_realloc(void *ptr, int newsize);
 void			print_err(int err);
-char			*ft_realloc(char *ptr, int newsize);
 char			*ft_strtrim(char *s1, char const *set, int size);
 char			**realloc_tab(char **ptr, int newsize);
 int				ft_atoi(const char *str);
@@ -337,7 +341,7 @@ int				ft_parsing(t_all **all);
 int				info(char *line, t_all **all);
 int				map(char *line, t_all **all);
 int				map_end_error(t_all **all);
-int				map_error(t_all **all, char *line);
+int				map_error(t_all **all);
 int				open_f(char *arg, t_all **all, int save);
 
 //raycasting
@@ -354,10 +358,11 @@ void			print_sprite(t_all **all, t_sprite *sp);
 void    		put_img(t_all **all, t_img *img, char *path);
 void			put_sprite(t_all **all, t_sprite *sp, char *path);
 void			put_text(t_all **all);
-void			raycast_sprite(t_all **all, t_sprite *sp, t_sprite *img, double invdet, int i);
+void			raycast_sprite(t_all **all, t_sprite *sp, t_sprite *sp_img);
 void			raycast_wall(t_all **all, int column);
 void			save_bmp(t_all **all);
 void			side_dist(t_all **all, t_wall *wall);
+void			sort_sprite(t_sprite *sp);
 void			start(t_all **all);
 int				create_image(t_all **all);
 int				ft_close(t_all **all);

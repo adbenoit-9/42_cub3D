@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:45:43 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/05 14:32:40 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/12 13:27:32 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		ft_parsing(t_all **all)
 		if ((*all)->ret == 0)
 		{
 			(*all)->state = END;
-			map_error(all, line);
+			map_error(all);
 			return (NO_ERR);
 		}
 		free(line);

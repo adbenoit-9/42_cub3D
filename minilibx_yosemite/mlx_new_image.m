@@ -25,9 +25,9 @@ void    *mlx_new_image(mlx_ptr_t *mlx_ptr, int width, int height)
   newimg->width = width;
   newimg->height = height;
   newimg->vertexes[0] = 0.0;  newimg->vertexes[1] = 0.0;
-  newimg->vertexes[2] = width;  newimg->vertexes[3] = 0.0;
-  newimg->vertexes[4] = width;  newimg->vertexes[5] = -height;
-  newimg->vertexes[6] = 0.0;  newimg->vertexes[7] = -height;
+  newimg->vertexes[2] = width-1;  newimg->vertexes[3] = 0.0;
+  newimg->vertexes[4] = width-1;  newimg->vertexes[5] = -height+1;
+  newimg->vertexes[6] = 0.0;  newimg->vertexes[7] = -height+1;
   newimg->buffer = malloc(UNIQ_BPP*width*height);
   bzero(newimg->buffer, UNIQ_BPP*width*height);
 
@@ -77,10 +77,8 @@ void    mlx_put_image_to_window(mlx_ptr_t *mlx_ptr, mlx_win_list_t *win_ptr, mlx
 {
   mlx_img_ctx_t	*imgctx;
 
-  if (!win_ptr->pixmgt)
-    return ;
-
   [(id)(win_ptr->winid) selectGLContext];
+
   imgctx = add_img_to_ctx(img_ptr, win_ptr);
 
   // update texture
@@ -114,13 +112,6 @@ int mlx_string_put(mlx_ptr_t *mlx_ptr, mlx_win_list_t *win_ptr, int x, int y, in
   int		gX;
   int		gY;
 
-  if (!win_ptr->pixmgt)
-    return(0);
-
-#ifdef STRINGPUTX11
-  y -= (FONT_HEIGHT * 2)/3;
-#endif
-
   [(id)(win_ptr->winid) selectGLContext];
 
   imgctx = add_img_to_ctx(mlx_ptr->font, win_ptr);
@@ -133,11 +124,7 @@ int mlx_string_put(mlx_ptr_t *mlx_ptr, mlx_win_list_t *win_ptr, int x, int y, in
 	  gY = 0;
 	  //      printf("put char %c pos %d %d\n", *string, gX, gY);
 	  [(id)(win_ptr->winid) mlx_gl_draw_font:mlx_ptr->font andCtx:imgctx andX:x andY:y andColor:color glyphX:gX glyphY:gY];
-#ifdef STRINGPUTX11
-	  x += FONT_WIDTH/1.4;
-#else
 	  x += FONT_WIDTH;
-#endif
 	}
       string ++;
     }
@@ -151,7 +138,6 @@ int     mlx_destroy_image(mlx_ptr_t *mlx_ptr, mlx_img_list_t *img_todel)
 {
   mlx_img_ctx_t	ctx_first;
   mlx_img_ctx_t	*ctx;
-  mlx_img_ctx_t	*ctx_to_del;
   mlx_img_list_t img_first;
   mlx_img_list_t *img;
   mlx_win_list_t *win;
@@ -179,9 +165,7 @@ int     mlx_destroy_image(mlx_ptr_t *mlx_ptr, mlx_img_list_t *img_todel)
 	      [(id)(win->winid) selectGLContext];
 	      glDeleteBuffers(1, &(ctx->next->vbuffer));
 	      glDeleteTextures(1, &(ctx->next->texture));
-	      ctx_to_del = ctx->next;
 	      ctx->next = ctx->next->next;
-	      free(ctx_to_del);
 	    }
 	  ctx = ctx->next;
 	}

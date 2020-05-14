@@ -6,21 +6,22 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:40:52 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/02 15:18:27 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/10 17:32:56 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*ft_realloc(char *ptr, int newsize)
+void	*ft_realloc(void *ptr, int newsize)
 {
-	char *newptr;
+	void	*newptr;
 
 	if (ptr == 0)
-		return (malloc(sizeof(char) * newsize));
-	newptr = malloc(sizeof(char) * newsize);
+		return (malloc(newsize));
+	newptr = malloc(newsize);
 	ft_memcpy(newptr, ptr, newsize);
 	free(ptr);
+	ptr = NULL;
 	return (newptr);
 }
 
@@ -32,19 +33,16 @@ char	**realloc_tab(char **ptr, int newsize)
 	i = 0;
 	if (!(newptr = malloc(sizeof(char *) * newsize)))
 		return (NULL);
-	if (ptr == 0)
-	{
-		newptr[1] = 0;
-		return (newptr);
-	}
 	while (i < newsize - 2)
 	{
-		if (!(newptr[i] = ft_realloc(ptr[i], ft_strlen(ptr[i]) + 1)))
+		if (!(newptr[i] = (char *)ft_realloc(ptr[i], ft_strlen(ptr[i]) + 1)))
 			return (NULL);
 		i++;
 	}
 	newptr[i + 1] = 0;
+	if (ptr != 0)
 	free(ptr);
+	ptr = NULL;
 	return (newptr);
 }
 
@@ -56,41 +54,16 @@ double	**realloc_doub(double **ptr, int newsize)
 	i = 0;
 	if (!(newptr = malloc(sizeof(double *) * newsize)))
 		return (NULL);
-	if (ptr == 0)
-	{
-		if (!(newptr[0] = malloc(sizeof(double) * 2)))
-			return (NULL);
-		return (newptr);
-	}
 	while (i < newsize - 1)
 	{
-		if (!(newptr[i] = malloc(sizeof(double) * 2)))
+		if (!(newptr[i] = (double *)ft_realloc(ptr[i], sizeof(double) * 2)))
 			return (NULL);
-		newptr[i][X] = ptr[i][X];
-		newptr[i][Y] = ptr[i][Y];
 		i++;
 	}
-	if (!(newptr[i] = malloc(sizeof(double) * 2)))
+	if (!(newptr[i] = (double *)malloc(sizeof(double) * 2)))
 		return (NULL);
-	while (i < newsize - 2)
-		free(ptr[i]);
-	free(ptr);
+	if (ptr != 0)
+		free(ptr);
+	ptr = NULL;
 	return (newptr);
-}
-
-void	free_tab(char **tab)
-{
-	int i;
-
-	if (tab)
-	{
-		i = 0;
-		while (tab[i])
-		{
-			free(tab[i]);
-			i++;
-		}
-		free(tab);
-		tab = NULL;
-	}
 }

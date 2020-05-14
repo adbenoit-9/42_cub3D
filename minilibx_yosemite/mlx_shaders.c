@@ -27,11 +27,27 @@ int mlx_shaders_pixel(glsl_info_t *glsl)
   GLint action_ok;
 
   glsl->pixel_vshader = glCreateShader(GL_VERTEX_SHADER);
+  /*
   source = strdup("#version 110 \n"
 		  "attribute vec2 position;"
+		  "uniform vec2 winhalfsize;"
 		  "varying vec2 texcoord;"
 		  "void main()"
 		  "{"
+		  " vec2 pos = position - winhalfsize;"
+		  " pos = pos / winhalfsize;"
+		  " gl_Position = vec4( pos, 0.0, 1.0);"
+		  " texcoord = position / (2.0*winhalfsize);"
+		  "}");
+  */
+  source = strdup("#version 110 \n"
+		  "attribute vec2 position;"
+		  //"uniform vec2 winhalfsize;"
+		  "varying vec2 texcoord;"
+		  "void main()"
+		  "{"
+		  //" vec2 pos = position - winhalfsize;"
+		  //" pos = pos / winhalfsize;"
 		  " gl_Position = vec4( position, 0.0, 1.0);"
 		  " texcoord = vec2(position[0]+1.0, 1.0 - position[1]) / 2.0;"
 		  "}");
@@ -53,6 +69,7 @@ int mlx_shaders_pixel(glsl_info_t *glsl)
 		  "varying vec2 texcoord;"
 		  "void main()"
 		  "{"
+		  // " gl_FragColor = vec4(0.0, 1.0, 0.0, 0.0);"
 		  " gl_FragColor = texture2D(texture, texcoord);"
 		  "}");
   length = strlen(source);
@@ -173,11 +190,7 @@ int mlx_shaders_font(glsl_info_t *glsl)
 		  "varying vec2 texcoord;"
 		  "void main()"
 		  "{"
-#ifdef STRINGPUTX11
-		  " texcoord = (position * vec2(1.4, -1.4) + fontposinatlas ) / fontatlassize;"
-#else
 		  " texcoord = (position * vec2(1.0, -1.0) + fontposinatlas ) / fontatlassize;"
-#endif
 		  " vec2 pos = position - winhalfsize + fontposinwin;"
 		  " pos = pos / winhalfsize;"
 		  " gl_Position = vec4( pos, 0.0, 1.0);"
@@ -202,6 +215,7 @@ int mlx_shaders_font(glsl_info_t *glsl)
 		  "void main()"
 		  "{"
 		  " gl_FragColor = color * texture2D(texture, texcoord);"
+		  // " gl_FragColor = texture2D(texture, texcoord);"
 		  "}");
   length = strlen(source);
   glShaderSource(glsl->font_fshader, 1, (const GLchar**)&source, &length);

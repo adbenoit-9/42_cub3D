@@ -12,6 +12,9 @@ void	put_door(t_all **all)
 		(*all)->bonus.door.dim[i][X] = 0;
 		(*all)->bonus.door.dim[i][Y] = 0;
 		add_dim_xpm(all, (*all)->bonus.path[DN + i], &(*all)->bonus.door.dim[i][X], &(*all)->bonus.door.dim[i][Y]);
+		if ((*all)->bonus.door.ptr)
+			mlx_destroy_image((*all)->mlx, (*all)->bonus.door.ptr);
+		(*all)->bonus.door.ptr = NULL;
 		(*all)->bonus.door.size_line = (*all)->bonus.door.dim[i][X] * 4;
 		if (((*all)->bonus.door.ptr = mlx_xpm_file_to_image((*all)->mlx, (*all)->bonus.path[DN + i], &(*all)->bonus.door.dim[i][X], &(*all)->bonus.door.dim[i][Y])) == NULL)
 			ft_error(all, NULL, PARS_ERR);

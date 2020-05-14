@@ -6,11 +6,18 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:42:10 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/09 18:05:39 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/10 14:18:36 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+
+int		bonus(char *line, t_all **all)
+{
+	ft_error(all, line, MAL_ERR);
+	return (NO_ERR);
+}
 
 int	add_map(char *line, t_all **all)
 {
@@ -23,34 +30,17 @@ int	add_map(char *line, t_all **all)
 	{
 		if (line[i] == OBJ)
 		{
-			(*all)->sp.count++;
-			if (!((*all)->sp.coor = realloc_doub((*all)->sp.coor, (*all)->sp.count)))
+			if (!((*all)->sp.coor = realloc_doub((*all)->sp.coor, (*all)->sp.count + 1)))
 				ft_error(all, line, MAL_ERR);
-			(*all)->sp.coor[(*all)->sp.count - 1][X] = i + 0.5;
-			(*all)->sp.coor[(*all)->sp.count - 1][Y] = (*all)->i_map + 0.5;
+			(*all)->sp.coor[(*all)->sp.count][X] = i + 0.5;
+			(*all)->sp.coor[(*all)->sp.count][Y] = (*all)->i_map + 0.5;
+			(*all)->sp.count++;
 		}
 		(*all)->map[(*all)->i_map][i] = line[i];
 		i++;
 	}
 	(*all)->map[(*all)->i_map][i] = 0;
 	((*all)->i_map)++;
-	free(line);
-	return (ft_parsing(all));
-}
-
-int	add_info(char *line, t_all **all, int i)
-{
-	int j;
-
-	j = 0; 
-	if (!((*all)->info[i] = malloc(sizeof(char) * (ft_strlen(line) + 1))))
-		ft_error(all, line, PARS_ERR);
-	while (line[j])
-	{
-		(*all)->info[i][j] = line[j];
-		j++;
-	}
-	(*all)->info[i][j] = 0;
 	free(line);
 	return (ft_parsing(all));
 }
@@ -62,11 +52,11 @@ int	map(char *line, t_all **all)
 	int			j;
 	int			size;
 
-	j = 0;
+	j = -1;
 	size = ft_strlen(line);
 	if ((line[0] != WALL && line[0] != HOLE) || (size > 0 && line[size - 1] != WALL && line[size - 1] != HOLE))
 		ft_error(all, line, PARS_ERR);
-	while (line[j])
+	while (line[++j])
 	{
 		if ((*all)->i_map == 0 && line[j] != WALL && line[j] != HOLE)
 			ft_error(all, line, PARS_ERR);
@@ -82,42 +72,8 @@ int	map(char *line, t_all **all)
 		}
 		if (i == NB_CHAR)
 			ft_error(all, line, PARS_ERR);
-		j++;
 	}
-	map_error(all, line);
+	map_error(all);
 	(*all)->map[(*all)->i_map] = 0;
 	return (add_map(line, all));
-}
-
-int	info(char *line, t_all **all)
-{
-	static char *str_info[NB_INFO] = {INF_EA, INF_SO, INF_WE, INF_NO, INF_S, INF_R, INF_F, INF_C};
-	int			i;
-	int			size;
-
-	i = 0;
-	while (i < NB_INFO)
-	{
-		size = i < 4 ? 2 : 1;
-		if (ft_strncmp(str_info[i], line, size) == 1 && (*all)->info[i] == 0)
-		{
-			line = ft_strtrim(line, " ", size);
-			if (i < 5)
-				return (add_info(line, all, i));
-			else if (i == 5)
-				return (add_r(all, line));
-			else
-				return (add_col(all, line, i));
-		}
-		i++;
-	}
-	i = 0;
-	while (i < NB_INFO - 3)
-	{
-		if ((*all)->info[i] == NULL)
-			ft_error(all, line, PARS_ERR);
-		i++;
-	}
-	(*all)->state = MAP;
-	return (map(line, all));
 }

@@ -33,9 +33,7 @@
 ** les numeros des touches ne sont pas les memes,
 ** les numeros des boutons souris ne sont pas les memes.
 ** Egalement l'expose est gere differemment, et sous MacOS
-** il est preferable d'entrer le plus tot possible dans mlx_loop,
-** il est normal que les fenetres n'apparaissent pas avant mlx_loop
-** (ou bien forcez avec mlx_do_sync mais c'est pas genial).
+** il est preferable d'entrer le plus tot possible dans mlx_loop.
 ** Sous MacOS, l'octet Alpha est pris en compte dans toutes les
 ** images, et represente la transparence et non l'opacite comme
 ** c'est normalement le cas.
@@ -78,12 +76,14 @@ int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
 void	*mlx_new_image(void *mlx_ptr,int width,int height);
 /*
 **  return void *0 if failed
+**  obsolete : image2 data is stored using bit planes
+**  void	*mlx_new_image2(void *mlx_ptr,int width,int height);
 */
 char	*mlx_get_data_addr(void *img_ptr, int *bits_per_pixel,
 			   int *size_line, int *endian);
 /*
 **  endian : 0 = sever X is little endian, 1 = big endian
-**  endian : useless on macos, client and graphical framework have the same endian
+**  for mlx_new_image2, 2nd arg of mlx_get_data_addr is number_of_planes
 */
 int	mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr,
 				int x, int y);
@@ -123,8 +123,6 @@ void	*mlx_xpm_to_image(void *mlx_ptr, char **xpm_data,
 			  int *width, int *height);
 void	*mlx_xpm_file_to_image(void *mlx_ptr, char *filename,
 			       int *width, int *height);
-void    *mlx_png_file_to_image(void *mlx_ptr, char *file, int *width, int *height);
-
 int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
 
 int	mlx_destroy_image(void *mlx_ptr, void *img_ptr);
@@ -136,11 +134,6 @@ int	mlx_destroy_image(void *mlx_ptr, void *img_ptr);
 
 int	mlx_hook(void *win_ptr, int x_event, int x_mask,
                  int (*funct)(), void *param);
-
-int     mlx_mouse_hide();
-int     mlx_mouse_show();
-int     mlx_mouse_move(void *win_ptr, int x, int y);
-int     mlx_mouse_get_pos(void *win_ptr, int *x, int *y);
 
 int	mlx_do_key_autorepeatoff(void *mlx_ptr);
 int	mlx_do_key_autorepeaton(void *mlx_ptr);

@@ -6,7 +6,7 @@
 #    By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/05/06 21:10:18 by Adeline          ###   ########.fr        #
+#    Updated: 2020/05/14 14:49:21 by Adeline          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,21 +31,23 @@ BONUS_PATH	= srcs/bonus
 
 SRCS_NAME	=	bmp_file.c\
 				deal_image.c\
+				ft_error.c\
 				init.c\
 				main.c\
 				move.c\
+				pars_color.c\
+				pars_error.c\
+				pars_resolution.c\
 				parsing.c
 
 BONUS_NAME	=	all_sprite_bonus.c\
 				create_img_bonus.c\
 				door_bonus.c\
 				ft_deal_key_bonus.c\
-				ft_error_bonus.c\
 				life_bonus.c\
 				mlx_handle_bonus.c\
 				mini_map_bonus.c\
 				pars_bonus.c\
-				pars_error_bonus.c\
 				pars_info_bonus.c\
 				pars_map_bonus.c\
 				play_again_bonus.c\
@@ -55,14 +57,13 @@ BONUS_NAME	=	all_sprite_bonus.c\
 
 OBL_NAME	=	create_img.c\
 				ft_deal_key.c\
-				ft_error.c\
 				mlx_handle.c\
-				pars_error.c\
 				pars_info.c\
 				pars_map.c\
 				start.c
 
 RAY_NAME	=	sprite.c\
+				sprite_utils.c\
 				texture.c\
 				wall.c\
 				wall_utils.c
@@ -70,6 +71,7 @@ RAY_NAME	=	sprite.c\
 
 UTILS_NAME	=	ft_atoi.c\
 				ft_bzero.c\
+				ft_free.c\
 				ft_memcpy.c\
 				ft_putnbr_fd.c\
 				ft_realloc.c\

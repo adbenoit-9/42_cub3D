@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 23:52:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/08 12:21:07 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/14 19:12:24 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int     bonus(char *line, t_all **all)
 	int			i;
 
 	i = 0;
+	if (!((*all)->bonus.path = malloc(sizeof(char *) * (NB_BON + 1))))
+		ft_error(all, NULL, MAL_ERR);
 	while (i < NB_BON)
 	{
 		if (ft_strncmp(str_info[i], line, 3) == 1)
@@ -44,11 +46,13 @@ int     bonus(char *line, t_all **all)
 		}
 		i++;
 	}
+	(*all)->bonus.path[NB_BON] = 0;
 	i = 0;
 	while (i < NB_BON)
 	{
+		printf("-%d %s\n", NB_BON, (*all)->bonus.path[i]);
 		if ((*all)->bonus.path[i] == NULL)
-			ft_error(all, line, PARS_ERR);
+			ft_error(all, line, FIND_ERR);
 		i++;
 	}
 	(*all)->state = MAP;
