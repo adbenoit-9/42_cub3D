@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 18:21:57 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/14 19:01:08 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 16:09:05 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	add_info(char *line, t_all **all, int i)
 	int j;
 
 	j = 0; 
+	if ((*all)->info[i])
+		ft_error(all, line, PARS_ERR);
 	if (!((*all)->info[i] = malloc(sizeof(char) * (ft_strlen(line) + 1))))
 		ft_error(all, line, MAL_ERR);
 	while (line[j])
@@ -38,8 +40,8 @@ int	info(char *line, t_all **all)
 	i = 0;
 	while (i < NB_INFO)
 	{
-		size = i < 4 ? 2 : 1;
-		if (ft_strncmp(str_info[i], line, size) == 1 && (*all)->info[i] == 0)
+		size = i < 4 ? 3 : 2;
+		if (ft_strncmp(str_info[i], line, size) == 1)
 		{
 			line = ft_strtrim(line, " ", size);
 			if (i < 5)
@@ -52,7 +54,7 @@ int	info(char *line, t_all **all)
 		i++;
 	}
 	i = 0;
-	while (i < NB_INFO - 3)
+	while (i < 5)
 	{
 		if ((*all)->info[i] == NULL)
 			ft_error(all, line, PARS_ERR);

@@ -6,13 +6,13 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:10:15 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/12 12:33:45 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 14:47:45 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	add_sprite_pixel(t_all **all, t_sprite *sp, t_sprite *sp_img, int *end)
+static void	add_sprite_pixel(t_all **all, t_sprite *sp, t_img *sp_img, int *end)
 {
 	int	pix[2];
 	int	start[2];
@@ -40,7 +40,7 @@ static void	add_sprite_pixel(t_all **all, t_sprite *sp, t_sprite *sp_img, int *e
 	}
 }
 
-void		raycast_sprite(t_all **all, t_sprite *sp, t_sprite *sp_img)
+void		raycast_sprite(t_all **all, t_sprite *sp, t_img *sp_img)
 {
 	int		end[2];
 	int		i;
@@ -72,7 +72,7 @@ void		print_sprite(t_all **all, t_sprite *sp)
 	while (i < sp->count)
 	{
 		sp->index = i;
-		raycast_sprite(all, sp, sp);
+		raycast_sprite(all, sp, &sp->img);
 		i++;
 	}
 }

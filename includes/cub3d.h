@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:45:39 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/14 19:10:07 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 16:25:06 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,25 +171,20 @@ typedef struct	s_img
 	int		endian;
 }				t_img;
 
-typedef struct	s_text
+typedef struct	s_tab_img
 {
 	int		dim[4][2];
 	int		pos[2];
-	void	*ptr;
+	void	*ptr[4];
 	int		*data[4];
 	int		bpp;
 	int		size_line;
 	int		endian;
-}				t_text;
+}				t_tab_img;
 
 typedef struct	s_sprite
 {
-	int		dim[2];
-	void	*ptr;
-	int		*data;
-	int		bpp;
-	int		size_line;
-	int		endian;
+	t_img	img;
 	double	**pos;
 	double	**coor;
 	int		count;
@@ -241,26 +236,15 @@ typedef struct	s_key
 	int f;
 }				t_key;
 
-typedef struct	s_door
-{
-	int		dim[4][2];
-	int		pos[2];
-	void	*ptr;
-	int		*data[4];
-	int		bpp;
-	int		size_line;
-	int		endian;
-	int		side;
-	char	tmp;
-}				t_door;
-
 typedef struct	s_bonus
 {
 	int				loop;
 	int				loop2;
-	t_text			weap;
-	t_door			door;
-	char			**path;
+	t_tab_img		weap;
+	t_tab_img		door;
+	char			door_tmp;
+	int				door_side;
+	char			*path[NB_BON + 1];
 	int				pull;
 	int				life;
 	t_img			heart;
@@ -275,7 +259,7 @@ typedef struct	s_bonus
 
 typedef struct	s_all
 {
-	char			**info;
+	char			*info[6];
 	char			**map;
 	int				r[2];
 	int				f;
@@ -293,7 +277,7 @@ typedef struct	s_all
 	t_grid			grid;
 	t_wall			wall;
 	t_img			img;
-	t_text			text;
+	t_tab_img		text;
 	t_sprite		sp;
 	t_bonus			bonus;
 	double 			invdet;
@@ -347,7 +331,6 @@ int				open_f(char *arg, t_all **all, int save);
 //raycasting
 double			dist_screen(t_all **all, int x, int y);
 double			wall_dist(t_all **all, t_wall *wall);
-void			add_dim_xpm(t_all **all, char *path, int *dimX, int *dimY);
 void			add_dist(t_all **all, t_sprite *sp, void (*sort)(t_sprite *));
 void			complete_text(t_all **all);
 void			complete_wall_inf(t_all **all, t_wall *wall);
@@ -356,9 +339,8 @@ void			ft_wall(t_all **all);
 void			hit_wall(t_all **all);
 void			print_sprite(t_all **all, t_sprite *sp);
 void    		put_img(t_all **all, t_img *img, char *path);
-void			put_sprite(t_all **all, t_sprite *sp, char *path);
-void			put_text(t_all **all);
-void			raycast_sprite(t_all **all, t_sprite *sp, t_sprite *sp_img);
+void			put_tab_img(t_all **all, t_tab_img *tab_img, char **path, int start);
+void			raycast_sprite(t_all **all, t_sprite *sp, t_img *sp_img);
 void			raycast_wall(t_all **all, int column);
 void			save_bmp(t_all **all);
 void			side_dist(t_all **all, t_wall *wall);
@@ -373,6 +355,7 @@ int				ft_key_press(int key, t_all **all);
 
 //bonus
 void			add_mini_map(t_all **all);
+void 			check_door(t_all **all);
 void			open_door(t_all **all);
 void			ft_door(t_all **all);
 void			ft_pull_weapon(t_all **all);

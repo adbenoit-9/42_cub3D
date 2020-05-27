@@ -19,7 +19,6 @@ int		create_image(t_all **all)
 	(*all)->img.data = (int *)mlx_get_data_addr((*all)->img.ptr, &(*all)->img.bpp, &(*all)->img.size_line, &(*all)->img.endian);
 	(*all)->grid.column = 0;
 	ft_door(all);
-	open_door(all);
 	print_all_sprites(all, &(*all)->sp);
 	add_mini_map(all);
 	print_weapon(all, (*all)->bonus.pull);

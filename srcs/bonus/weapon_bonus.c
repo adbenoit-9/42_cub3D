@@ -6,29 +6,11 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 22:57:19 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/12 17:49:18 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 15:26:21 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void    put_weapon(t_all **all)
-{
-	int i;
-
-	(*all)->bonus.weap.bpp = 32;
-	(*all)->bonus.weap.endian = 0;
-	i = 0;
-	while (i < 5)
-	{
-		add_dim_xpm(all, (*all)->bonus.path[i], &(*all)->bonus.weap.dim[i][X], &(*all)->bonus.weap.dim[i][Y]);
-		(*all)->bonus.weap.size_line = (*all)->bonus.weap.dim[i][X] * 4;
-		if (((*all)->bonus.weap.ptr = mlx_xpm_file_to_image((*all)->mlx, (*all)->bonus.path[i], &(*all)->bonus.weap.dim[i][X], &(*all)->bonus.weap.dim[i][Y])) == NULL)
-			ft_error(all, NULL, FILE_ERR);
-		(*all)->bonus.weap.data[i] = (int *)mlx_get_data_addr((*all)->bonus.weap.ptr, &(*all)->bonus.weap.bpp, &(*all)->bonus.weap.size_line, &(*all)->bonus.weap.endian);
-		i++;
-	}
-}
 
 void    print_weapon(t_all **all, int pull)
 {
@@ -72,7 +54,7 @@ void	ft_pull_weapon(t_all **all)
 		(*all)->bonus.loop = 0;
 		(*all)->bonus.pull = -1;
 	}
-	if ((*all)->bonus.pull < 4 && (*all)->bonus.loop == ((*all)->bonus.pull + 1) * 4)
+	if ((*all)->bonus.pull < 3 && (*all)->bonus.loop == ((*all)->bonus.pull + 1) * 4)
 		(*all)->bonus.pull++;
 	i = 0;
 	while (i < (*all)->sp.count)

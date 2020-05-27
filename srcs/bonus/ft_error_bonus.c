@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 18:48:03 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/14 18:54:15 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 14:42:17 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ void		ft_error(t_all **all, char *line, int err)
 	free((*all)->sp.type);
 	if ((*all)->text.ptr)
 		mlx_destroy_image((*all)->mlx, (*all)->text.ptr);
-	if ((*all)->sp.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->sp.ptr);
-	if ((*all)->bonus.s1.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->bonus.s1.ptr);
-	if ((*all)->bonus.sa.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->bonus.sa.ptr);
-	if ((*all)->bonus.heart.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->bonus.heart.ptr);
-	if ((*all)->bonus.dead.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->bonus.dead.ptr);
+	if ((*all)->sp.img.ptr)
+		mlx_destroy_image((*all)->mlx, (*all)->sp.img.ptr);
+	if ((*all)->bonus.s1.img.ptr)
+		mlx_destroy_image((*all)->mlx, (*all)->bonus.s1.img.ptr);
+	if ((*all)->bonus.sa.img.ptr)
+		mlx_destroy_image((*all)->mlx, (*all)->bonus.sa.img.ptr);
+	if ((*all)->bonus.heart.img.ptr)
+		mlx_destroy_image((*all)->mlx, (*all)->bonus.heart.img.ptr);
+	if ((*all)->bonus.dead.img.ptr)
+		mlx_destroy_image((*all)->mlx, (*all)->bonus.dead.img.ptr);
 	if ((*all)->bonus.win.ptr)
 		mlx_destroy_image((*all)->mlx, (*all)->bonus.win.ptr);
 	if ((*all)->bonus.door.ptr)

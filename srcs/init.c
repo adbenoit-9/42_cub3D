@@ -7,14 +7,9 @@ void	init_all(t_all **all)
 
 	(*all)->ret = 1;
 	(*all)->state = INFO;
-	if (!((*all)->info = malloc(sizeof(char *) * (NB_INFO + 1))))
-		ft_error(all, NULL, MAL_ERR);
-	i = 0;
-	while (i < NB_INFO)
-	{
+	i = -1;
+	while (++i <= 6)
 		(*all)->info[i] = NULL;
-		i++;
-	}
 	(*all)->r[X] = -1;
 	(*all)->r[Y] = -1;
 	(*all)->c = -1;
@@ -30,19 +25,26 @@ void	init_all(t_all **all)
 	(*all)->sp.dist = NULL;
 	(*all)->sp.type = NULL;
 	(*all)->wall.dist = NULL;
-	(*all)->bonus.path = NULL;
+	i = -1;
+	while (++i <= NB_BON)
+		(*all)->bonus.path[i] = NULL;
 	(*all)->bonus.foe = 0;
 	(*all)->img.ptr = NULL;
 	(*all)->img.ptr = NULL;
-	(*all)->text.ptr = NULL;
-	(*all)->sp.ptr = NULL;
-	(*all)->bonus.s1.ptr = NULL;
-	(*all)->bonus.sa.ptr = NULL;
+	i = 0;
+	while (i < 4)
+	{
+		(*all)->bonus.door.ptr[i] = NULL;
+		(*all)->bonus.weap.ptr[i] = NULL;
+		(*all)->text.ptr[i] = NULL;
+		i++;
+	}
+	(*all)->sp.img.ptr = NULL;
+	(*all)->bonus.s1.img.ptr = NULL;
+	(*all)->bonus.sa.img.ptr = NULL;
 	(*all)->bonus.heart.ptr = NULL;
 	(*all)->bonus.dead.ptr = NULL;
 	(*all)->bonus.win.ptr = NULL;
-	(*all)->bonus.door.ptr = NULL;
-	(*all)->bonus.weap.ptr = NULL;
 	(*all)->win = NULL;
 }
 
@@ -54,7 +56,7 @@ void    complete_all(t_all **all, t_sprite *sp)
 	(*all)->bonus.loop = 0;
 	(*all)->bonus.col = 0;
 	(*all)->bonus.life = 5;
-	(*all)->bonus.pull = 4;
+	(*all)->bonus.pull = 3;
 	if (!(sp->pos = malloc(sizeof(double *) * sp->count)))
 		ft_error(all, NULL, MAL_ERR);
 	if (!(sp->dead = malloc(sizeof(int) * sp->count)))

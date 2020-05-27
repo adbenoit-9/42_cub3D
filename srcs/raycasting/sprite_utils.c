@@ -1,18 +1,5 @@
 #include "cub3d.h"
 
-void	put_sprite(t_all **all, t_sprite *sp, char *path)
-{
-	sp->dim[X] = 0;
-	sp->dim[Y] = 0;
-	add_dim_xpm(all, path, &sp->dim[X], &sp->dim[Y]);
-	sp->bpp = 32;
-	sp->size_line = sp->dim[X] * 4;
-	sp->endian = 0;
-	if ((sp->ptr = mlx_xpm_file_to_image((*all)->mlx, path, &sp->dim[X], &sp->dim[Y])) == NULL)
-		ft_error(all, NULL, PARS_ERR);
-	sp->data = (int *)mlx_get_data_addr(sp->ptr, &sp->bpp, &sp->size_line, &sp->endian);
-}
-
 void	sort_sprite(t_sprite *sp)
 {
 	double tmp;

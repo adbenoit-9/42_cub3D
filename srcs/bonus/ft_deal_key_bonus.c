@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:32:27 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/08 15:48:44 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/16 15:42:02 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_key_press(int key, t_all **all)
 	if (key == KEY_D && (*all)->bonus.life != 0 && (*all)->bonus.foe != 0)
 		(*all)->key.d = 1;
 	if (key == KEY_F && (*all)->bonus.life != 0 && (*all)->bonus.foe != 0)
-		(*all)->key.f = 1;
+		open_door(all);
 	return (NO_ERR);
 }
 
@@ -51,8 +51,6 @@ int	ft_key_release(int key, t_all **all)
 		(*all)->key.s = 0;
 	if (key == KEY_D)
 		(*all)->key.d = 0;
-	if (key == KEY_F)
-		(*all)->key.f = 0;
 	return (NO_ERR);
 }
 

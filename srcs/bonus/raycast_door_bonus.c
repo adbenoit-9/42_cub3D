@@ -105,7 +105,7 @@ void	ft_door(t_all **all)
 		hit = hit_door(all, &(*all)->wall);
 		if (hit == 2)
 			raycast_door(all, (*all)->grid.column);
-		else if (hit == 3 && (*all)->wall.side == (*all)->bonus.door.side)
+		else if (hit == 3 && (*all)->wall.side == (*all)->bonus.door_side)
 			raycast_door(all, (*all)->grid.column);
 		else
 			raycast_wall(all, (*all)->grid.column);

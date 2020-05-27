@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:42:10 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/10 12:53:52 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 16:15:50 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	map(char *line, t_all **all)
 			(*all)->player.o = line[j];
 			(*all)->pos++;
 		}
-		//printf("%c - %d, i = %d / %d, EAST = %c\n", line[j], j, i, NB_CHAR, EAST);
 		if (i == NB_CHAR_B)
 			ft_error(all, line, PARS_ERR);
 		j++;

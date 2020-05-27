@@ -34,8 +34,8 @@ void	start(t_all **all)
 	ft_putdir(all, (*all)->player.o);
 	(*all)->grid.plane[X] = ((*all)->player.dir[X] == 0) ? 0.66 : 0;
 	(*all)->grid.plane[Y] = ((*all)->player.dir[Y] == 0) ? 0.66 : 0;
-	put_text(all);
-	put_sprite(all, &(*all)->sp, (*all)->info[S]);
+	put_tab_img(all, &(*all)->text, (*all)->info, 0);
+	put_img(all, &(*all)->sp.img, (*all)->info[S]);
 	create_image(all);
 	if ((*all)->save == 1)
 		save_bmp(all);
