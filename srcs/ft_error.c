@@ -6,13 +6,13 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 18:48:03 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/27 16:45:33 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 17:28:19 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void static	ft_destroy_all_img(t_all **all);
+void static	ft_destroy_all_img(t_all **all)
 {
 	int	i;
 
@@ -70,7 +70,7 @@ void		ft_error(t_all **all, char *line, int err)
 	free((*all)->sp.type);
 	ft_destroy_all_img(all);
 	free(*all);
-	system("leaks cub3d");
+	// system("leaks cub3d");
 	if (err != NO_ERR)
 		print_err(err);
 	else
@@ -88,5 +88,5 @@ void		print_err(int err)
 		write(1, err_mess[err], ft_strlen(err_mess[err])); 
 		write (1, "\n", 1);
 	}
-	exit(EXIT_FAILED);
+	exit(EXIT_SUCCESS);
 }
