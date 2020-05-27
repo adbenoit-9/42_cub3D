@@ -30,6 +30,10 @@ void ft_putdir(t_all **all, char o)
 
 void	start(t_all **all)
 {
+	if(!((*all)->mlx = mlx_init()))
+		exit_game(all, NULL, MLX_ERR);
+	if(!((*all)->win = mlx_new_window((*all)->mlx, (*all)->r[X], (*all)->r[Y], "Cub3D")))
+		exit_game(all, NULL, MLX_ERR);
 	check_door(all);
 	complete_all(all, &(*all)->sp);
 	ft_putdir(all, (*all)->player.o);

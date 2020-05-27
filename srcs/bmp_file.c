@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bmp.c                                              :+:      :+:    :+:   */
+/*   bmp_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:27:44 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/03/11 18:45:23 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	add_info_bmp(t_all ** all, unsigned char **head)
 {
 	if (!((*head) = malloc(sizeof(char) * 54)))
-		ft_error(all, NULL, MAL_ERR);
+		exit_game(all, NULL, MAL_ERR);
 	ft_bzero(*head, 54);
 	(*head)[0] = 'B';
 	(*head)[1] = 'M';
@@ -51,7 +51,7 @@ void		save_bmp(t_all **all)
 	write(fd, head, 54);
 	free(head);
 	if (!(pixel = malloc(sizeof(int) * (*all)->r[Y] * (*all)->r[X])))
-		ft_error(all, NULL, MAL_ERR);
+		exit_game(all, NULL, MAL_ERR);
 	i = (*all)->r[Y] - 1;
 	k = 0;
 	while (i >= 0)

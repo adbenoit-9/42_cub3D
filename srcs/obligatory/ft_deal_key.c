@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:32:27 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/04 16:55:51 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	ft_key_press(int key, t_all **all)
 {
+	printf("win ptr = %p\n", (*all)->win);
 	if (key == ESC)
-		ft_error(all, NULL, NO_ERR);
+		exit_game(all, NULL, NO_ERR);
 	if (key == LEFT)
 		(*all)->key.left = 1;
 	if (key == RIGHT)
@@ -50,6 +51,6 @@ int	ft_key_release(int key, t_all **all)
 
 int		ft_close(t_all **all)
 {
-	ft_error(all, NULL, NO_ERR);
+	exit_game(all, NULL, NO_ERR);
 	return (NO_ERR);
 }

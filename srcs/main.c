@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:33:01 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/12 14:31:11 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 22:24:56 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int			main(int ac, char **av)
 		print_err(FILE_ERR);
 	open_f(av[1], &all, save);
 	map_end_error(&all);
+	start(&all);
 	mlx_handle(all);
 	return (0);
 }

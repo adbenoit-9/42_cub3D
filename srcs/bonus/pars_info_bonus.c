@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 18:21:57 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/27 16:09:05 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	add_info(char *line, t_all **all, int i)
 
 	j = 0; 
 	if ((*all)->info[i])
-		ft_error(all, line, PARS_ERR);
+		exit_game(all, line, PARS_ERR);
 	if (!((*all)->info[i] = malloc(sizeof(char) * (ft_strlen(line) + 1))))
-		ft_error(all, line, MAL_ERR);
+		exit_game(all, line, MAL_ERR);
 	while (line[j])
 	{
 		(*all)->info[i][j] = line[j];
@@ -57,7 +57,7 @@ int	info(char *line, t_all **all)
 	while (i < 5)
 	{
 		if ((*all)->info[i] == NULL)
-			ft_error(all, line, PARS_ERR);
+			exit_game(all, line, PARS_ERR);
 		i++;
 	}
 	(*all)->state = BONUS;

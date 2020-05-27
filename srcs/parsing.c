@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:45:43 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/12 13:27:32 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int		ft_parsing(t_all **all)
 	{
 		if ((*all)->ret == 0)
 		{
+			free(line);
 			(*all)->state = END;
 			map_error(all);
 			return (NO_ERR);
@@ -57,7 +58,7 @@ int		ft_parsing(t_all **all)
 		ft_parsing(all);
 	}
 	else if (line[0] != 0 && (*all)->state == END)
-		ft_error(all, line, PARS_ERR);
+		exit_game(all, line, PARS_ERR);
 	else
 		process[(*all)->state](line, all);
 	return (NO_ERR);
@@ -66,11 +67,11 @@ int		ft_parsing(t_all **all)
 int		open_f(char *arg, t_all **all, int save)
 {
 	if (!((*all) = (t_all *)malloc(sizeof(t_all))))
-		ft_error(all, NULL, MAL_ERR);
+		exit_game(all, NULL, MAL_ERR);
 	init_all(all);
 	(*all)->save = save;
 	if (((*all)->fd = open(arg, O_RDONLY)) == -1)
-		ft_error(all, NULL, FILE_ERR);
+		exit_game(all, NULL, FILE_ERR);
 	ft_parsing(all);
 	close((*all)->fd);
 	return (NO_ERR);

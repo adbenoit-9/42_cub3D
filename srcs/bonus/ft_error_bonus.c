@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error_bonus.c                                   :+:      :+:    :+:   */
+/*   exit_game_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void		ft_error(t_all **all, char *line, int err)
+void		exit_game(t_all **all, char *line, int err)
 {
 	free(line);
 	line = NULL;

@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:42:10 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/10 14:18:36 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int		bonus(char *line, t_all **all)
 {
-	ft_error(all, line, MAL_ERR);
+	exit_game(all, line, MAL_ERR);
 	return (NO_ERR);
 }
 
@@ -25,13 +25,13 @@ int	add_map(char *line, t_all **all)
 
 	i = 0;
 	if (!((*all)->map[(*all)->i_map] = malloc(sizeof(char) * (ft_strlen(line) + 1))))
-		ft_error(all, line, MAL_ERR);
+		exit_game(all, line, MAL_ERR);
 	while (line[i])
 	{
 		if (line[i] == OBJ)
 		{
 			if (!((*all)->sp.coor = realloc_doub((*all)->sp.coor, (*all)->sp.count + 1)))
-				ft_error(all, line, MAL_ERR);
+				exit_game(all, line, MAL_ERR);
 			(*all)->sp.coor[(*all)->sp.count][X] = i + 0.5;
 			(*all)->sp.coor[(*all)->sp.count][Y] = (*all)->i_map + 0.5;
 			(*all)->sp.count++;
@@ -55,11 +55,11 @@ int	map(char *line, t_all **all)
 	j = -1;
 	size = ft_strlen(line);
 	if ((line[0] != WALL && line[0] != HOLE) || (size > 0 && line[size - 1] != WALL && line[size - 1] != HOLE))
-		ft_error(all, line, PARS_ERR);
+		exit_game(all, line, PARS_ERR);
 	while (line[++j])
 	{
 		if ((*all)->i_map == 0 && line[j] != WALL && line[j] != HOLE)
-			ft_error(all, line, PARS_ERR);
+			exit_game(all, line, PARS_ERR);
 		i = 0;
 		while (i < NB_CHAR && line[j] != str_char[i])
 			i++;
@@ -71,7 +71,7 @@ int	map(char *line, t_all **all)
 			(*all)->pos++;
 		}
 		if (i == NB_CHAR)
-			ft_error(all, line, PARS_ERR);
+			exit_game(all, line, PARS_ERR);
 	}
 	map_error(all);
 	(*all)->map[(*all)->i_map] = 0;

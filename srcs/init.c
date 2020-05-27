@@ -58,17 +58,17 @@ void    complete_all(t_all **all, t_sprite *sp)
 	(*all)->bonus.life = 5;
 	(*all)->bonus.pull = 3;
 	if (!(sp->pos = malloc(sizeof(double *) * sp->count)))
-		ft_error(all, NULL, MAL_ERR);
+		exit_game(all, NULL, MAL_ERR);
 	if (!(sp->dead = malloc(sizeof(int) * sp->count)))
-		ft_error(all, NULL, MAL_ERR);
+		exit_game(all, NULL, MAL_ERR);
 	if (!(sp->see = malloc(sizeof(int) * sp->count)))
-		ft_error(all, NULL, MAL_ERR);
+		exit_game(all, NULL, MAL_ERR);
 	if (!(sp->dist = malloc(sizeof(double) * sp->count)))
-		ft_error(all, NULL, MAL_ERR);
+		exit_game(all, NULL, MAL_ERR);
 	while (i < sp->count)
 	{
 		if (!(sp->pos[i] = malloc(sizeof(double) * 2)))
-			ft_error(all, NULL, MAL_ERR);
+			exit_game(all, NULL, MAL_ERR);
 		sp->see[i] = 0;
 		sp->dead[i] = 0;
 		i++;

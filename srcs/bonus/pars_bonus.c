@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 23:52:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/27 16:29:12 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int  add_path(char *line, t_all **all, int i)
 
 	j = 0; 
 	if (!((*all)->bonus.path[i] = malloc(sizeof(char) * (ft_strlen(line) + 1))))
-		ft_error(all, line, MAL_ERR);
+		exit_game(all, line, MAL_ERR);
 	while (line[j])
 	{
 		(*all)->bonus.path[i][j] = line[j];
@@ -48,7 +48,7 @@ int     bonus(char *line, t_all **all)
 	while (i < NB_BON)
 	{
 		if ((*all)->bonus.path[i] == NULL)
-			ft_error(all, line, FIND_ERR);
+			exit_game(all, line, FIND_ERR);
 		i++;
 	}
 	(*all)->state = MAP;
@@ -70,7 +70,7 @@ void 	check_door(t_all **all)
 			{
 				if (((*all)->map[i - 1][j] != WALL || (*all)->map[i + 1][j] != WALL) &&
 								((*all)->map[i][j - 1] != WALL || (*all)->map[i][j + 1] != WALL))
-					ft_error(all, NULL, PARS_ERR);
+					exit_game(all, NULL, PARS_ERR);
 			}
 			j++;
 		}

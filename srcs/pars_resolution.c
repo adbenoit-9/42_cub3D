@@ -5,7 +5,7 @@ static void	err_r(t_all **all, char *line, char *x, char *y)
 {
 	free(y);
 	free(x);
-	ft_error(all, line, PARS_ERR);
+	exit_game(all, line, PARS_ERR);
 }
 
 static int	pars_r(char *line, char **param, int i)
@@ -42,7 +42,7 @@ int			add_r(t_all **all, char *line)
 	x = NULL;
 	y = NULL;
 	if ((*all)->r[X] != -1 || (*all)->r[Y] != -1)
-		ft_error(all, line, PARS_ERR);
+		exit_game(all, line, PARS_ERR);
 	i = 0;
 	if ((i = pars_r(line, &x, i)) == -1)
 		err_r(all, line, x, y);

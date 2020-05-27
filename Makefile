@@ -6,11 +6,11 @@
 #    By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/05/15 12:00:28 by Adeline          ###   ########.fr        #
+#    Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= cub3d
+NAME		= Cub3D
 
 INC			= includes/
 
@@ -31,7 +31,7 @@ BONUS_PATH	= srcs/bonus
 
 SRCS_NAME	=	bmp_file.c\
 				deal_image.c\
-				ft_error.c\
+				exit_game.c\
 				init.c\
 				main.c\
 				move.c\

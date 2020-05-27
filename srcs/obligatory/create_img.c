@@ -16,6 +16,8 @@ int		create_image(t_all **all)
 	(*all)->grid.column = 0;
 	ft_wall(all);
 	print_sprite(all, &(*all)->sp);
+	free((*all)->wall.dist);
+	(*all)->wall.dist = NULL;
 	mlx_put_image_to_window((*all)->mlx, (*all)->win, (*all)->img.ptr, 0, 0);
 	ft_move(all);
 	return (NO_ERR);

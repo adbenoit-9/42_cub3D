@@ -30,17 +30,17 @@ static void	pars_col(t_all **all, char *line, int *col)
 
 	i = 0;
 	if ((i = check_col(line, red, i)) == -1)
-		ft_error(all, line, PARS_ERR);
+		exit_game(all, line, PARS_ERR);
 	if (line[i] != ',')
-		ft_error(all, line, PARS_ERR);
+		exit_game(all, line, PARS_ERR);
 	i++;
 	if ((i = check_col(line, green, i)) == -1)
-		ft_error(all, line, PARS_ERR);
+		exit_game(all, line, PARS_ERR);
 	if (line[i] != ',')
-		ft_error(all, line, PARS_ERR);
+		exit_game(all, line, PARS_ERR);
 	i++;
 	if ((i = check_col(line, blue, i)) == -1 || i != ft_strlen(line))
-		ft_error(all, line, PARS_ERR);
+		exit_game(all, line, PARS_ERR);
 	col[0] = ft_atoi(red);
 	col[1] = ft_atoi(green);
 	col[2] = ft_atoi(blue);
@@ -56,19 +56,19 @@ int			add_col(t_all **all, char *line, int ident)
 	while (i < 3)
 	{
 		if (col[i] < 0 || col[i] > 255)
-			ft_error(all, line, PARS_ERR);
+			exit_game(all, line, PARS_ERR);
 		i++;
 	}
 	if (ident == F)
 	{
 		if ((*all)->f != -1)
-			ft_error(all, line, PARS_ERR);
+			exit_game(all, line, PARS_ERR);
 		(*all)->f = ft_rgb(col[0], col[1], col[2]);
 	}
 	if (ident == C)
 	{
 		if ((*all)->c != -1)
-			ft_error(all, line, PARS_ERR);
+			exit_game(all, line, PARS_ERR);
 		(*all)->c = ft_rgb(col[0], col[1], col[2]);
 	}
 	free(line);

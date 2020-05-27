@@ -25,6 +25,8 @@ int		create_image(t_all **all)
 	print_hearts(all);
 	ft_pull_weapon(all);
 	lose_life(all, (*all)->bonus.c);
+	free((*all)->wall.dist);
+	(*all)->wall.dist = NULL;
 	mlx_put_image_to_window((*all)->mlx, (*all)->win, (*all)->img.ptr, 0, 0);
 	ft_move(all);
 	i = 0;

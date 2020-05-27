@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    makefile.txt                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+         #
+#    By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/03/12 17:40:56 by adbenoit         ###   ########.fr        #
+#    Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRCS_NAME	=	main.c\
 
 # BONUS_NAME	=	create_img_bonus.c\
 # 				ft_deal_key_bonus.c\
-# 				ft_error_bonus.c\
+# 				exit_game_bonus.c\
 # 				start_bonus.c\
 # 				weapon_bonus.c
 
@@ -52,7 +52,7 @@ O_PARS_NAME	=	check_info.c\
 
 OBL_NAME	=	create_img.c\
 				ft_deal_key.c\
-				ft_error.c\
+				exit_game.c\
 				start.c
 
 RAY_NAME	=	sprite.c\

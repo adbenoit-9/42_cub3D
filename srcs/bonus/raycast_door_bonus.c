@@ -97,7 +97,7 @@ void	ft_door(t_all **all)
 {
 	int hit;
 	if (!((*all)->wall.dist = malloc(sizeof(double) * (*all)->r[X])))
-		ft_error(all, NULL, MAL_ERR);
+		exit_game(all, NULL, MAL_ERR);
 	while ((*all)->grid.column < (*all)->r[X])
 	{
 		complete_wall_inf(all, &(*all)->wall);

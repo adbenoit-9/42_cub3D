@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:45:39 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/27 16:25:06 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@
 # define MAL_ERR 2
 # define ARG_ERR 3
 # define PATH_ERR 4
-# define FIND_ERR 5
+# define MLX_ERR 5
 
 # define NB_ERR 6
 
@@ -294,10 +294,10 @@ void 	ft_putdir(t_all **all, char o);
 //utils
 double			**realloc_doub(double **ptr, int newsize);
 void			all_null(t_all **all);
-void			free_tab_char(char **ptr);
-void			free_tab_nb(void **ptr, int size);
+void			free_tab_char(char **ptr, int alloc);
+void			free_tab_nb(void **ptr, int size, int alloc);
 void			ft_bzero(void *s, size_t n);
-void			ft_error(t_all **all, char *line, int err);
+void			exit_game(t_all **all, char *line, int err);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			ft_putnbr_fd(int n, int fd);
 void			*ft_realloc(void *ptr, int newsize);

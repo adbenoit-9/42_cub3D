@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:32:27 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/16 15:42:02 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_key_press(int key, t_all **all)
 {
 	if (key == ESC)
-		ft_error(all, NULL, NO_ERR);
+		exit_game(all, NULL, NO_ERR);
 	if (key == SPACE && (*all)->bonus.life != 0 && (*all)->bonus.foe != 0)
 		(*all)->key.space = 1;
 	if (key == LEFT && (*all)->bonus.life != 0 && (*all)->bonus.foe != 0)
@@ -56,6 +56,6 @@ int	ft_key_release(int key, t_all **all)
 
 int		ft_close(t_all **all)
 {
-	ft_error(all, NULL, NO_ERR);
+	exit_game(all, NULL, NO_ERR);
 	return (NO_ERR);
 }
