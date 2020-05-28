@@ -165,4 +165,13 @@ typedef struct	s_all
 
 typedef int		(*t_function)(char *, t_all **);
 
+typedef struct	s_draw
+{
+	int		start[2];
+	int		end[2];
+    int     pix[2];
+    int     index[2];
+    int     h;
+    int     w;
+}				t_draw;
 #endif

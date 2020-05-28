@@ -1,5 +1,53 @@
 #include "cub3d.h"
 
+static void	set_close_side(t_all **all, int *dirx, int *diry)
+{
+	if ((*all)->wall.side == NO)
+	{
+		*dirx = 0;
+		*diry = -1;
+	}
+	else if ((*all)->wall.side == EA)
+	{
+		*dirx = 1;
+		*diry = 0;
+	}
+	else if ((*all)->wall.side == SO)
+	{	
+		*dirx = 0;
+		*diry = 1;
+	}
+	else if ((*all)->wall.side == WE)
+	{
+		*dirx = -1;
+		*diry = 0;
+	}
+}
+
+static void	set_open_side(t_all **all, int *newx, int *newy)
+{
+	if ((*all)->wall.side == NO)
+	{
+		*newx = 1;
+		*newy = -1;
+	}
+	else if ((*all)->wall.side == EA)
+	{
+		*newx = 1;
+		*newy = -1;
+	}
+	else if ((*all)->wall.side == SO)
+	{
+		*newx = 1;
+		*newy = 1;
+	}
+	else if ((*all)->wall.side == WE)
+	{
+		*newx = -1;
+		*newy = -1;
+	}
+}
+
 void open_door(t_all **all)
 {
 	int x;
@@ -7,36 +55,10 @@ void open_door(t_all **all)
 	int dir[2];
 	int	new[2];
 
+	set_close_side(all, &dir[X], &dir[Y]);
+	set_open_side(all, &new[X], &new[Y]);
 	x = (*all)->player.map[X];
 	y = (*all)->player.map[Y];
-	if ((*all)->wall.side == NO)
-	{
-		dir[X] = 0;
-		dir[Y] = -1;
-		new[X] = 1;
-		new[Y]= -1;
-	}
-	if ((*all)->wall.side == EA)
-	{
-		dir[X] = 1;
-		dir[Y] = 0;
-		new[X] = 1;
-		new[Y]= -1;
-	}
-	if ((*all)->wall.side == SO)
-	{
-		new[X] = 1;
-		new[Y]= 1;
-		dir[X] = 0;
-		dir[Y] = 1;
-	}
-	if ((*all)->wall.side == WE)
-	{
-		new[X] = -1;
-		new[Y]= -1;
-		dir[X] = -1;
-		dir[Y] = 0;
-	}
 	if ((*all)->map[y + dir[Y]][x + dir[X]] == OPEN)
 	{
 		(*all)->map[y + dir[Y]][x + dir[X]] = DOOR;
@@ -46,11 +68,11 @@ void open_door(t_all **all)
 	{
 		if ((*all)->wall.side == NO)
 			(*all)->bonus.door_side = EA;
-		if ((*all)->wall.side == SO)
+		else if ((*all)->wall.side == SO)
 			(*all)->bonus.door_side = EA;
-		if ((*all)->wall.side == EA)
+		else if ((*all)->wall.side == EA)
 			(*all)->bonus.door_side = NO;
-		if ((*all)->wall.side == WE)
+		else if ((*all)->wall.side == WE)
 			(*all)->bonus.door_side = NO;
 		(*all)->map[y + dir[Y]][x + dir[X]] = OPEN;
 		(*all)->bonus.door_tmp = (*all)->map[y + new[Y]][x + new[X]];

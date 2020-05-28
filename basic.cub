@@ -11,10 +11,10 @@ C 225,30,0
 S1 ./xpm/dye_powder_cyan.xpm
 SA ./xpm/spider_eye_fermented.xpm
 P0 ./xpm/bow_pulling_0.xpm
-P1 ./xpm/bow_pulling_1.xpm
-P2 ./xpm/bow_pulling_2.xpm
-P3 ./xpm/bow_standby.xpm
-P4 ./xpm/bow_pull_3.xpm
+W1 ./xpm/bow_pulling_1.xpm
+W2 ./xpm/bow_pulling_2.xpm
+W3 ./xpm/bow_standby.xpm
+W4 ./xpm/bow_pull_3.xpm
 D ./xpm/door_iron.xpm
 
         1111111111111111111111111

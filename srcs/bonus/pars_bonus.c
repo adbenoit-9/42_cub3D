@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 23:52:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 14:19:49 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/28 21:13:36 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int  parse_bonus(char *line, t_all **all, int i)
 
 int     bonus(char *line, t_all **all)
 {
-	static char *str_info[NB_BON] = {BON_P0, BON_P1, BON_P2, BON_P3, BON_P4, BON_S1,
+	static char *str_info[NB_BON] = {BON_W0, BON_W1, BON_W2, BON_W3, BON_S1,
 					BON_SA, BON_DN, BON_DS, BON_DE, BON_DW, BON_LIFE, BON_LOSE, BON_WIN};
 	int			i;
 

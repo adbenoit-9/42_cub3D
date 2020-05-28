@@ -3,7 +3,7 @@
 
 static void	complete_door(t_all **all, t_wall *wall)
 {
-	wall->dist[(*all)->screen.column] = wall_dist(all, wall);
+	wall->dist[(*all)->screen.column] = set_wall_dist(all, wall);
 	if (wall->side % 2 == 0)
 		wall->hit = (*all)->player.map[Y] + wall->dist[(*all)->screen.column] * wall->raydir[Y];
 	else
@@ -100,15 +100,15 @@ void	ft_door(t_all **all)
 		exit_error(all, NULL, MAL_ERR);
 	while ((*all)->screen.column < (*all)->r[X])
 	{
-		complete_wall_inf(all, &(*all)->wall);
-		side_dist(all, &(*all)->wall);
+		init_wall(all, &(*all)->wall);
+		set_side_dist(all, &(*all)->wall);
 		hit = hit_door(all, &(*all)->wall);
 		if (hit == 2)
 			raycast_door(all, (*all)->screen.column);
 		else if (hit == 3 && (*all)->wall.side == (*all)->bonus.door_side)
 			raycast_door(all, (*all)->screen.column);
 		else
-			raycast_wall(all, (*all)->screen.column);
+			draw_wall_pixel(all, (*all)->screen.column);
 		(*all)->screen.column++;
 	}
 }

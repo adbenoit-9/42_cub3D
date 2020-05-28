@@ -13,12 +13,12 @@ int		create_image(t_all **all)
 	(*all)->img.size_line = (*all)->r[X] * 4;
 	(*all)->img.endian = 0;
 	(*all)->img.data = (int *)mlx_get_data_addr((*all)->img.ptr, &(*all)->img.bpp, &(*all)->img.size_line, &(*all)->img.endian);
+	ft_move(all);
 	(*all)->screen.column = 0;
-	ft_wall(all);
-	print_sprite(all, &(*all)->sp);
+	draw_wall(all);
+	draw_sprite(all, &(*all)->sp);
 	free((*all)->wall.dist);
 	(*all)->wall.dist = NULL;
 	mlx_put_image_to_window((*all)->mlx_ptr, (*all)->win_ptr, (*all)->img.ptr, 0, 0);
-	ft_move(all);
 	return (NO_ERR);
 }

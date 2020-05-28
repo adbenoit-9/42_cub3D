@@ -10,10 +10,10 @@ C 120,120,255
 S1 ./xpm/angry_man.xpm
 SA ./xpm/back_man.xpm
 P0 ./xpm/cat1.xpm
-P1 ./xpm/cat1.xpm
-P2 ./xpm/cat1.xpm
-P3 ./xpm/cat1.xpm
-P4 ./xpm/cat2.xpm
+W1 ./xpm/cat1.xpm
+W2 ./xpm/cat1.xpm
+W3 ./xpm/cat1.xpm
+W4 ./xpm/cat2.xpm
 DN ./xpm/door_wood.xpm
 DS ./xpm/door_otherside.xpm
 DE ./xpm/door_wood.xpm

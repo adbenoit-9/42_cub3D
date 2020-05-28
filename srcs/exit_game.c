@@ -35,7 +35,7 @@ void		exit_error(t_all **all, char *line, int code)
 
 void		print_error(int err)
 {
-	char *err_mess[NB_ERR] = {"Failed to load map.", "failed to load image.", "Failed to find color", "Failed to open file", "failed to malloc.",
+	char *err_mess[NB_ERR] = {"Failed to load map.", "Failed to find color", "failed to load image.", "Failed to open file", "failed to malloc.",
 							"Please enter corrects arguments.", "mlx failed to create window or image.", "Failed to find resolution"};
 
 	if (err >= 0)

@@ -6,7 +6,7 @@
 #    By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/05/28 15:19:55 by Adeline          ###   ########.fr        #
+#    Updated: 2020/05/28 17:17:44 by Adeline          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ BONUS_NAME	=	all_sprite_bonus.c\
 				create_img_bonus.c\
 				door_bonus.c\
 				ft_deal_key_bonus.c\
+				heart_bonus.c\
 				life_bonus.c\
 				mlx_handle_bonus.c\
 				mini_map_bonus.c\
@@ -66,7 +67,6 @@ OBL_NAME	=	create_img.c\
 
 RAY_NAME	=	sprite.c\
 				sprite_utils.c\
-				texture.c\
 				wall.c\
 				wall_utils.c
 

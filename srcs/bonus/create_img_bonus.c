@@ -19,14 +19,12 @@ int		create_image(t_all **all)
 	(*all)->img.data = (int *)mlx_get_data_addr((*all)->img.ptr, &(*all)->img.bpp, &(*all)->img.size_line, &(*all)->img.endian);
 	(*all)->screen.column = 0;
 	ft_door(all);
-	print_all_sprites(all, &(*all)->sp);
-	add_mini_map(all);
-	print_weapon(all, (*all)->bonus.pull);
-	print_hearts(all);
-	ft_pull_weapon(all);
-	lose_life(all, (*all)->bonus.map_c);
+	draw_all_sprites(all, &(*all)->sp);
+	draw_weapon(all);
+	draw_hearts(all);
 	free((*all)->wall.dist);
 	(*all)->wall.dist = NULL;
+	draw_mini_map(all);
 	mlx_put_image_to_window((*all)->mlx_ptr, (*all)->win_ptr, (*all)->img.ptr, 0, 0);
 	ft_move(all);
 	i = 0;

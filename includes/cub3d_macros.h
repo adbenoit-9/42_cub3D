@@ -11,11 +11,10 @@
 # define INF_F "F "
 # define INF_C "C "
 
-# define BON_P0 "P0 "
-# define BON_P1 "P1 "
-# define BON_P2 "P2 "
-# define BON_P3 "P3 "
-# define BON_P4 "P4 "
+# define BON_W0 "W0 "
+# define BON_W1 "W1 "
+# define BON_W2 "W2 "
+# define BON_W3 "W3 "
 # define BON_S1 "S1 "
 # define BON_SA "SA "
 # define BON_DN "DN "
@@ -27,7 +26,7 @@
 # define BON_WIN "WI "
 
 # define NB_INFO 8
-# define NB_BON 14
+# define NB_BON 13
 
 # define NO 1
 # define SO 3
@@ -38,20 +37,19 @@
 # define F 6
 # define C 7
 
-# define P0 0
-# define P1 1
-# define P2 2
-# define P3 3
-# define P4 4
-# define S1 5
-# define SA 6
-# define DN 7
-# define DS 8
-# define DE 9
-# define DW 10
-# define LIFE 11
-# define LOSE 12
-# define WIN 13
+# define W0 0
+# define W1 1
+# define W2 2
+# define W3 3
+# define S1 4
+# define SA 5
+# define DN 6
+# define DS 7
+# define DE 8
+# define DW 9
+# define LIFE 10
+# define LOSE 11
+# define WIN 12
 
 # define WALL '1'
 # define OBJ '2'

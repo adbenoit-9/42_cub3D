@@ -6,13 +6,13 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:10:15 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 14:15:56 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/28 15:54:20 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	add_sprite_pixel(t_all **all, t_sprite *sp, t_img *sp_img, int *end)
+static void	draw_sprite_pixel(t_all **all, t_sprite *sp, t_img *sp_img, int *end)
 {
 	int	pix[2];
 	int	start[2];
@@ -29,7 +29,7 @@ static void	add_sprite_pixel(t_all **all, t_sprite *sp, t_img *sp_img, int *end)
 		while (start[Y] < end[Y] && sp->transf[Y] > 0 && start[X] > 0 &&
 					start[X] < (*all)->r[X] && sp->transf[Y] < (*all)->wall.dist[start[X]])
 		{
-			sp->see[sp->index] = 1;
+			sp->see[sp->index] = TRUE;
 			pix[Y] = (((start[Y] * 256 - (*all)->r[Y] * 128 + sp->h * 128) * sp_img->dim[Y]) / sp->h) / 256;
 			if (sp_img->data[(int)(sp_img->dim[X] * pix[Y] + pix[X])] != -16777216)
 				(*all)->img.data[start[X] + (*all)->r[X] * start[Y]] =
@@ -59,10 +59,10 @@ void		raycast_sprite(t_all **all, t_sprite *sp, t_img *sp_img)
 	end[X] = sp->w / 2 + sp->screen;
 	if (end[X] >= (*all)->r[X])
 		end[X] = (*all)->r[X] - 1;
-	add_sprite_pixel(all, sp, sp_img, end);
+	draw_sprite_pixel(all, sp, sp_img, end);
 }
 
-void		print_sprite(t_all **all, t_sprite *sp)
+void		draw_sprite(t_all **all, t_sprite *sp)
 {
 	int		i;
 

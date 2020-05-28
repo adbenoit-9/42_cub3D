@@ -6,7 +6,7 @@
 #    By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/05/28 12:45:49 by Adeline          ###   ########.fr        #
+#    Updated: 2020/05/28 16:25:20 by Adeline          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,6 @@ OBL_NAME	=	create_img.c\
 				start.c
 
 RAY_NAME	=	sprite.c\
-				texture.c\
 				wall.c\
 				wall_utils.c
 

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	ft_putdir(t_all **all, char o)
+void	init_player(t_all **all, char o)
 {
 	if (o == 'N')
 	{
@@ -35,11 +35,11 @@ void	start_game(t_all **all)
 	if(!((*all)->win_ptr = mlx_new_window((*all)->mlx_ptr, (*all)->r[X], (*all)->r[Y], "Cub3D")))
 		exit_error(all, NULL, MLX_ERR);
 	finish_init(all, &(*all)->sp);
-	ft_putdir(all, (*all)->player.start_o);
+	init_player(all, (*all)->player.start_o);
 	(*all)->screen.plane[X] = ((*all)->player.dir[X] == 0) ? 0.66 : 0;
 	(*all)->screen.plane[Y] = ((*all)->player.dir[Y] == 0) ? 0.66 : 0;
-	put_tab_img(all, &(*all)->text, (*all)->path, 0);
-	put_img(all, &(*all)->sp.img, (*all)->path[S]);
+	load_tab_of_image(all, &(*all)->text, (*all)->path, 0);
+	load_image(all, &(*all)->sp.img, (*all)->path[S]);
 	create_image(all);
 	if ((*all)->save == TRUE)
 		save_bmp(all);

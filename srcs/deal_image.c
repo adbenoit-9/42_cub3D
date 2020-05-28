@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void    put_img(t_all **all, t_img *img, char *path)
+void    load_image(t_all **all, t_img *img, char *path)
 {
 	img->bpp = 32;
 	img->endian = 0;
@@ -12,7 +12,7 @@ void    put_img(t_all **all, t_img *img, char *path)
 	img->data = (int *)mlx_get_data_addr(img->ptr, &img->bpp, &img->size_line, &img->endian);
 }
 
-void	put_tab_img(t_all **all, t_tab_img *tab_img, char **path, int start)
+void	load_tab_of_image(t_all **all, t_tab_img *tab_img, char **path, int start)
 {
 	int i;
 

@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:10:15 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 14:23:11 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/28 16:46:52 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	sort_all_sprite(t_sprite *sp)
 	}
 }
 
-void	print_all_sprites(t_all **all, t_sprite *sp)
+void	draw_all_sprites(t_all **all, t_sprite *sp)
 {
 	int		i;
 

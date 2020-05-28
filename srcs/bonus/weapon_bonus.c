@@ -6,46 +6,13 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 22:57:19 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 14:23:11 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/28 19:00:52 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    print_weapon(t_all **all, int pull)
-{
-	int		start[2];
-	int		end[2];
-    int     pix[2];
-    int     index[2];
-    int     h;
-    int     w;
-
-    h = abs((int)((*all)->r[Y] / 3));
-    w = abs((int)((*all)->r[Y] / 2));
-    start[X] = (*all)->r[X] / 2 - w / 2;
-    end[X] = start[X] + w;
-    index[X] = 0;
-    while (start[X] < end[X])
-	{
-        index[Y] = 0;
-        pix[X] = index[X] * (*all)->bonus.weap.dim[pull][X] / w;
-		start[Y] = (*all)->r[Y] - h;
-        end[Y] = start[Y] + h;
-		while (start[Y] < end[Y])
-		{
-            pix[Y] = index[Y] * (*all)->bonus.weap.dim[pull][Y] / h;
-		    if ((*all)->bonus.weap.data[pull][(int)((*all)->bonus.weap.dim[pull][X] * pix[Y] + pix[X])] != -16777216)
-			    (*all)->img.data[start[X] + (*all)->r[X] * start[Y]] = (*all)->bonus.weap.data[pull][(int)((*all)->bonus.weap.dim[pull][X] * pix[Y] + pix[X])];
-		    start[Y]++;
-            index[Y]++;
-		}
-        index[X]++;
-		start[X]++;
-    }
-}
-
-void	ft_pull_weapon(t_all **all)
+static void	pull_weapon(t_all **all)
 {
 	int i;
 
@@ -69,5 +36,41 @@ void	ft_pull_weapon(t_all **all)
 		i++;
 	}
 	if ((*all)->bonus.foe == 0)
-        print_play_again(all, &(*all)->bonus.win, 1, 1);
+        draw_replay(all, &(*all)->bonus.win, 1, 1);
+}
+
+static int	init_draw_weapon(t_all **all, t_draw *draw)
+{
+	pull_weapon(all);
+	draw->h = abs((int)((*all)->r[Y] / 3));
+    draw->w = abs((int)((*all)->r[Y] / 2));
+    draw->start[X] = (*all)->r[X] / 2 - draw->w / 2;
+    draw->end[X] = draw->start[X] + draw->w;
+    draw->index[X] = 0;
+	return ((*all)->bonus.pull);
+}
+void    	draw_weapon(t_all **all)
+{
+	t_draw	draw;
+	int		pull;
+
+	pull = init_draw_weapon(all, &draw);
+	while (draw.start[X] < draw.end[X])
+	{
+        draw.index[Y] = 0;
+        draw.pix[X] = draw.index[X] * (*all)->bonus.weap.dim[pull][X] / draw.w;
+		draw.start[Y] = (*all)->r[Y] - draw.h;
+        draw.end[Y] = draw.start[Y] + draw.h;
+		while (draw.start[Y] < draw.end[Y])
+		{
+            draw.pix[Y] = draw.index[Y] * (*all)->bonus.weap.dim[pull][Y] / draw.h;
+		    if ((*all)->bonus.weap.data[pull][(int)((*all)->bonus.weap.dim[pull][X] * draw.pix[Y] + draw.pix[X])] != -16777216)
+			    (*all)->img.data[draw.start[X] + (*all)->r[X] * draw.start[Y]] = (*all)->bonus.weap.data[pull]
+						[(int)((*all)->bonus.weap.dim[pull][X] * draw.pix[Y] + draw.pix[X])];
+		    draw.start[Y]++;
+            draw.index[Y]++;
+		}
+        draw.index[X]++;
+		draw.start[X]++;
+    }
 }

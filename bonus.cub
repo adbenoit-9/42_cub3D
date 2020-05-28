@@ -9,11 +9,10 @@ C 120,120,255
 
 S1 ./xpm/spider_eye.xpm
 SA ./xpm/spider_eye_fermented.xpm
-P0 ./xpm/bow_pulling_0.xpm
-P1 ./xpm/bow_pulling_1.xpm
-P2 ./xpm/bow_pulling_2.xpm
-P3 ./xpm/bow_standby.xpm
-P4 ./xpm/bow_pull_3.xpm
+W0 ./xpm/bow_pulling_0.xpm
+W1 ./xpm/bow_pulling_1.xpm
+W2 ./xpm/bow_pulling_2.xpm
+W3 ./xpm/bow_standby.xpm
 DN ./xpm/door_wood.xpm
 DS ./xpm/door_otherside.xpm
 DE ./xpm/door_wood.xpm

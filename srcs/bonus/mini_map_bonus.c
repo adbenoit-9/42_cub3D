@@ -16,7 +16,7 @@ static int     max_len(t_all **all)
     return (max);
 }
 
-static void     complete_mm(t_all **all, int *j, int *i, int dim, int x, int y)
+static void     draw_square(t_all **all, int *j, int *i, int dim, int x, int y)
 {
     int k;
     int col;
@@ -38,7 +38,7 @@ static void     complete_mm(t_all **all, int *j, int *i, int dim, int x, int y)
     }
 }
 
-void    add_mini_map(t_all **all)
+void    draw_mini_map(t_all **all)
 {
     int start[2];
     int k;
@@ -60,7 +60,7 @@ void    add_mini_map(t_all **all)
             start[X] = 0;
             while ((*all)->map[i][j])
             {
-               complete_mm(all, &start[Y], &start[X], dim, i, j);
+               draw_square(all, &start[Y], &start[X], dim, i, j);
                j++;
             }
             start[Y]++;
