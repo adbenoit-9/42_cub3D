@@ -1,5 +1,5 @@
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static char	set_side_type(t_all **all, t_wall *wall)
 {

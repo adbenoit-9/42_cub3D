@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void    draw_replay(t_all **all, t_img *im, int k1, int k2)
 {

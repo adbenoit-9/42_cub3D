@@ -6,11 +6,11 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 12:42:55 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 19:00:52 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/29 01:21:03 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+# include "cub3d_bonus.h"
 
 static void win_life(t_all **all)
 {

@@ -6,11 +6,11 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:10:15 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 16:46:52 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/29 01:21:03 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	sort_all_sprite(t_sprite *sp)
 {

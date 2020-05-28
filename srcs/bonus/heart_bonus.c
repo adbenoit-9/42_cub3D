@@ -1,5 +1,5 @@
 
-# include "cub3d.h"
+# include "cub3d_bonus.h"
 
 void static   draw_heart_pixel(t_all **all, t_draw draw)
 {

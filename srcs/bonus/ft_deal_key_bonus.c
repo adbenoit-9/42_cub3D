@@ -6,11 +6,11 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:32:27 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 14:30:52 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/29 01:21:03 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	ft_key_press(int key, t_all **all)
 {

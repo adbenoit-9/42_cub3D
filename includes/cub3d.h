@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:45:39 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 21:48:34 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/29 01:21:29 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,6 @@ int				ft_key_press(int key, t_all **all);
 
 
 //bonus
-void			draw_mini_map(t_all **all);
-void 			check_door(t_all **all);
-void			draw_all_sprites(t_all **all, t_sprite *sp);
-void			draw_door(t_all **all);
-void    		draw_hearts(t_all **all);
-void    		draw_replay(t_all **all, t_img *im, int k1, int k2);
-void    		draw_weapon(t_all **all);
-void    		manage_life(t_all **all, char c);
-void			open_door(t_all **all);
 int				bonus(char *line, t_all **all);
-int     		ft_mouse(int button, int x, int y, t_all **all);
 
 #endif

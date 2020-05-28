@@ -6,7 +6,7 @@
 #    By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/05/28 21:22:07 by Adeline          ###   ########.fr        #
+#    Updated: 2020/05/29 01:17:57 by Adeline          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME		= Cub3D
 INC			= includes/
 
 HEADER		= $(INC)cub3d.h
+
+H_BONUS		= $(INC)cub3d_bonus.h
 
 SRCS_PATH	= srcs
 
@@ -137,53 +139,53 @@ $(NAME):	$(OBJ)
 
 ######### OBLIGATOIRE #############
 
-$(OBJ_PATH)/%.o:	$(UTILS_PATH)/%.c $(HEADER)
+$(OBJ_PATH)/%.o:	$(UTILS_PATH)/%.c $(H_BONUS)
 	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
-$(OBJ_PATH)/%.o:	$(SRCS_PATH)/%.c $(HEADER)
+$(OBJ_PATH)/%.o:	$(SRCS_PATH)/%.c $(H_BONUS)
 	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
-$(OBJ_PATH)/%.o:	$(RAY_PATH)/%.c $(HEADER)
+$(OBJ_PATH)/%.o:	$(RAY_PATH)/%.c $(H_BONUS)
 	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
-$(OBJ_PATH)/%.o:	$(OBL_PATH)/%.c $(HEADER)
+$(OBJ_PATH)/%.o:	$(OBL_PATH)/%.c $(H_BONUS)
 	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 ######### BONUS #############
 
-$(OBJ_B_PATH)/%.o:	$(UTILS_PATH)/%.c $(HEADER)
+$(OBJ_B_PATH)/%.o:	$(UTILS_PATH)/%.c $(H_BONUS)
 	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
-$(OBJ_B_PATH)/%.o:	$(PARSB_PATH)/%.c $(HEADER)
+$(OBJ_B_PATH)/%.o:	$(PARSB_PATH)/%.c $(H_BONUS)
 	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
-$(OBJ_B_PATH)/%.o:	$(SRCS_PATH)/%.c $(HEADER)
+$(OBJ_B_PATH)/%.o:	$(SRCS_PATH)/%.c $(H_BONUS)
 	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
-$(OBJ_B_PATH)/%.o:	$(RAY_PATH)/%.c $(HEADER)
+$(OBJ_B_PATH)/%.o:	$(RAY_PATH)/%.c $(H_BONUS)
 	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true
 	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
-$(OBJ_B_PATH)/%.o:	$(BONUS_PATH)/%.c $(HEADER)
+$(OBJ_B_PATH)/%.o:	$(BONUS_PATH)/%.c $(H_BONUS)
 	@printf "\033[34;1m| \033[0;1m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_B_PATH) 2> /dev/null || true

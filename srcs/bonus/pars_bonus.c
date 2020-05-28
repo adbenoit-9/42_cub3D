@@ -6,11 +6,11 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 23:52:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 21:13:36 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/29 01:21:03 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static int  parse_bonus(char *line, t_all **all, int i)
 {

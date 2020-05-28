@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	set_close_side(t_all **all, int *dirx, int *diry)
 {
