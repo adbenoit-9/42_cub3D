@@ -62,7 +62,7 @@
 # define OBJ1 '3'
 # define DOOR 'D'
 # define OPEN 'O'
-# define WALL_DOOR 'R'
+# define OPEN_DOOR 'R'
 # define DEAD 'X'
 
 # define NB_CHAR 8

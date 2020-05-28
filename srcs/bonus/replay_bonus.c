@@ -41,7 +41,7 @@ static void reinit_map(t_all **all)
         {
             if ((*all)->map[i][j] == OPEN)
                 (*all)->map[i][j] = DOOR;
-            if ((*all)->map[i][j] == WALL_DOOR)
+            if ((*all)->map[i][j] == OPEN_DOOR)
                 (*all)->map[i][j] = WALL;
             if ((*all)->map[i][j] == DEAD)
             {

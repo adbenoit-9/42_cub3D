@@ -6,7 +6,7 @@
 #    By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/05/28 17:17:44 by Adeline          ###   ########.fr        #
+#    Updated: 2020/05/28 21:22:07 by Adeline          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,8 @@ BONUS_NAME	=	all_sprite_bonus.c\
 				pars_bonus.c\
 				pars_info_bonus.c\
 				pars_map_bonus.c\
-				play_again_bonus.c\
 				raycast_door_bonus.c\
+				replay_bonus.c\
 				start_game_bonus.c\
 				weapon_bonus.c
 

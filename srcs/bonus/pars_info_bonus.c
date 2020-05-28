@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 18:21:57 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 14:19:49 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/28 22:00:10 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	info(char *line, t_all **all)
 	int			i;
 	int			size;
 
-	i = 0;
-	while (i < NB_INFO)
+	i = -1;
+	while (++i < NB_INFO)
 	{
 		size = i < 4 ? 3 : 2;
 		if (ft_strncmp(str_info[i], line, size) == TRUE)
@@ -51,14 +51,12 @@ int	info(char *line, t_all **all)
 			else
 				return (parse_color(all, line, i));
 		}
-		i++;
 	}
-	i = 0;
-	while (i < 5)
+	i = -1;
+	while (++i < 5)
 	{
 		if ((*all)->path[i] == NULL)
 			exit_error(all, line, IMG_ERR);
-		i++;
 	}
 	(*all)->state = BONUS;
 	return (bonus(line, all));

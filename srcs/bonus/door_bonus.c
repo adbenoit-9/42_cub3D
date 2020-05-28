@@ -76,6 +76,6 @@ void open_door(t_all **all)
 			(*all)->bonus.door_side = NO;
 		(*all)->map[y + dir[Y]][x + dir[X]] = OPEN;
 		(*all)->bonus.door_tmp = (*all)->map[y + new[Y]][x + new[X]];
-		(*all)->map[y + new[Y]][x + new[X]] = WALL_DOOR;
+		(*all)->map[y + new[Y]][x + new[X]] = OPEN_DOOR;
 	}
 }

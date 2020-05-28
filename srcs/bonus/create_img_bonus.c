@@ -1,5 +1,17 @@
 #include "cub3d.h"
 
+static void	ray_casting(t_all **all)
+{
+	ft_move(all);
+	draw_door(all);
+	draw_all_sprites(all, &(*all)->sp);
+	draw_weapon(all);
+	draw_hearts(all);
+	free((*all)->wall.dist);
+	(*all)->wall.dist = NULL;
+	draw_mini_map(all);
+}
+
 int		create_image(t_all **all)
 {
 	int i;
@@ -18,20 +30,10 @@ int		create_image(t_all **all)
 	(*all)->img.endian = 0;
 	(*all)->img.data = (int *)mlx_get_data_addr((*all)->img.ptr, &(*all)->img.bpp, &(*all)->img.size_line, &(*all)->img.endian);
 	(*all)->screen.column = 0;
-	ft_door(all);
-	draw_all_sprites(all, &(*all)->sp);
-	draw_weapon(all);
-	draw_hearts(all);
-	free((*all)->wall.dist);
-	(*all)->wall.dist = NULL;
-	draw_mini_map(all);
+	ray_casting(all);
 	mlx_put_image_to_window((*all)->mlx_ptr, (*all)->win_ptr, (*all)->img.ptr, 0, 0);
-	ft_move(all);
-	i = 0;
-	while (i < (*all)->sp.count)
-	{
+	i = -1;
+	while (++i < (*all)->sp.count)
 		(*all)->sp.see[i] = 0;
-		i++;
-	}
 	return (NO_ERR);
 }

@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:45:39 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 19:00:52 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/28 21:48:34 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void			draw_sprite(t_all **all, t_sprite *sp);
 void    		load_image(t_all **all, t_img *img, char *path);
 void			load_tab_of_image(t_all **all, t_tab_img *tab_img, char **path, int start_game);
 void			raycast_sprite(t_all **all, t_sprite *sp, t_img *sp_img);
-void			draw_wall_pixel(t_all **all, int i);
+void			draw_wall_pixel(t_all **all, t_tab_img *text, int i);
 void			save_bmp(t_all **all);
 void			set_side_dist(t_all **all, t_wall *wall);
 void			sort_sprite(t_sprite *sp);
@@ -104,16 +104,13 @@ int				ft_key_press(int key, t_all **all);
 //bonus
 void			draw_mini_map(t_all **all);
 void 			check_door(t_all **all);
-void			open_door(t_all **all);
-void			ft_door(t_all **all);
-void			init_game_sprite(t_all **all, t_sprite *sp);
-void    		manage_life(t_all **all, char c);
 void			draw_all_sprites(t_all **all, t_sprite *sp);
-void    		draw_replay(t_all **all, t_img *im, int k1, int k2);
+void			draw_door(t_all **all);
 void    		draw_hearts(t_all **all);
+void    		draw_replay(t_all **all, t_img *im, int k1, int k2);
 void    		draw_weapon(t_all **all);
-void			put_all_sprites(t_all **all);
-void			put_door(t_all **all);
+void    		manage_life(t_all **all, char c);
+void			open_door(t_all **all);
 int				bonus(char *line, t_all **all);
 int     		ft_mouse(int button, int x, int y, t_all **all);
 
