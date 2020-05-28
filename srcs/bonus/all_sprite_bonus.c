@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:10:15 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/27 14:47:31 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/28 14:23:11 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ void	print_all_sprites(t_all **all, t_sprite *sp)
 
 	i = 0;
 	add_dist(all, sp, sort_all_sprite);
-	(*all)->invdet = 1.0 / ((*all)->grid.plane[X] * (*all)->player.dir[Y] - (*all)->player.dir[X] * (*all)->grid.plane[Y]);
+	(*all)->invdet = 1.0 / ((*all)->screen.plane[X] * (*all)->player.dir[Y] - (*all)->player.dir[X] * (*all)->screen.plane[Y]);
 	while (i < sp->count)
 	{
 		sp->index = i;
-		if (sp->dead[i] == 0 && sp->type[i] == OBJ)
+		if (sp->dead[i] == FALSE && sp->type[i] == OBJ)
 			raycast_sprite(all, sp, &sp->img);
-		else if (sp->dead[i] == 0 && sp->type[i] == OBJ1)
+		else if (sp->dead[i] == FALSE && sp->type[i] == OBJ1)
 			raycast_sprite(all, sp, &(*all)->bonus.s1.img);
-		else if (sp->dead[i] == 1 && sp->type[i] == OBJ1)
+		else if (sp->dead[i] == TRUE && sp->type[i] == OBJ1)
 			raycast_sprite(all,  sp, &(*all)->bonus.sa.img);
 		i++;
 	}

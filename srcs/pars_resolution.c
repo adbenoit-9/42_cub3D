@@ -1,14 +1,14 @@
 #include "cub3d.h"
 
 
-static void	err_r(t_all **all, char *line, char *x, char *y)
+static void	res_error(t_all **all, char *line, char *x, char *y)
 {
 	free(y);
 	free(x);
-	exit_game(all, line, PARS_ERR);
+	exit_error(all, line, RES_ERR);
 }
 
-static int	pars_r(char *line, char **param, int i)
+static int	add_res(char *line, char **param, int i)
 {
 	int j;
 
@@ -33,7 +33,7 @@ static int	pars_r(char *line, char **param, int i)
 	return (i);
 }
 
-int			add_r(t_all **all, char *line)
+int			parse_res(t_all **all, char *line)
 {
 	char	*x;
 	char	*y;
@@ -42,20 +42,20 @@ int			add_r(t_all **all, char *line)
 	x = NULL;
 	y = NULL;
 	if ((*all)->r[X] != -1 || (*all)->r[Y] != -1)
-		exit_game(all, line, PARS_ERR);
+		exit_error(all, line, RES_ERR);
 	i = 0;
-	if ((i = pars_r(line, &x, i)) == -1)
-		err_r(all, line, x, y);
-	if ((i = pars_r(line, &y, i)) == -1)
-		err_r(all, line, x, y);
+	if ((i = add_res(line, &x, i)) == -1)
+		res_error(all, line, x, y);
+	if ((i = add_res(line, &y, i)) == -1)
+		res_error(all, line, x, y);
 	if (i != ft_strlen(line))
-		err_r(all, line, x, y);
+		res_error(all, line, x, y);
 	if (((*all)->r[X] = ft_atoi(x)) > 2560)
 		(*all)->r[X] = 2560;
 	if (((*all)->r[Y] = ft_atoi(y)) > 1440)
 		(*all)->r[Y] = 1440;
 	if ((*all)->r[X] == -1 || (*all)->r[1] == -1)
-		err_r(all, line, x, y);
+		res_error(all, line, x, y);
 	free(line);
 	free(y);
 	free(x);

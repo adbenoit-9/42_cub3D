@@ -6,16 +6,16 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:27:44 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/28 13:45:26 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	add_info_bmp(t_all ** all, unsigned char **head)
+static void	set_bmp(t_all ** all, unsigned char **head)
 {
 	if (!((*head) = malloc(sizeof(char) * 54)))
-		exit_game(all, NULL, MAL_ERR);
+		exit_error(all, NULL, MAL_ERR);
 	ft_bzero(*head, 54);
 	(*head)[0] = 'B';
 	(*head)[1] = 'M';
@@ -46,12 +46,12 @@ void		save_bmp(t_all **all)
 	int *pixel;
 	int k;
 
-	add_info_bmp(all, &head);
+	set_bmp(all, &head);
 	fd = open("cub3d.bmp", O_CREAT | O_WRONLY | O_TRUNC, 0755);
 	write(fd, head, 54);
 	free(head);
 	if (!(pixel = malloc(sizeof(int) * (*all)->r[Y] * (*all)->r[X])))
-		exit_game(all, NULL, MAL_ERR);
+		exit_error(all, NULL, MAL_ERR);
 	i = (*all)->r[Y] - 1;
 	k = 0;
 	while (i >= 0)

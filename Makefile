@@ -6,7 +6,7 @@
 #    By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr        #
+#    Updated: 2020/05/28 15:19:55 by Adeline          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,15 +30,17 @@ BONUS_PATH	= srcs/bonus
 
 
 SRCS_NAME	=	bmp_file.c\
+				camera_move.c\
+				check_map.c\
+				clear.c\
 				deal_image.c\
 				exit_game.c\
-				init.c\
+				init_game.c\
 				main.c\
-				move.c\
 				pars_color.c\
-				pars_error.c\
 				pars_resolution.c\
-				parsing.c
+				parsing.c\
+				player_move.c
 
 BONUS_NAME	=	all_sprite_bonus.c\
 				create_img_bonus.c\
@@ -52,7 +54,7 @@ BONUS_NAME	=	all_sprite_bonus.c\
 				pars_map_bonus.c\
 				play_again_bonus.c\
 				raycast_door_bonus.c\
-				start_bonus.c\
+				start_game_bonus.c\
 				weapon_bonus.c
 
 OBL_NAME	=	create_img.c\
@@ -60,7 +62,7 @@ OBL_NAME	=	create_img.c\
 				mlx_handle.c\
 				pars_info.c\
 				pars_map.c\
-				start.c
+				start_game.c
 
 RAY_NAME	=	sprite.c\
 				sprite_utils.c\

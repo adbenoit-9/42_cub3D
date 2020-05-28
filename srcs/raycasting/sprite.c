@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:10:15 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/27 14:47:45 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/28 14:15:56 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		raycast_sprite(t_all **all, t_sprite *sp, t_img *sp_img)
 	sp->pos[i][X] = sp->coor[i][X] - (*all)->player.map[X];
 	sp->pos[i][Y] = sp->coor[i][Y] - (*all)->player.map[Y];
 	sp->transf[X] = (*all)->invdet * ((*all)->player.dir[Y] * sp->pos[i][X] - (*all)->player.dir[X] * sp->pos[i][Y]);
-	sp->transf[Y] = (*all)->invdet * ((*all)->grid.plane[X] * sp->pos[i][Y] - (*all)->grid.plane[Y] * sp->pos[i][X]);
+	sp->transf[Y] = (*all)->invdet * ((*all)->screen.plane[X] * sp->pos[i][Y] - (*all)->screen.plane[Y] * sp->pos[i][X]);
 	sp->h = abs((int)((*all)->r[Y] / sp->transf[Y]));
 	sp->w = abs((int)((*all)->r[Y] / sp->transf[Y]));
 	sp->screen = (int)(((*all)->r[X] / 2) * (1 + sp->transf[X] / sp->transf[Y]));
@@ -68,7 +68,7 @@ void		print_sprite(t_all **all, t_sprite *sp)
 
 	i = 0;
 	add_dist(all, sp, sort_sprite);
-	(*all)->invdet = 1.0 / ((*all)->grid.plane[X] * (*all)->player.dir[Y] - (*all)->player.dir[X] * (*all)->grid.plane[Y]);
+	(*all)->invdet = 1.0 / ((*all)->screen.plane[X] * (*all)->player.dir[Y] - (*all)->player.dir[X] * (*all)->screen.plane[Y]);
 	while (i < sp->count)
 	{
 		sp->index = i;

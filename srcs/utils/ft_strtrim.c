@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 12:46:09 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/02/06 14:42:50 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/28 14:25:39 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int		ft_len(int *count1, int *count2, char const *s1,
 		i++;
 	}
 	if ((*count2 - *count1 + 1) < 0)
-		return (0);
+		return (FALSE);
 	return (*count2 - *count1 + 1);
 }
 
@@ -52,7 +52,7 @@ char	*ft_strtrim(char *s1, char const *set, int size)
 	len = ft_len(&count1, &count2, s1, set);
 	i = 0;
 	if (!(str = malloc(sizeof(char) * (len + 1))))
-		return (0);
+		return (FALSE);
 	while (count1 <= count2)
 	{
 		str[i] = s1[count1];

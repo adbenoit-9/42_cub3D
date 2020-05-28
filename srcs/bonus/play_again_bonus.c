@@ -53,7 +53,7 @@ static void reinit_map(t_all **all)
                 (*all)->bonus.foe++;
                 (*all)->map[i][j] = OBJ1;
             }
-            if ((*all)->map[i][j] == (*all)->player.o)
+            if ((*all)->map[i][j] == (*all)->player.start_o)
             {
                 (*all)->player.map[X] = j + 0.5;
 			    (*all)->player.map[Y] = i + 0.5;
@@ -84,14 +84,13 @@ int     ft_mouse(int button, int x, int y, t_all **all)
         end[X] = (*all)->r[X];
         end[Y] = (*all)->r[Y];
     }
-    if (button == 1 && ((*all)->bonus.life == 0 || (*all)->bonus.foe == 0) && x > start[X] && x < end[X] && y > start[Y] && y < end[Y])
+    if (button == TRUE && ((*all)->bonus.life == 0 || (*all)->bonus.foe == 0) && x > start[X] && x < end[X] && y > start[Y] && y < end[Y])
     {
         reinit_map(all);
-        ft_putdir(all, (*all)->player.o);
-        (*all)->grid.plane[X] = ((*all)->player.dir[X] == 0) ? 0.66 : 0;
-	    (*all)->grid.plane[Y] = ((*all)->player.dir[Y] == 0) ? 0.66 : 0;
+        ft_putdir(all, (*all)->player.start_o);
+        (*all)->screen.plane[X] = ((*all)->player.dir[X] == 0) ? 0.66 : 0;
+	    (*all)->screen.plane[Y] = ((*all)->player.dir[Y] == 0) ? 0.66 : 0;
         (*all)->bonus.col = 0;
-        (*all)->bonus.c = 0;
         (*all)->bonus.life = 5;
 	    i = 0;
 	    while (i < (*all)->sp.count)

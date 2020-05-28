@@ -6,7 +6,7 @@
 #    By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr        #
+#    Updated: 2020/05/28 12:45:49 by Adeline          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRCS_NAME	=	main.c\
 
 # BONUS_NAME	=	create_img_bonus.c\
 # 				ft_deal_key_bonus.c\
-# 				exit_game_bonus.c\
+# 				exit_error_bonus.c\
 # 				start_bonus.c\
 # 				weapon_bonus.c
 
@@ -52,7 +52,7 @@ O_PARS_NAME	=	check_info.c\
 
 OBL_NAME	=	create_img.c\
 				ft_deal_key.c\
-				exit_game.c\
+				exit_error.c\
 				start.c
 
 RAY_NAME	=	sprite.c\

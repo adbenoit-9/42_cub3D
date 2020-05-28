@@ -44,13 +44,13 @@ void	raycast_wall(t_all **all, int column)
 void	ft_wall(t_all **all)
 {
 	if (!((*all)->wall.dist = malloc(sizeof(double) * (*all)->r[X])))
-		exit_game(all, NULL, MAL_ERR);
-	while ((*all)->grid.column < (*all)->r[X])
+		exit_error(all, NULL, MAL_ERR);
+	while ((*all)->screen.column < (*all)->r[X])
 	{
 		complete_wall_inf(all, &(*all)->wall);
 		side_dist(all, &(*all)->wall);
 		hit_wall(all);
-		raycast_wall(all, (*all)->grid.column);
-		(*all)->grid.column++;
+		raycast_wall(all, (*all)->screen.column);
+		(*all)->screen.column++;
 	}
 }

@@ -47,7 +47,7 @@ void    add_mini_map(t_all **all)
     int j;
 
     start[Y] = 0;
-    i = ((*all)->r[Y] / (*all)->i_map) / 6;
+    i = ((*all)->r[Y] / (*all)->map_index) / 6;
     j = ((*all)->r[X] / max_len(all)) / 6;
     dim = i > j ? j : i;
     i = 0;

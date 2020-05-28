@@ -6,27 +6,27 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 18:21:57 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/28 14:19:49 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	add_info(char *line, t_all **all, int i)
+int	parse_path(char *line, t_all **all, int i)
 {
 	int j;
 
 	j = 0; 
-	if ((*all)->info[i])
-		exit_game(all, line, PARS_ERR);
-	if (!((*all)->info[i] = malloc(sizeof(char) * (ft_strlen(line) + 1))))
-		exit_game(all, line, PARS_ERR);
+	if ((*all)->path[i])
+		exit_error(all, line, IMG_ERR);
+	if (!((*all)->path[i] = malloc(sizeof(char) * (ft_strlen(line) + 1))))
+		exit_error(all, line, IMG_ERR);
 	while (line[j])
 	{
-		(*all)->info[i][j] = line[j];
+		(*all)->path[i][j] = line[j];
 		j++;
 	}
-	(*all)->info[i][j] = 0;
+	(*all)->path[i][j] = 0;
 	free(line);
 	return (ft_parsing(all));
 }
@@ -41,22 +41,22 @@ int	info(char *line, t_all **all)
 	while (++i < NB_INFO)
 	{
 		size = i < 4 ? 3 : 2;
-		if (ft_strncmp(str_info[i], line, size) == 1)
+		if (ft_strncmp(str_info[i], line, size) == TRUE)
 		{
 			line = ft_strtrim(line, " ", size);
 			if (i < 5)
-				return (add_info(line, all, i));
+				return (parse_path(line, all, i));
 			else if (i == 5)
-				return (add_r(all, line));
+				return (parse_res(all, line));
 			else
-				return (add_col(all, line, i));
+				return (parse_color(all, line, i));
 		}
 	}
 	i = -1;
 	while (++i < 5)
 	{
-		if ((*all)->info[i] == NULL)
-			exit_game(all, line, PARS_ERR);
+		if ((*all)->path[i] == NULL)
+			exit_error(all, line, IMG_ERR);
 	}
 	(*all)->state = MAP;
 	return (map(line, all));

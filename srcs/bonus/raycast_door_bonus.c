@@ -3,11 +3,11 @@
 
 static void	complete_door(t_all **all, t_wall *wall)
 {
-	wall->dist[(*all)->grid.column] = wall_dist(all, wall);
+	wall->dist[(*all)->screen.column] = wall_dist(all, wall);
 	if (wall->side % 2 == 0)
-		wall->hit = (*all)->player.map[Y] + wall->dist[(*all)->grid.column] * wall->raydir[Y];
+		wall->hit = (*all)->player.map[Y] + wall->dist[(*all)->screen.column] * wall->raydir[Y];
 	else
-		wall->hit = (*all)->player.map[X] + wall->dist[(*all)->grid.column] * wall->raydir[X];
+		wall->hit = (*all)->player.map[X] + wall->dist[(*all)->screen.column] * wall->raydir[X];
 	wall->hit -= (int)wall->hit;
 	(*all)->bonus.door.pos[X] = (int)(wall->hit * (double)(*all)->bonus.door.dim[(*all)->wall.side][X]);
 	if(wall->side == 0 && wall->raydir[X] > 0)
@@ -97,18 +97,18 @@ void	ft_door(t_all **all)
 {
 	int hit;
 	if (!((*all)->wall.dist = malloc(sizeof(double) * (*all)->r[X])))
-		exit_game(all, NULL, MAL_ERR);
-	while ((*all)->grid.column < (*all)->r[X])
+		exit_error(all, NULL, MAL_ERR);
+	while ((*all)->screen.column < (*all)->r[X])
 	{
 		complete_wall_inf(all, &(*all)->wall);
 		side_dist(all, &(*all)->wall);
 		hit = hit_door(all, &(*all)->wall);
 		if (hit == 2)
-			raycast_door(all, (*all)->grid.column);
+			raycast_door(all, (*all)->screen.column);
 		else if (hit == 3 && (*all)->wall.side == (*all)->bonus.door_side)
-			raycast_door(all, (*all)->grid.column);
+			raycast_door(all, (*all)->screen.column);
 		else
-			raycast_wall(all, (*all)->grid.column);
-		(*all)->grid.column++;
+			raycast_wall(all, (*all)->screen.column);
+		(*all)->screen.column++;
 	}
 }

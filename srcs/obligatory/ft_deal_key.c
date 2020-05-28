@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:32:27 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/27 22:59:31 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/28 14:31:00 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,42 @@
 
 int	ft_key_press(int key, t_all **all)
 {
-	printf("win ptr = %p\n", (*all)->win);
 	if (key == ESC)
-		exit_game(all, NULL, NO_ERR);
+		exit_game(all);
 	if (key == LEFT)
-		(*all)->key.left = 1;
+		(*all)->key.left = TRUE;
 	if (key == RIGHT)
-		(*all)->key.right = 1;
+		(*all)->key.right = TRUE;
 	if (key == KEY_W)
-		(*all)->key.w = 1;
+		(*all)->key.w = TRUE;
 	if (key == KEY_A)
-		(*all)->key.a = 1;
+		(*all)->key.a = TRUE;
 	if (key == KEY_S)
-		(*all)->key.s = 1;
+		(*all)->key.s = TRUE;
 	if (key == KEY_D)
-		(*all)->key.d = 1;
+		(*all)->key.d = TRUE;
 	return (NO_ERR);
 }
 
 int	ft_key_release(int key, t_all **all)
 {
 	if (key == LEFT)
-		(*all)->key.left = 0;
+		(*all)->key.left = FALSE;
 	if (key == RIGHT)
-		(*all)->key.right = 0;
+		(*all)->key.right = FALSE;
 	if (key == KEY_W)
-		(*all)->key.w = 0;
+		(*all)->key.w = FALSE;
 	if (key == KEY_A)
-		(*all)->key.a = 0;
+		(*all)->key.a = FALSE;
 	if (key == KEY_S)
-		(*all)->key.s = 0;
+		(*all)->key.s = FALSE;
 	if (key == KEY_D)
-		(*all)->key.d = 0;
+		(*all)->key.d = FALSE;
 	return (NO_ERR);
 }
 
 int		ft_close(t_all **all)
 {
-	exit_game(all, NULL, NO_ERR);
+	exit_game(all);
 	return (NO_ERR);
 }

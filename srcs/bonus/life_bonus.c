@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 12:42:55 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/09 14:02:53 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/28 14:23:11 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void win_life(t_all **all)
     y = (int)(*all)->player.map[Y];
     while (i < (*all)->sp.count)
     {
-        if (x == (int)(*all)->sp.coor[i][X] && y == (int)(*all)->sp.coor[i][Y] && (*all)->sp.dead[i] == 0 && (*all)->sp.type[i] == OBJ)
+        if (x == (int)(*all)->sp.coor[i][X] && y == (int)(*all)->sp.coor[i][Y] && (*all)->sp.dead[i] == FALSE && (*all)->sp.type[i] == OBJ)
         {
             if ((*all)->bonus.life < 4)
                 (*all)->bonus.life += 2;
@@ -41,7 +41,7 @@ void    lose_life(t_all **all, char c)
     int i;
 
     i = 0;
-    if (c == OBJ1 && (*all)->bonus.loop2 > 35 && (*all)->bonus.life > 0 && (*all)->sp.dead[i] == 0)
+    if (c == OBJ1 && (*all)->bonus.loop2 > 35 && (*all)->bonus.life > 0 && (*all)->sp.dead[i] == FALSE)
     {
         (*all)->bonus.life--;
         (*all)->bonus.col = 100;
@@ -51,7 +51,7 @@ void    lose_life(t_all **all, char c)
     {
         while (i < (*all)->sp.count)
         {
-            if ((*all)->sp.see[i] == 1 && (*all)->sp.type[i] == OBJ1 && (*all)->sp.dead[i] == 0)
+            if ((*all)->sp.see[i] == TRUE && (*all)->sp.type[i] == OBJ1 && (*all)->sp.dead[i] == FALSE)
             {
                 if (((*all)->bonus.loop2 > 60) && (*all)->bonus.life > 0)
                 {

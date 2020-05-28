@@ -6,7 +6,7 @@
 /*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 22:57:19 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/27 15:26:21 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/28 14:23:11 by Adeline          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_pull_weapon(t_all **all)
 {
 	int i;
 
-	if ((*all)->key.space == 1)
+	if ((*all)->key.space == TRUE)
 	{
 		(*all)->bonus.loop = 0;
 		(*all)->bonus.pull = -1;
@@ -59,7 +59,7 @@ void	ft_pull_weapon(t_all **all)
 	i = 0;
 	while (i < (*all)->sp.count)
 	{
-		if ((*all)->bonus.pull == 1 && (*all)->sp.see[i] == 1 && (*all)->sp.type[i] == OBJ1 && (*all)->sp.dead[i] == 0)
+		if ((*all)->bonus.pull == 1 && (*all)->sp.see[i] == TRUE && (*all)->sp.type[i] == OBJ1 && (*all)->sp.dead[i] == FALSE)
 		{
 			(*all)->bonus.foe--;
 			(*all)->sp.dead[i] = 1;

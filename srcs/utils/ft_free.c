@@ -12,7 +12,7 @@ void	free_tab_char(char **ptr, int alloc)
 			free(ptr[i]);
 			i++;
 		}
-		if (alloc == 1)
+		if (alloc == TRUE)
 			free(ptr);
 		ptr = NULL;
 	}
@@ -30,7 +30,7 @@ void	free_tab_nb(void **ptr, int size, int alloc)
 			free(ptr[i]);
 			i++;
 		}
-		if (alloc == 1)
+		if (alloc == TRUE)
 			free(ptr);
 		ptr = NULL;
 	}
