@@ -6,20 +6,20 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 19:35:36 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/02/06 13:47:16 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/29 16:42:56 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
-        write(fd, &c, 1);
+	write(fd, &c, 1);
 }
 
-void    ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
-        write(fd, &s, ft_strlen(s));
+	write(fd, &s, ft_strlen(s));
 }
 
 void	ft_putnbr_fd(int n, int fd)

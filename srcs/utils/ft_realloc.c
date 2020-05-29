@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 14:40:52 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/10 17:32:56 by Adeline          ###   ########.fr       */
+/*   Created: 2020/05/29 16:41:55 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 16:44:12 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**realloc_tab(char **ptr, int newsize)
 	}
 	newptr[i + 1] = 0;
 	if (ptr != 0)
-	free(ptr);
+		free(ptr);
 	ptr = NULL;
 	return (newptr);
 }

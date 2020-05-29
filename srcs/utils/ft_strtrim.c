@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 12:46:09 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 14:25:39 by Adeline          ###   ########.fr       */
+/*   Created: 2020/05/29 16:42:15 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 16:43:53 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int		ft_len(int *count1, int *count2, char const *s1,
+static int	ft_len(int *count1, int *count2, char const *s1,
 												char const *set)
 {
 	int	j;
@@ -37,7 +37,7 @@ static int		ft_len(int *count1, int *count2, char const *s1,
 	return (*count2 - *count1 + 1);
 }
 
-char	*ft_strtrim(char *s1, char const *set, int size)
+char		*ft_strtrim(char *s1, char const *set, int size)
 {
 	int		i;
 	int		len;
