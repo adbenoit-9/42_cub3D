@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_deal_key.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 17:32:27 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 14:31:00 by Adeline          ###   ########.fr       */
+/*   Created: 2020/05/29 17:42:29 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 17:42:49 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_key_release(int key, t_all **all)
 	return (NO_ERR);
 }
 
-int		ft_close(t_all **all)
+int	ft_close(t_all **all)
 {
 	exit_game(all);
 	return (NO_ERR);

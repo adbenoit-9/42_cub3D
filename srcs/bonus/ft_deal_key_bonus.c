@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_deal_key_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 17:32:27 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 01:21:03 by Adeline          ###   ########.fr       */
+/*   Created: 2020/05/29 21:17:17 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 21:36:04 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_key_press(int key, t_all **all)
 {
 	if (key == ESC)
-		exit_error(all, NULL, NO_ERR);
+		exit_game(all);
 	if (key == SPACE && (*all)->bonus.life != 0 && (*all)->bonus.foe != 0)
 		(*all)->key.space = TRUE;
 	if (key == LEFT && (*all)->bonus.life != 0 && (*all)->bonus.foe != 0)
@@ -54,8 +54,8 @@ int	ft_key_release(int key, t_all **all)
 	return (NO_ERR);
 }
 
-int		ft_close(t_all **all)
+int	ft_close(t_all **all)
 {
-	exit_error(all, NULL, NO_ERR);
+	exit_game(all);
 	return (NO_ERR);
 }

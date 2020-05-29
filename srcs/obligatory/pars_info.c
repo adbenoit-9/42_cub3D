@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/05 18:21:57 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 14:19:49 by Adeline          ###   ########.fr       */
+/*   Created: 2020/05/29 17:43:03 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 17:47:20 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	parse_path(char *line, t_all **all, int i)
 {
 	int j;
 
-	j = 0; 
+	j = 0;
 	if ((*all)->path[i])
 		exit_error(all, line, IMG_ERR);
 	if (!((*all)->path[i] = malloc(sizeof(char) * (ft_strlen(line) + 1))))
@@ -33,7 +33,8 @@ int	parse_path(char *line, t_all **all, int i)
 
 int	info(char *line, t_all **all)
 {
-	static char *str_info[NB_INFO] = {INF_EA, INF_SO, INF_WE, INF_NO, INF_S, INF_R, INF_F, INF_C};
+	static char *str_info[NB_INFO] = {INF_EA, INF_SO, INF_WE,
+						INF_NO, INF_S, INF_R, INF_F, INF_C};
 	int			i;
 	int			size;
 
@@ -51,12 +52,6 @@ int	info(char *line, t_all **all)
 			else
 				return (parse_color(all, line, i));
 		}
-	}
-	i = -1;
-	while (++i < 5)
-	{
-		if ((*all)->path[i] == NULL)
-			exit_error(all, line, IMG_ERR);
 	}
 	(*all)->state = MAP;
 	return (map(line, all));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   all_sprite_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/04 16:10:15 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 01:21:03 by Adeline          ###   ########.fr       */
+/*   Created: 2020/05/29 21:16:20 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 21:17:04 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	sort_all_sprite(t_sprite *sp)
 	}
 }
 
-void	draw_all_sprites(t_all **all, t_sprite *sp)
+void		draw_all_sprites(t_all **all, t_sprite *sp)
 {
 	int		i;
 

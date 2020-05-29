@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wall.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/29 17:15:32 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 17:40:04 by adbenoit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
-void static	init_drawing(t_all **all, int *start, int *end, t_tab_img *text)
+void static	init_drawing(t_all **all, int *start, int *end, t_tab_img *t)
 {
 	int i;
 
@@ -12,11 +23,11 @@ void static	init_drawing(t_all **all, int *start, int *end, t_tab_img *text)
 	else
 		(*all)->wall.hit = (*all)->player.map[X] + (*all)->wall.dist[i] * (*all)->wall.raydir[X];
 	(*all)->wall.hit -= (int)(*all)->wall.hit;
-	text->pos[X] = (int)((*all)->wall.hit * (double)text->dim[(*all)->wall.side][X]);
+	t->pos[X] = (int)((*all)->wall.hit * (double)t->dim[(*all)->wall.side][X]);
 	if((*all)->wall.side == 0 && (*all)->wall.raydir[X] > 0)
-		text->pos[X] = text->dim[(*all)->wall.side][X] - text->pos[X] - 1;
+		t->pos[X] = t->dim[(*all)->wall.side][X] - t->pos[X] - 1;
 	if((*all)->wall.side == 1 && (*all)->wall.raydir[Y] < 0)
-		text->pos[X] = text->dim[(*all)->wall.side][X] - text->pos[X] - 1;
+		t->pos[X] = t->dim[(*all)->wall.side][X] - t->pos[X] - 1;
 	(*all)->wall.slice_h = (*all)->r[Y] / (*all)->wall.dist[i];
 	*start = -1 * (*all)->wall.slice_h / 2 + (*all)->r[Y] / 2;
 	if (*start < 0)
@@ -26,13 +37,13 @@ void static	init_drawing(t_all **all, int *start, int *end, t_tab_img *text)
 		*end = (*all)->r[Y] - 1;
 }
 
-void	draw_wall_pixel(t_all **all, t_tab_img *text, int i)
+void		draw_wall_pixel(t_all **all, t_tab_img *text, int i)
 {
-	int end;
-	int start;
-	int	k;
-	double step;
-	double textpos;
+	int		end;
+	int		start;
+	int		k;
+	double	step;
+	double	textpos;
 
 	init_drawing(all, &start, &end, text);
 	step = 1.0 * text->dim[(*all)->wall.side][Y] / (*all)->wall.slice_h;
@@ -55,8 +66,6 @@ void	draw_wall_pixel(t_all **all, t_tab_img *text, int i)
 
 void	draw_wall(t_all **all)
 {
-	if (!((*all)->wall.dist = malloc(sizeof(double) * (*all)->r[X])))
-		exit_error(all, NULL, MAL_ERR);
 	while ((*all)->screen.column < (*all)->r[X])
 	{
 		init_wall(all, &(*all)->wall);

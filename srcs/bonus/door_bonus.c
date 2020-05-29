@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   door_bonus.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/29 21:16:52 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 21:16:57 by adbenoit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d_bonus.h"
 
 static void	set_close_side(t_all **all, int *dirx, int *diry)
@@ -48,7 +60,7 @@ static void	set_open_side(t_all **all, int *newx, int *newy)
 	}
 }
 
-void open_door(t_all **all)
+void		open_door(t_all **all)
 {
 	int x;
 	int y;

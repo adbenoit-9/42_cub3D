@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:27:48 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 16:28:55 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/29 21:43:52 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void		finish_init(t_all **all, t_sprite *sp)
 	(*all)->bonus.col = 0;
 	(*all)->bonus.life = 5;
 	(*all)->bonus.pull = 3;
+	if (!((*all)->wall.dist = malloc(sizeof(double) * (*all)->r[X])))
+		exit_error(all, NULL, MAL_ERR);
 	if (!(sp->pos = malloc(sizeof(double *) * sp->count)))
 		exit_error(all, NULL, MAL_ERR);
 	if (!(sp->dead = malloc(sizeof(int) * sp->count)))
@@ -97,5 +99,29 @@ void		finish_init(t_all **all, t_sprite *sp)
 		sp->dead[i] = 0;
 		sp->see[i] = 0;
 		i++;
+	}
+}
+
+void	init_player(t_all **all, char o)
+{
+	if (o == 'N')
+	{
+		(*all)->player.dir[X] = 0;
+		(*all)->player.dir[Y] = -1;
+	}
+	else if (o == 'S')
+	{
+		(*all)->player.dir[X] = 0;
+		(*all)->player.dir[Y] = 1;
+	}
+	else if (o == 'E')
+	{
+		(*all)->player.dir[X] = 1;
+		(*all)->player.dir[Y] = 0;
+	}
+	else if (o == 'W')
+	{
+		(*all)->player.dir[X] = -1;
+		(*all)->player.dir[Y] = 0;
 	}
 }

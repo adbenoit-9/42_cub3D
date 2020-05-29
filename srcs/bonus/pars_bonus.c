@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pars_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/01 23:52:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 01:21:03 by Adeline          ###   ########.fr       */
+/*   Created: 2020/05/29 21:18:34 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 21:18:55 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-static int  parse_bonus(char *line, t_all **all, int i)
+static int	parse_bonus(char *line, t_all **all, int i)
 {
     int j;
 
@@ -29,7 +29,7 @@ static int  parse_bonus(char *line, t_all **all, int i)
 	return (ft_parsing(all));
 }
 
-int     bonus(char *line, t_all **all)
+int     	bonus(char *line, t_all **all)
 {
 	static char *str_info[NB_BON] = {BON_W0, BON_W1, BON_W2, BON_W3, BON_S1,
 					BON_SA, BON_DN, BON_DS, BON_DE, BON_DW, BON_LIFE, BON_LOSE, BON_WIN};
@@ -56,7 +56,7 @@ int     bonus(char *line, t_all **all)
 	return (map(line, all));
 }
 
-void 	check_door(t_all **all)
+void		check_door(t_all **all)
 {
 	int	i;
 	int	j;

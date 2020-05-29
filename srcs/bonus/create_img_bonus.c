@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_img_bonus.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/29 21:16:38 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 21:16:39 by adbenoit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d_bonus.h"
 
 static void	ray_casting(t_all **all)
@@ -7,12 +19,10 @@ static void	ray_casting(t_all **all)
 	draw_all_sprites(all, &(*all)->sp);
 	draw_weapon(all);
 	draw_hearts(all);
-	free((*all)->wall.dist);
-	(*all)->wall.dist = NULL;
 	draw_mini_map(all);
 }
 
-int		create_image(t_all **all)
+int			create_image(t_all **all)
 {
 	int i;
 

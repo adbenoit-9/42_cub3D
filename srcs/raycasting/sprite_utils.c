@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/29 16:45:49 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 16:46:34 by adbenoit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	sort_sprite(t_sprite *sp)
 {
-	double tmp;
-	int i;
-	int j;
+	double	tmp;
+	int		i;
+	int		j;
 
-	j = 0;
-	while (j < sp->count)
+	j = -1;
+	while (++j < sp->count)
 	{
 		i = 0;
 		while (i < sp->count - 1)
@@ -26,7 +38,6 @@ void	sort_sprite(t_sprite *sp)
 			}
 			i++;
 		}
-		j++;
 	}
 }
 

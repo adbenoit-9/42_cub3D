@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_map_bonus.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/29 21:18:04 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 21:18:08 by adbenoit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d_bonus.h"
 
-static int     max_len(t_all **all)
+static int  max_len(t_all **all)
 {
     int i;
     int max;
@@ -16,7 +28,7 @@ static int     max_len(t_all **all)
     return (max);
 }
 
-static void     draw_square(t_all **all, int *j, int *i, int dim, int x, int y)
+static void draw_square(t_all **all, int *j, int *i, int dim, int x, int y)
 {
     int k;
     int col;

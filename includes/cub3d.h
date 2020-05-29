@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:15:00 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 16:36:51 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/29 21:44:45 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define FALSE 0
 
 void			init_game(t_all **all);
+void			init_player(t_all **all, char o);
 void			finish_init(t_all **all, t_sprite *sp);
 void			init_player(t_all **all, char o);
 int				mlx_handle(t_all *all);
@@ -73,10 +74,10 @@ int				check_line_border(t_all **all, char **map, int i);
 int				open_f(char *arg, t_all **all, int save);
 
 double			dist_screen(t_all **all, int x, int y);
-double			set_wall_dist(t_all **all, t_wall *wall);
+double			set_wall_dist(t_all **all, t_wall *w);
 void			add_dist(t_all **all, t_sprite *sp, void (*sort)(t_sprite *));
 void			complete_text(t_all **all);
-void			init_wall(t_all **all, t_wall *wall);
+void			init_wall(t_all **all, t_wall *w);
 void			ft_move(t_all **all);
 void			draw_wall(t_all **all);
 void			set_wall_side(t_all **all);
@@ -86,7 +87,7 @@ void			load_tab_of_image(t_all **all, t_tab_img *img, char **path, int start_gam
 void			raycast_sprite(t_all **all, t_sprite *sp, t_img *sp_img);
 void			draw_wall_pixel(t_all **all, t_tab_img *text, int i);
 void			save_bmp(t_all **all);
-void			set_side_dist(t_all **all, t_wall *wall);
+void			set_side_dist(t_all **all, t_wall *w);
 void			sort_sprite(t_sprite *sp);
 void			start_game(t_all **all);
 int				create_image(t_all **all);
