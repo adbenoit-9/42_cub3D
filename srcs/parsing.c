@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:45:43 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 14:46:03 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/29 16:39:16 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
 	int i;
 
@@ -38,7 +38,7 @@ int	ft_strncmp(char *s1, char *s2, int n)
 	return (TRUE);
 }
 
-int		ft_parsing(t_all **all)
+int	ft_parsing(t_all **all)
 {
 	char				*line;
 	static t_function	process[3] = {info, bonus, map};
@@ -51,7 +51,7 @@ int		ft_parsing(t_all **all)
 		{
 			free(line);
 			(*all)->state = END;
-			check_line_border(all);
+			check_line_border(all, (*all)->map, (*all)->map_index);
 			return (NO_ERR);
 		}
 		free(line);
@@ -64,7 +64,7 @@ int		ft_parsing(t_all **all)
 	return (NO_ERR);
 }
 
-int		open_f(char *arg, t_all **all, int save)
+int	open_f(char *arg, t_all **all, int save)
 {
 	if (!((*all) = (t_all *)malloc(sizeof(t_all))))
 		exit_error(all, NULL, MAL_ERR);

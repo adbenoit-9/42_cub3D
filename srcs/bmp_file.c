@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   bmp_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:27:44 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 13:45:26 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/29 15:13:58 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	set_bmp(t_all ** all, unsigned char **head)
+static void	set_bmp(t_all **all, unsigned char **head)
 {
 	if (!((*head) = malloc(sizeof(char) * 54)))
 		exit_error(all, NULL, MAL_ERR);
@@ -39,12 +39,11 @@ static void	set_bmp(t_all ** all, unsigned char **head)
 
 void		save_bmp(t_all **all)
 {
-	int	fd;
-	int i;
-	unsigned char  *head;
-	int j;
-	int *pixel;
-	int k;
+	int				fd;
+	int				index[2];
+	unsigned char	*head;
+	int				*pixel;
+	int				k;
 
 	set_bmp(all, &head);
 	fd = open("cub3d.bmp", O_CREAT | O_WRONLY | O_TRUNC, 0755);
@@ -52,18 +51,13 @@ void		save_bmp(t_all **all)
 	free(head);
 	if (!(pixel = malloc(sizeof(int) * (*all)->r[Y] * (*all)->r[X])))
 		exit_error(all, NULL, MAL_ERR);
-	i = (*all)->r[Y] - 1;
-	k = 0;
-	while (i >= 0)
+	index[X] = (*all)->r[Y];
+	k = -1;
+	while (--index[X] >= 0)
 	{
-		j = 0;
-		while (j < (*all)->r[X])
-		{
-			pixel[k] = (*all)->img.data[j + (*all)->r[X] * i];
-			k++;
-			j++;
-		}
-		i--;
+		index[Y] = -1;
+		while (++index[Y] < (*all)->r[X])
+			pixel[++k] = (*all)->img.data[index[Y] + (*all)->r[X] * index[X]];
 	}
 	write(fd, pixel, (*all)->r[X] * (*all)->r[Y] * 4);
 	free(pixel);

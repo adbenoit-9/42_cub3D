@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/05 17:33:01 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/28 14:49:50 by Adeline          ###   ########.fr       */
+/*   Created: 2020/05/29 16:29:50 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 16:30:21 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int			main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_all	*all;
 	int		i;
@@ -21,7 +21,7 @@ int			main(int ac, char **av)
 	save = 0;
 	if (ac != 2 && ac != 3)
 		print_error(ARG_ERR);
-	if(ac == 3)
+	if (ac == 3)
 	{
 		if (ft_strncmp(av[2], "--save", 6) == FALSE || ft_strlen(av[2]) != 6)
 			print_error(ARG_ERR);

@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d_macros.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/29 15:14:41 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 15:14:42 by adbenoit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CUB3D_MACROS_H
 # define CUB3D_MACROS_H
+
+# include "cub3d_macros_bonus.h"
 
 # define INF_NO "NO "
 # define INF_SO "SO "

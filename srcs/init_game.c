@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_game.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/29 16:27:48 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 16:28:55 by adbenoit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	init_sprite(t_all **all)
@@ -35,7 +47,7 @@ static void	init_bonus(t_all **all)
 	(*all)->bonus.map_c = 0;
 }
 
-void	init_game(t_all **all)
+void		init_game(t_all **all)
 {
 	int i;
 
@@ -61,9 +73,9 @@ void	init_game(t_all **all)
 	init_bonus(all);
 }
 
-void    finish_init(t_all **all, t_sprite *sp)
+void		finish_init(t_all **all, t_sprite *sp)
 {
-    int i;
+	int i;
 
 	(*all)->bonus.loop = 0;
 	(*all)->bonus.col = 0;

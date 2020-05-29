@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_error.c                                         :+:      :+:    :+:   */
+/*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 18:48:03 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/27 22:59:07 by Adeline          ###   ########.fr       */
+/*   Created: 2020/05/29 16:11:18 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 16:27:20 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void		exit_game(t_all **all)
 	clear_img(all);
 	clear_textures(all);
 	clear_utils(all);
-	write(1, "Game exit.\n", 21);
+	write(1, "Game exit.\n", 11);
 	exit(EXIT_SUCCESS);
 }
 
-void		exit_error(t_all **all, char *line, int code)
+void		exit_error(t_all **all, char *line, char *err)
 {
 	free(line);
 	line = NULL;
@@ -30,19 +30,13 @@ void		exit_error(t_all **all, char *line, int code)
 	clear_img(all);
 	clear_textures(all);
 	clear_utils(all);
-	print_error(code);
+	print_error(err);
 }
 
-void		print_error(int err)
+void		print_error(char *err)
 {
-	char *err_mess[NB_ERR] = {"Failed to load map.", "Failed to find color", "failed to load image.", "Failed to open file", "failed to malloc.",
-							"Please enter corrects arguments.", "mlx failed to create window or image.", "Failed to find resolution"};
-
-	if (err >= 0)
-	{
-		write(1, "Error\n", 6);
-		write(1, err_mess[err], ft_strlen(err_mess[err])); 
-		write (1, "\n", 1);
-	}
+	write(1, "Error\n", 6);
+	write(1, err, ft_strlen(err));
+	write(1, "\n", 1);
 	exit(EXIT_FAILURE);
 }

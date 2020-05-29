@@ -1,5 +1,16 @@
-#include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pars_resolution.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/29 16:31:43 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 16:32:04 by adbenoit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "cub3d.h"
 
 static void	res_error(t_all **all, char *line, char *x, char *y)
 {
@@ -59,5 +70,5 @@ int			parse_res(t_all **all, char *line)
 	free(line);
 	free(y);
 	free(x);
-	return (ft_parsing(all));	
+	return (ft_parsing(all));
 }

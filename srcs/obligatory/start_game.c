@@ -30,12 +30,10 @@ void	init_player(t_all **all, char o)
 
 void	start_game(t_all **all)
 {
-	// exit_game(all);
 	if(!((*all)->mlx_ptr = mlx_init()))
 		exit_error(all, NULL, MLX_ERR);
 	if(!((*all)->win_ptr = mlx_new_window((*all)->mlx_ptr, (*all)->r[X], (*all)->r[Y], "Cub3D")))
 		exit_error(all, NULL, MLX_ERR);
-	// exit_game(all);
 	finish_init(all, &(*all)->sp);
 	init_player(all, (*all)->player.start_o);
 	(*all)->screen.plane[X] = ((*all)->player.dir[X] == 0) ? 0.66 : 0;

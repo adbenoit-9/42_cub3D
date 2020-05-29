@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pars_color.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/29 16:30:51 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 16:31:28 by adbenoit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static int		check_col(char *line, char *col, int i)
+static int	check_col(char *line, char *col, int i)
 {
 	int j;
 
@@ -72,5 +84,5 @@ int			parse_color(t_all **all, char *line, int ident)
 		(*all)->c = ft_rgb(col[0], col[1], col[2]);
 	}
 	free(line);
-	return (ft_parsing(all));	
+	return (ft_parsing(all));
 }

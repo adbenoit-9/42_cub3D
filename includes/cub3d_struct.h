@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d_struct.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/29 15:14:51 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 15:14:52 by adbenoit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CUB3D_STRUCT_H
 # define CUB3D_STRUCT_H
@@ -94,7 +105,7 @@ typedef struct	s_im_head
 	int			cipalette;
 }				t_im_head;
 
-typedef struct s_bmp
+typedef struct	s_bmp
 {
 	char		sign[2];
 	int			size;
@@ -159,19 +170,19 @@ typedef struct	s_all
 	t_tab_img		text;
 	t_sprite		sp;
 	t_bonus			bonus;
-	double 			invdet;
+	double			invdet;
 
 }				t_all;
 
-typedef int		(*t_function)(char *, t_all **);
+typedef int	(*t_function)(char *, t_all **);
 
 typedef struct	s_draw
 {
-	int		start[2];
-	int		end[2];
-    int     pix[2];
-    int     index[2];
-    int     h;
-    int     w;
+	int	start[2];
+	int	end[2];
+	int	pix[2];
+	int	index[2];
+	int	h;
+	int	w;
 }				t_draw;
 #endif

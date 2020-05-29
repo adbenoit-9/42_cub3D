@@ -1,21 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/29 15:24:17 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 15:54:51 by adbenoit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static int	check_hole(t_all **all, int i)
+static int	check_hole(t_all **all, char **map, int i)
 {
 	int j;
 
 	j = 0;
-	while ((*all)->map[i][j])
+	while (map[i][j])
 	{
-		if ((*all)->map[i][j] == HOLE)
+		if (map[i][j] == HOLE)
 		{
-			if (j != 0 && (*all)->map[i][j - 1] != HOLE && (*all)->map[i][j - 1] != WALL)
+			if (j != 0 && map[i][j - 1] != HOLE && map[i][j - 1] != WALL)
 				exit_error(all, NULL, MAP_ERR);
-			if (j != ft_strlen((*all)->map[i]) - 1 && (*all)->map[i][j + 1] != HOLE && (*all)->map[i][j + 1] != WALL)
+			if (j != ft_strlen(map[i]) - 1 && map[i][j + 1] != HOLE &&
+												map[i][j + 1] != WALL)
 				exit_error(all, NULL, MAP_ERR);
-			if (i != 0 && (*all)->map[i - 1][j] != HOLE && (*all)->map[i - 1][j] != WALL)
+			if (i != 0 && map[i - 1][j] != HOLE && map[i - 1][j] != WALL)
 				exit_error(all, NULL, MAP_ERR);
-			if (i != (*all)->map_index- 1 && (*all)->map[i + 1][j] != HOLE && (*all)->map[i + 1][j] != WALL)
+			if (i != (*all)->map_index - 1 && map[i + 1][j] != HOLE &&
+												map[i + 1][j] != WALL)
 				exit_error(all, NULL, MAP_ERR);
 		}
 		j++;
@@ -23,62 +37,51 @@ static int	check_hole(t_all **all, int i)
 	return (NO_ERR);
 }
 
-int			check_line_border(t_all **all)
+int			check_line_border(t_all **all, char **map, int i)
 {
 	int j;
 
 	j = 0;
 	if ((*all)->state == END)
 	{
-		while ((*all)->map[(*all)->map_index- 1][j])
+		while (map[i - 1][j])
 		{
-			if ((*all)->map[(*all)->map_index- 1][j] != WALL && (*all)->map[(*all)->map_index- 1][j] != HOLE)
+			if (map[i - 1][j] != WALL && map[i - 1][j] != HOLE)
 				exit_error(all, NULL, MAP_ERR);
 			j++;
 		}
 		return (NO_ERR);
 	}
-	if (!((*all)->map = realloc_tab((*all)->map, (*all)->map_index+ 2)))
+	if (!((*all)->map = realloc_tab((*all)->map, i + 2)))
 		exit_error(all, NULL, MAL_ERR);
 	return (NO_ERR);
 }
 
 int			check_map_border(t_all **all)
 {
-	int i;
-	int	j;
-	int size1;
-	int	size2;
+	int index[2];
+	int size[2];
 
 	if ((*all)->player.start_pos != 1)
 		exit_error(all, NULL, MAP_ERR);
-	i = -1;
-	size1 = 0;
-	size2 = 0;
-	while ((*all)->map[++i])
+	index[X] = 0;
+	while ((*all)->map[++index[X]])
 	{
-		j = -2;
-		size2 = ft_strlen((*all)->map[i]);
-		if (i != 0)
-			size1 = ft_strlen((*all)->map[i - 1]);
-		if (i == 0)
-			size1 = ft_strlen((*all)->map[i + 1]);
-		if (size1 > size2 && i != 0)
-			j = size2 - 1;
-		while (++j != -1 && (*all)->map[i - 1][j])
+		size[1] = ft_strlen((*all)->map[index[X]]);
+		size[0] = ft_strlen((*all)->map[index[X] - 1]);
+		index[Y] = size[0] > size[1] ? size[1] - 1 : -2;
+		while (++index[Y] != -1 && (*all)->map[index[X] - 1][index[Y]])
 		{
-			if ((*all)->map[i - 1][j] != WALL)
+			if ((*all)->map[index[X] - 1][index[Y]] != WALL)
 				exit_error(all, NULL, MAP_ERR);
 		}
-		j = -2;
-		if (size2 > size1 && i != (*all)->map_index- 1)
-			j = size1 - 1;
-		while (++j != -1 && (*all)->map[i][j])
+		index[Y] = size[1] > size[0] ? size[0] - 1 : -2;
+		while (++index[Y] != -1 && (*all)->map[index[X]][index[Y]])
 		{
-			if ((*all)->map[i][j] != WALL)
+			if ((*all)->map[index[X]][index[Y]] != WALL)
 				exit_error(all, NULL, MAP_ERR);
 		}
-		check_hole(all, i);
+		check_hole(all, (*all)->map, index[X]);
 	}
 	return (NO_ERR);
 }

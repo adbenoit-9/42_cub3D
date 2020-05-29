@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clear.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/29 15:56:05 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/05/29 15:56:34 by adbenoit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	clear_sprites(t_all **all)
@@ -56,6 +68,5 @@ void	clear_utils(t_all **all)
 		mlx_clear_window((*all)->mlx_ptr, (*all)->win_ptr);
 		mlx_destroy_window((*all)->mlx_ptr, (*all)->win_ptr);
 	}
-	free(*all);
-	system("leaks Cub3D");
+	// system("leaks Cub3D");
 }

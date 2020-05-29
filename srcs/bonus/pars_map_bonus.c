@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:42:10 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 01:21:03 by Adeline          ###   ########.fr       */
+/*   Updated: 2020/05/29 15:32:45 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	map(char *line, t_all **all)
 			exit_error(all, line, MAP_ERR);
 		j++;
 	}
-	check_line_border(all);
+	check_line_border(all, (*all)->map, (*all)->map_index);
 	(*all)->map[(*all)->map_index] = 0;
 	return (parse_map(line, all));
 }
