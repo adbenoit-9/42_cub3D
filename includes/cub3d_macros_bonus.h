@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:14:27 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 15:14:30 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/30 14:54:52 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define OBJ1 '3'
 # define DOOR 'D'
 # define OPEN 'O'
-# define OPEN_DOOR 'R'
+# define O_DOOR 'R'
 # define DEAD 'X'
 
 # define NB_CHAR_B 10

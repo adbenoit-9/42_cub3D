@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:27:48 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 21:43:52 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/31 18:03:29 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static void	init_bonus(t_all **all)
 	int i;
 
 	i = -1;
+	if (!((*all)->bonus.path = malloc(sizeof(char *) * (NB_BON + 1))))
+		exit_error(all, NULL, MAL_ERR);
 	while (++i <= NB_BON)
 		(*all)->bonus.path[i] = NULL;
 	i = 0;
@@ -57,14 +59,16 @@ void		init_game(t_all **all)
 	(*all)->r[Y] = -1;
 	(*all)->c = -1;
 	(*all)->f = -1;
-	(*all)->map_index = 0;
+	(*all)->map_size = 0;
 	(*all)->map = NULL;
 	(*all)->player.start_pos = 0;
 	(*all)->wall.dist = NULL;
 	(*all)->win_ptr = NULL;
 	(*all)->img.ptr = NULL;
+	if (!((*all)->path = malloc(sizeof(char *) * 6)))
+		exit_error(all, NULL, MAL_ERR);
 	i = -1;
-	while (++i <= 6)
+	while (++i < 6)
 		(*all)->path[i] = NULL;
 	i = -1;
 	while (++i < 4)
@@ -125,3 +129,4 @@ void	init_player(t_all **all, char o)
 		(*all)->player.dir[Y] = 0;
 	}
 }
+

@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:24:17 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 15:54:51 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/31 11:25:49 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	check_hole(t_all **all, char **map, int i)
 				exit_error(all, NULL, MAP_ERR);
 			if (i != 0 && map[i - 1][j] != HOLE && map[i - 1][j] != WALL)
 				exit_error(all, NULL, MAP_ERR);
-			if (i != (*all)->map_index - 1 && map[i + 1][j] != HOLE &&
+			if (i != (*all)->map_size - 1 && map[i + 1][j] != HOLE &&
 												map[i + 1][j] != WALL)
 				exit_error(all, NULL, MAP_ERR);
 		}
@@ -37,7 +37,7 @@ static int	check_hole(t_all **all, char **map, int i)
 	return (NO_ERR);
 }
 
-int			check_line_border(t_all **all, char **map, int i)
+int			check_map_end(t_all **all, char **map, int i)
 {
 	int j;
 
@@ -52,7 +52,7 @@ int			check_line_border(t_all **all, char **map, int i)
 		}
 		return (NO_ERR);
 	}
-	if (!((*all)->map = realloc_tab((*all)->map, i + 2)))
+	if (!((*all)->map = realloc_tab((*all)->map, i + 1)))
 		exit_error(all, NULL, MAL_ERR);
 	return (NO_ERR);
 }

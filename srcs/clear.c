@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:56:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 15:56:34 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/31 18:05:33 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	clear_sprites(t_all **all)
 {
-	free_tab_nb((void **)(*all)->sp.coor, (*all)->sp.count, 1);
-	free_tab_nb((void **)(*all)->sp.pos, (*all)->sp.count, 1);
+	free_tab_nb((void **)(*all)->sp.coor, (*all)->sp.count);
+	free_tab_nb((void **)(*all)->sp.pos, (*all)->sp.count);
 	free((*all)->sp.dead);
 	free((*all)->sp.see);
 	free((*all)->sp.dist);
@@ -45,7 +45,7 @@ void	clear_textures(t_all **all)
 	}
 }
 
-void	clear_img(t_all **all)
+void	clear_bonus(t_all **all)
 {
 	if ((*all)->bonus.heart.ptr)
 		mlx_destroy_image((*all)->mlx_ptr, (*all)->bonus.heart.ptr);
@@ -53,16 +53,16 @@ void	clear_img(t_all **all)
 		mlx_destroy_image((*all)->mlx_ptr, (*all)->bonus.dead.ptr);
 	if ((*all)->bonus.win.ptr)
 		mlx_destroy_image((*all)->mlx_ptr, (*all)->bonus.win.ptr);
-	if ((*all)->img.ptr)
-		mlx_destroy_image((*all)->mlx_ptr, (*all)->img.ptr);
+	free_tab_nb((void **)(*all)->bonus.path, NB_BON);
 }
 
 void	clear_utils(t_all **all)
 {
-	free_tab_char((*all)->map, 1);
-	free_tab_nb((void **)(*all)->path, 6, 0);
-	free_tab_nb((void **)(*all)->bonus.path, NB_BON, 0);
+	free_tab_char((*all)->map);
+	free_tab_nb((void **)(*all)->path, 4);
 	free((*all)->wall.dist);
+	if ((*all)->img.ptr)
+		mlx_destroy_image((*all)->mlx_ptr, (*all)->img.ptr);
 	if ((*all)->win_ptr)
 	{
 		mlx_clear_window((*all)->mlx_ptr, (*all)->win_ptr);

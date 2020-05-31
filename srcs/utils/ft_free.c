@@ -6,13 +6,13 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:41:35 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 16:41:38 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/30 21:30:41 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_tab_char(char **ptr, int alloc)
+void	free_tab_char(char **ptr)
 {
 	int i;
 
@@ -24,13 +24,12 @@ void	free_tab_char(char **ptr, int alloc)
 			free(ptr[i]);
 			i++;
 		}
-		if (alloc == TRUE)
-			free(ptr);
+		free(ptr);
 		ptr = NULL;
 	}
 }
 
-void	free_tab_nb(void **ptr, int size, int alloc)
+void	free_tab_nb(void **ptr, int size)
 {
 	int i;
 
@@ -42,8 +41,7 @@ void	free_tab_nb(void **ptr, int size, int alloc)
 			free(ptr[i]);
 			i++;
 		}
-		if (alloc == TRUE)
-			free(ptr);
+		free(ptr);
 		ptr = NULL;
 	}
 }

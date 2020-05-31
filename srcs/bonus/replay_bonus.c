@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:19:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 22:03:08 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/30 14:54:52 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	reinit_map(t_all **all)
 		{
 			if ((*all)->map[i][j] == OPEN)
 				(*all)->map[i][j] = DOOR;
-			if ((*all)->map[i][j] == OPEN_DOOR)
+			if ((*all)->map[i][j] == O_DOOR)
 				(*all)->map[i][j] = WALL;
 			if ((*all)->map[i][j] == DEAD)
 			{

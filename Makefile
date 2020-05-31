@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Adeline <Adeline@student.42.fr>            +#+  +:+       +#+         #
+#    By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/05/29 01:17:57 by Adeline          ###   ########.fr        #
+#    Updated: 2020/05/30 21:21:55 by adbenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,9 @@ SRCS_NAME	=	bmp_file.c\
 				exit_game.c\
 				init_game.c\
 				main.c\
-				pars_color.c\
-				pars_resolution.c\
-				parsing.c\
+				parsing_util.c\
+				fill_parsing.c\
+				read_file.c\
 				player_move.c
 
 BONUS_NAME	=	all_sprite_bonus.c\
@@ -52,9 +52,7 @@ BONUS_NAME	=	all_sprite_bonus.c\
 				life_bonus.c\
 				mlx_handle_bonus.c\
 				mini_map_bonus.c\
-				pars_bonus.c\
-				pars_info_bonus.c\
-				pars_map_bonus.c\
+				parsing_bonus.c\
 				raycast_door_bonus.c\
 				replay_bonus.c\
 				start_game_bonus.c\
@@ -63,8 +61,7 @@ BONUS_NAME	=	all_sprite_bonus.c\
 OBL_NAME	=	create_img.c\
 				ft_deal_key.c\
 				mlx_handle.c\
-				pars_info.c\
-				pars_map.c\
+				parsing.c\
 				start_game.c
 
 RAY_NAME	=	sprite.c\
@@ -80,6 +77,8 @@ UTILS_NAME	=	ft_atoi.c\
 				ft_putnbr_fd.c\
 				ft_realloc.c\
 				ft_rgb.c\
+				ft_strlen.c\
+				ft_strncmp.c\
 				ft_strtrim.c\
 				get_next_line.c\
 				get_next_line_utils.c

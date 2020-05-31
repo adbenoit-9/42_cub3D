@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:57:08 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 16:01:38 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/31 18:02:27 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	load_image(t_all **all, t_img *img, char *path)
 	img->size_line = 0;
 	if ((img->ptr = mlx_xpm_file_to_image((*all)->mlx_ptr,
 			path, &img->dim[X], &img->dim[Y])) == NULL)
-		exit_error(all, NULL, FILE_ERR);
+		exit_error(all, NULL, IMG_ERR);
 	img->data = (int *)mlx_get_data_addr(img->ptr,
 			&img->bpp, &img->size_line, &img->endian);
 }

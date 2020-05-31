@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:16:38 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 21:16:39 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/30 17:58:11 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	ray_casting(t_all **all)
 	draw_door(all);
 	draw_all_sprites(all, &(*all)->sp);
 	draw_weapon(all);
-	draw_hearts(all);
 	draw_mini_map(all);
+	draw_hearts(all);
 }
 
 int			create_image(t_all **all)

@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:15:00 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 21:44:45 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/31 17:31:50 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,23 @@
 # define TRUE 1
 # define FALSE 0
 
+void			finish_init(t_all **all, t_sprite *sp);
 void			init_game(t_all **all);
 void			init_player(t_all **all, char o);
-void			finish_init(t_all **all, t_sprite *sp);
-void			init_player(t_all **all, char o);
+void			init_player_pos(t_all **all, char *line, int i, int j);
+void			set_sprite_coor(t_all **all, char *line, int i);
 int				mlx_handle(t_all *all);
 
 double			**realloc_doub(double **ptr, int newsize);
 void			all_null(t_all **all);
 void			clear_sprites(t_all **all);
 void			clear_textures(t_all **all);
-void			clear_img(t_all **all);
+void			clear_bonus(t_all **all);
 void			clear_utils(t_all **all);
 void			exit_error(t_all **all, char *line, char *err);
 void			exit_game(t_all **all);
-void			free_tab_char(char **ptr, int alloc);
-void			free_tab_nb(void **ptr, int size, int alloc);
+void			free_tab_char(char **ptr);
+void			free_tab_nb(void **ptr, int size);
 void			ft_bzero(void *s, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			ft_putnbr_fd(int n, int fd);
@@ -65,13 +66,17 @@ void			ft_rightward(t_all **all, t_player *p);
 void			ft_leftward(t_all **all, t_player *p);
 
 int				parse_color(t_all **all, char *line, int ident);
+int				fill_col(char *line, char *col, int i);
+int				fill_map(char *line, t_all **all);
+int				fill_path(char *line, t_all **all, int i);
+int				fill_res(char *line, int *i, int max);
 int				parse_res(t_all **all, char *line);
-int				ft_parsing(t_all **all);
-int				info(char *line, t_all **all);
-int				map(char *line, t_all **all);
+int				read_file(t_all **all);
+int				parse_info(char *line, t_all **all);
+int				parse_map(char *line, t_all **all);
 int				check_map_border(t_all **all);
-int				check_line_border(t_all **all, char **map, int i);
-int				open_f(char *arg, t_all **all, int save);
+int				check_map_end(t_all **all, char **map, int i);
+int				open_file(char *arg, t_all **all, int save);
 
 double			dist_screen(t_all **all, int x, int y);
 double			set_wall_dist(t_all **all, t_wall *w);
@@ -96,6 +101,6 @@ int				key_init(t_all **all);
 int				ft_key_release(int key, t_all **all);
 int				ft_key_press(int key, t_all **all);
 
-int				bonus(char *line, t_all **all);
+int				parse_bonus(char *line, t_all **all);
 
 #endif

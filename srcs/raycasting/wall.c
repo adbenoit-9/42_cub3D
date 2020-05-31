@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 17:15:32 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 17:40:04 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/31 12:15:19 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void static	init_drawing(t_all **all, int *start, int *end, t_tab_img *t)
 	else
 		(*all)->wall.hit = (*all)->player.map[X] + (*all)->wall.dist[i] * (*all)->wall.raydir[X];
 	(*all)->wall.hit -= (int)(*all)->wall.hit;
-	t->pos[X] = (int)((*all)->wall.hit * (double)t->dim[(*all)->wall.side][X]);
+	t->pix[X] = (int)((*all)->wall.hit * (double)t->dim[(*all)->wall.side][X]);
 	if((*all)->wall.side == 0 && (*all)->wall.raydir[X] > 0)
-		t->pos[X] = t->dim[(*all)->wall.side][X] - t->pos[X] - 1;
+		t->pix[X] = t->dim[(*all)->wall.side][X] - t->pix[X] - 1;
 	if((*all)->wall.side == 1 && (*all)->wall.raydir[Y] < 0)
-		t->pos[X] = t->dim[(*all)->wall.side][X] - t->pos[X] - 1;
+		t->pix[X] = t->dim[(*all)->wall.side][X] - t->pix[X] - 1;
 	(*all)->wall.slice_h = (*all)->r[Y] / (*all)->wall.dist[i];
 	*start = -1 * (*all)->wall.slice_h / 2 + (*all)->r[Y] / 2;
 	if (*start < 0)
@@ -43,20 +43,20 @@ void		draw_wall_pixel(t_all **all, t_tab_img *text, int i)
 	int		start;
 	int		k;
 	double	step;
-	double	textpos;
+	double	pix;
 
 	init_drawing(all, &start, &end, text);
 	step = 1.0 * text->dim[(*all)->wall.side][Y] / (*all)->wall.slice_h;
-	textpos = (start - (*all)->r[Y] / 2 + (*all)->wall.slice_h / 2) * step;
+	pix = (start - (*all)->r[Y] / 2 + (*all)->wall.slice_h / 2) * step;
 	k = -1;
 	while (++k < start)
 		(*all)->img.data[i + (*all)->r[X] * k] = (*all)->c + (*all)->bonus.col;
 	while (start < end)
 	{
-		text->pos[Y] = (int)textpos;
-		textpos += step;
+		text->pix[Y] = (int)pix;
+		pix += step;
 		(*all)->img.data[i + (*all)->r[X] * start] = text->data[(*all)->wall.side]
-			[(int)(text->dim[(*all)->wall.side][X] * text->pos[Y] + text->pos[X])] + (*all)->bonus.col;
+			[(int)(text->dim[(*all)->wall.side][X] * text->pix[Y] + text->pix[X])] + (*all)->bonus.col;
 		start++;
 	}
 	k = start - 1;

@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 17:42:13 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 17:44:26 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/31 12:18:13 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		create_image(t_all **all)
 {
+	(*all)->bonus.loop++;
 	if ((*all)->img.ptr != NULL)
 	{
 		mlx_destroy_image((*all)->mlx_ptr, (*all)->img.ptr);

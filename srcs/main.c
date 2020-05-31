@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:29:50 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 16:30:21 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/31 12:20:16 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int ac, char **av)
 		i++;
 	if (ft_strncmp(av[1] + i, ".cub", 4) == FALSE || ft_strlen(av[1] + i) != 4)
 		print_error(FILE_ERR);
-	open_f(av[1], &all, save);
+	open_file(av[1], &all, save);
 	check_map_border(&all);
 	start_game(&all);
 	mlx_handle(all);

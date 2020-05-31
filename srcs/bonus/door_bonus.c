@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:16:52 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 21:16:57 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/30 14:54:52 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,6 @@ void		open_door(t_all **all)
 			(*all)->bonus.door_side = NO;
 		(*all)->map[y + dir[Y]][x + dir[X]] = OPEN;
 		(*all)->bonus.door_tmp = (*all)->map[y + new[Y]][x + new[X]];
-		(*all)->map[y + new[Y]][x + new[X]] = OPEN_DOOR;
+		(*all)->map[y + new[Y]][x + new[X]] = O_DOOR;
 	}
 }

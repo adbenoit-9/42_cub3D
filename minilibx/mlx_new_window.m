@@ -384,7 +384,7 @@ int get_mouse_button(NSEventType eventtype)
 
       //[win makeKeyAndOrderFront:nil];
       // BOOL r = [win isKeyWindow];
-      //  if (r==YES) printf("keywindow ok\n"); else printf("keywindow KO\n");
+      //  if (r==YES) printf("keywindow ok\n", 3); else printf("keywindow KO\n");
 
       // Window controller subclass to set title
       // NSWindowController* windowController = [[NSWindowController alloc] initWithWindow:win];
@@ -394,7 +394,7 @@ int get_mouse_button(NSEventType eventtype)
 
       // after nswindowcontroller who will retake first responder
       //      BOOL r = [win makeFirstResponder:nil];
-      //      if (r==YES) printf("responder ok\n"); else printf("responder KO\n");
+      //      if (r==YES) printf("responder ok\n", 3); else printf("responder KO\n");
 
       [pixFmt release];
     }

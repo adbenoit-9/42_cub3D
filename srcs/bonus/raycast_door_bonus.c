@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:19:45 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 21:19:45 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/30 14:58:35 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,13 @@ static char	set_side_type(t_all **all, t_wall *wall)
 	char type;
 
 	type = 0;
-	while (type != WALL && type != DOOR && type != OPEN_DOOR)
+	while (type != WALL && type != DOOR && type != O_DOOR)
 	{
 		if (wall->side_dist[X] < wall->side_dist[Y])
 		{
 			wall->side_dist[X] += wall->delta_dist[X];
 			wall->pos[X] += wall->step[X];
-			if (wall->pos[X] < (*all)->player.map[X])
-				wall->side = 0;
-			else
-				wall->side = 2;	
+			wall->side = wall->pos[X] < (*all)->player.map[X] ? 0 : 2;
 		}
 		else
 		{
@@ -55,7 +52,7 @@ void		draw_door(t_all **all)
 		type = set_side_type(all, &(*all)->wall);
 		if (type == DOOR)
 			draw_wall_pixel(all, &(*all)->bonus.door, (*all)->screen.column);
-		else if (type == OPEN_DOOR && (*all)->wall.side == (*all)->bonus.door_side)
+		else if (type == O_DOOR && (*all)->wall.side == (*all)->bonus.door_side)
 			draw_wall_pixel(all, &(*all)->bonus.door, (*all)->screen.column);
 		else
 			draw_wall_pixel(all, &(*all)->text, (*all)->screen.column);

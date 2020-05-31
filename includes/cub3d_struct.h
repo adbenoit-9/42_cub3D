@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:14:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 15:14:52 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/31 11:41:27 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct	s_img
 typedef struct	s_tab_img
 {
 	int		dim[4][2];
-	int		pos[2];
+	int		pix[2];
 	void	*ptr[4];
 	int		*data[4];
 	int		bpp;
@@ -136,7 +136,7 @@ typedef struct	s_bonus
 	char			door_tmp;
 	char			map_c;
 	int				door_side;
-	char			*path[NB_BON + 1];
+	char			**path;
 	int				pull;
 	int				life;
 	t_img			heart;
@@ -150,12 +150,12 @@ typedef struct	s_bonus
 
 typedef struct	s_all
 {
-	char			*path[6];
+	char			**path;
 	char			**map;
 	int				r[2];
 	int				f;
 	int				c;
-	int				map_index;
+	int				map_size;
 	int				fd;
 	int				ret;
 	int				save;

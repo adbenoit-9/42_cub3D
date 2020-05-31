@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:11:18 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 16:27:20 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/05/31 17:31:50 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		exit_game(t_all **all)
 {
 	clear_sprites(all);
-	clear_img(all);
+	clear_bonus(all);
 	clear_textures(all);
 	clear_utils(all);
 	write(1, "Game exit.\n", 11);
@@ -27,7 +27,7 @@ void		exit_error(t_all **all, char *line, char *err)
 	free(line);
 	line = NULL;
 	clear_sprites(all);
-	clear_img(all);
+	clear_bonus(all);
 	clear_textures(all);
 	clear_utils(all);
 	print_error(err);
