@@ -129,6 +129,8 @@ int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
 
 int	mlx_destroy_image(void *mlx_ptr, void *img_ptr);
 
+int	mlx_mscreen_resolution(int *width, int *height);
+
 /*
 **  generic hook system for all events, and minilibX functions that
 **    can be hooked. Some macro and defines from X11/X.h are needed here.

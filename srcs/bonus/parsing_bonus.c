@@ -47,12 +47,12 @@ int	parse_map(char *line, t_all **all)
 	int			j;
 	int			size;
 
-	j = 0;
+	j = -1;
 	size = ft_strlen(line);
 	if ((line[0] != WALL && line[0] != HOLE) || (size > 0 &&
 	line[size - 1] != WALL && line[size - 1] != HOLE))
 		exit_error(all, line, MAP_ERR);
-	while (line[j])
+	while (line[++j])
 	{
 		if ((*all)->map_size == 0 && line[j] != WALL && line[j] != HOLE)
 			exit_error(all, line, MAP_ERR);
@@ -62,10 +62,9 @@ int	parse_map(char *line, t_all **all)
 		init_player_pos(all, line, i, j);
 		if (i == NB_CHAR_B)
 			exit_error(all, line, MAP_ERR);
-		j++;
 	}
+	(*all)->map_size++;
 	check_map_end(all, (*all)->map, (*all)->map_size);
-	(*all)->map[(*all)->map_size] = 0;
 	return (fill_map(line, all));
 }
 

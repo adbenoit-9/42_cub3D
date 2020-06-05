@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:16:20 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/31 11:11:23 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/05 16:03:00 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		set_sprite_coor(t_all **all, char *line, int i)
 		if (!((*all)->sp.type = realloc((*all)->sp.type, (*all)->sp.count + 1)))
 			exit_error(all, NULL, MAL_ERR);
 		(*all)->sp.coor[(*all)->sp.count - 1][X] = i + 0.5;
-		(*all)->sp.coor[(*all)->sp.count - 1][Y] = (*all)->map_size+ 0.5;
+		(*all)->sp.coor[(*all)->sp.count - 1][Y] = (*all)->map_size - 1 + 0.5;
 		(*all)->sp.type[(*all)->sp.count - 1] = line[i];
 		if (line[i] == OBJ1)
 			(*all)->bonus.foe++;

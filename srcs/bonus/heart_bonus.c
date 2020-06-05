@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:17:32 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/30 18:18:48 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/05 15:29:25 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		draw_hearts(t_all **all)
 	draw.w = abs((int)((*all)->r[Y] / 20));
 	draw.start[X] = (*all)->r[X] - draw.w / 2;
 	i = 0;
-	while (i <= (*all)->bonus.life)
+	while (i < (*all)->bonus.life)
 	{
 		draw.start[X] = draw_heart_pixel(all, draw);
 		draw.start[X] -= draw.w / 2;

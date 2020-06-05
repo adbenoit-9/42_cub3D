@@ -6,7 +6,7 @@
 #    By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/05/30 21:21:55 by adbenoit         ###   ########.fr        #
+#    Updated: 2020/06/05 15:35:47 by adbenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRCS_NAME	=	bmp_file.c\
 
 BONUS_NAME	=	all_sprite_bonus.c\
 				create_img_bonus.c\
-				door_bonus.c\
+				deal_door_bonus.c\
 				ft_deal_key_bonus.c\
 				heart_bonus.c\
 				life_bonus.c\

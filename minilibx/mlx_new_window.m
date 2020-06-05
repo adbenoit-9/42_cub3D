@@ -764,3 +764,12 @@ int     mlx_destroy_window(mlx_ptr_t *mlx_ptr, mlx_win_list_t *win_to_del)
   mlx_do_sync(mlx_ptr);
   return (0);
 }
+
+int     mlx_mscreen_resolution(int *width, int *height)
+{
+	NSRect rect= [[NSScreen mainScreen] frame];
+  
+	*width = (int)rect.size.width;
+	*height = (int)rect.size.height;
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:30:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/31 11:11:23 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/05 15:24:12 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,18 @@ int			parse_color(t_all **all, char *line, int ident)
 int			parse_res(t_all **all, char *line)
 {
 	int		i;
+	int		w_max;
+	int		h_max;
 
+	w_max = 0;
+	h_max = 0;
+	mlx_mscreen_resolution(&w_max, &h_max);
 	if ((*all)->r[X] != -1 || (*all)->r[Y] != -1)
 		exit_error(all, line, RES_ERR);
 	i = 0;
-	if (((*all)->r[X] = fill_res(line, &i, 2560)) == -1)
+	if (((*all)->r[X] = fill_res(line, &i, w_max)) == -1)
 		exit_error(all, line, RES_ERR);
-	if (((*all)->r[Y] = fill_res(line, &i, 1440)) == -1)
+	if (((*all)->r[Y] = fill_res(line, &i, h_max)) == -1)
 		exit_error(all, line, RES_ERR);
 	if (i != ft_strlen(line))
 		exit_error(all, line, RES_ERR);

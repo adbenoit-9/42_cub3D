@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:19:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/30 14:54:52 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/05 15:36:56 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void		restart_game(t_all **all)
 	(*all)->screen.plane[Y] = ((*all)->player.dir[Y] == 0) ? 0.66 : 0;
 	(*all)->bonus.col = 0;
 	(*all)->bonus.life = 5;
+	(*all)->bonus.map_c = 0;
 	i = 0;
 	while (i < (*all)->sp.count)
 	{

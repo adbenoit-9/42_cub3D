@@ -1,4 +1,4 @@
-R 1500 700
+R 150000 700000
 NO ./xpm/library_game/planks_oak.xpm
 SO ./xpm/library_game/planks_oak.xpm
 WE ./xpm/library_game/bookshelf.xpm
@@ -6,6 +6,7 @@ EA ./xpm/library_game/bookshelf.xpm
 S ./xpm/dye_powder_cyan.xpm
 F 200,230,225
 C 120,120,255
+
 
 S1 ./xpm/library_game/spider_eye.xpm
 SA ./xpm/library_game/spider_eye_fermented.xpm
