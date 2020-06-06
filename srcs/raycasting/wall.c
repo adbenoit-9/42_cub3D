@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 17:15:32 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/31 12:15:19 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:07:25 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void static	init_drawing(t_all **all, int *start, int *end, t_tab_img *t)
 	i = (*all)->screen.column;
 	(*all)->wall.dist[i] = set_wall_dist(all, &(*all)->wall);
 	if ((*all)->wall.side % 2 == 0)
-		(*all)->wall.hit = (*all)->player.map[Y] + (*all)->wall.dist[i] * (*all)->wall.raydir[Y];
+		(*all)->wall.hit = (*all)->player.pos[Y] + (*all)->wall.dist[i] * (*all)->wall.raydir[Y];
 	else
-		(*all)->wall.hit = (*all)->player.map[X] + (*all)->wall.dist[i] * (*all)->wall.raydir[X];
+		(*all)->wall.hit = (*all)->player.pos[X] + (*all)->wall.dist[i] * (*all)->wall.raydir[X];
 	(*all)->wall.hit -= (int)(*all)->wall.hit;
 	t->pix[X] = (int)((*all)->wall.hit * (double)t->dim[(*all)->wall.side][X]);
 	if((*all)->wall.side == 0 && (*all)->wall.raydir[X] > 0)

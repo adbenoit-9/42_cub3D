@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:14:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/31 11:41:27 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:57:38 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,19 @@ enum	e_state
 	END
 };
 
+typedef struct	s_draw
+{
+	int	start[2];
+	int	end[2];
+	int	pix[2];
+	int	index[2];
+	int	h;
+	int	w;
+}				t_draw;
+
 typedef struct	s_player
 {
-	double	map[2];
+	double	pos[2];
 	double	dir[2];
 	double	old_dir[2];
 	char	start_o;
@@ -139,6 +149,7 @@ typedef struct	s_bonus
 	char			**path;
 	int				pull;
 	int				life;
+	int				mm_dim;
 	t_img			heart;
 	t_sprite		s1;
 	t_sprite		sa;
@@ -162,8 +173,8 @@ typedef struct	s_all
 	t_key			key;
 	enum e_state	state;
 	t_player		player;
-	void			*mlx_ptr;
-	void			*win_ptr;
+	void			*mlx;
+	void			*win;
 	t_screen		screen;
 	t_wall			wall;
 	t_img			img;
@@ -176,13 +187,4 @@ typedef struct	s_all
 
 typedef int	(*t_function)(char *, t_all **);
 
-typedef struct	s_draw
-{
-	int	start[2];
-	int	end[2];
-	int	pix[2];
-	int	index[2];
-	int	h;
-	int	w;
-}				t_draw;
 #endif

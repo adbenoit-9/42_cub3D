@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:17:49 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/30 18:17:42 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:07:25 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	win_life(t_all **all)
 	int y;
 
 	i = 0;
-	x = (int)(*all)->player.map[X];
-	y = (int)(*all)->player.map[Y];
+	x = (int)(*all)->player.pos[X];
+	y = (int)(*all)->player.pos[Y];
 	while (i < (*all)->sp.count)
 	{
 		if (x == (int)(*all)->sp.coor[i][X] && y == (int)(*all)->sp.coor[i][Y]

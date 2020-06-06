@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 13:21:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/31 11:53:45 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:07:25 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_wall(t_all **all, t_wall *w)
 {
-	w->pos[X] = (int)(*all)->player.map[X];
-	w->pos[Y] = (int)(*all)->player.map[Y];
+	w->pos[X] = (int)(*all)->player.pos[X];
+	w->pos[Y] = (int)(*all)->player.pos[Y];
 	w->camx = 2 * (*all)->screen.column / (double)((*all)->r[X]) - 1;
 	w->raydir[X] = (*all)->player.dir[X] + (*all)->screen.plane[X] * w->camx;
 	w->raydir[Y] = (*all)->player.dir[Y] + (*all)->screen.plane[Y] * w->camx;
@@ -40,10 +40,10 @@ void	init_wall(t_all **all, t_wall *w)
 double	set_wall_dist(t_all **all, t_wall *w)
 {
 	if (w->side % 2 == 0)
-		return ((w->pos[X] - (*all)->player.map[X] + (1 - w->step[X]) / 2)
+		return ((w->pos[X] - (*all)->player.pos[X] + (1 - w->step[X]) / 2)
 				/ w->raydir[X]);
 	else
-		return ((w->pos[Y] - (*all)->player.map[Y] + ((1 - w->step[Y]) / 2))
+		return ((w->pos[Y] - (*all)->player.pos[Y] + ((1 - w->step[Y]) / 2))
 				/ w->raydir[Y]);
 }
 
@@ -52,25 +52,25 @@ void	set_side_dist(t_all **all, t_wall *w)
 	if (w->raydir[X] < 0)
 	{
 		w->step[X] = -1;
-		w->side_dist[X] = ((*all)->player.map[X] - w->pos[X]) *
+		w->side_dist[X] = ((*all)->player.pos[X] - w->pos[X]) *
 						w->delta_dist[X];
 	}
 	else
 	{
 		w->step[X] = 1;
-		w->side_dist[X] = (w->pos[X] + 1.0 - (*all)->player.map[X]) *
+		w->side_dist[X] = (w->pos[X] + 1.0 - (*all)->player.pos[X]) *
 						w->delta_dist[X];
 	}
 	if (w->raydir[Y] < 0)
 	{
 		w->step[Y] = -1;
-		w->side_dist[Y] = ((*all)->player.map[Y] - w->pos[Y]) *
+		w->side_dist[Y] = ((*all)->player.pos[Y] - w->pos[Y]) *
 						w->delta_dist[Y];
 	}
 	else
 	{
 		w->step[Y] = 1;
-		w->side_dist[Y] = (w->pos[Y] + 1.0 - (*all)->player.map[Y]) *
+		w->side_dist[Y] = (w->pos[Y] + 1.0 - (*all)->player.pos[Y]) *
 						w->delta_dist[Y];
 	}
 }
@@ -87,14 +87,14 @@ void	set_wall_side(t_all **all)
 			(*all)->wall.side_dist[X] += (*all)->wall.delta_dist[X];
 			(*all)->wall.pos[X] += (*all)->wall.step[X];
 			(*all)->wall.side = (*all)->wall.pos[X]
-							< (*all)->player.map[X] ? 0 : 2;
+							< (*all)->player.pos[X] ? 0 : 2;
 		}
 		else
 		{
 			(*all)->wall.side_dist[Y] += (*all)->wall.delta_dist[Y];
 			(*all)->wall.pos[Y] += (*all)->wall.step[Y];
 			(*all)->wall.side = (*all)->wall.pos[Y]
-							< (*all)->player.map[Y] ? 1 : 3;
+							< (*all)->player.pos[Y] ? 1 : 3;
 		}
 		if ((*all)->map[(int)(*all)->wall.pos[Y]]
 				[(int)(*all)->wall.pos[X]] == WALL)

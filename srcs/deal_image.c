@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:57:08 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/31 18:02:27 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:46:44 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	load_image(t_all **all, t_img *img, char *path)
 	img->dim[X] = 0;
 	img->dim[Y] = 0;
 	img->size_line = 0;
-	if ((img->ptr = mlx_xpm_file_to_image((*all)->mlx_ptr,
+	if ((img->ptr = mlx_xpm_file_to_image((*all)->mlx,
 			path, &img->dim[X], &img->dim[Y])) == NULL)
 		exit_error(all, NULL, IMG_ERR);
 	img->data = (int *)mlx_get_data_addr(img->ptr,
@@ -38,7 +38,7 @@ void	load_tab_of_image(t_all **all, t_tab_img *img, char **path, int start)
 		img->dim[i][X] = 0;
 		img->dim[i][Y] = 0;
 		img->size_line = 0;
-		if ((img->ptr[i] = mlx_xpm_file_to_image((*all)->mlx_ptr,
+		if ((img->ptr[i] = mlx_xpm_file_to_image((*all)->mlx,
 				path[start + i], &img->dim[i][X], &img->dim[i][Y])) == NULL)
 			exit_error(all, NULL, IMG_ERR);
 		img->data[i] = (int *)mlx_get_data_addr(img->ptr[i],

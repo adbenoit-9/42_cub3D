@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:19:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/05 15:36:56 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:07:25 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ static void	reinit_map(t_all **all)
 			}
 			if ((*all)->map[i][j] == (*all)->player.start_o)
 			{
-				(*all)->player.map[X] = j + 0.5;
-				(*all)->player.map[Y] = i + 0.5;
+				(*all)->player.pos[X] = j + 0.5;
+				(*all)->player.pos[Y] = i + 0.5;
 			}
 		}
 	}

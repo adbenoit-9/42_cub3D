@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_bonus.c                                  :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/29 21:19:12 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/30 18:35:01 by adbenoit         ###   ########.fr       */
+/*   Created: 2020/06/05 16:16:19 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/06/05 16:18:08 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-int	parse_info(char *line, t_all **all)
+int			parse_info(char *line, t_all **all)
 {
 	static char *str_info[NB_INFO] = {INF_EA, INF_SO, INF_WE, INF_NO,
 									INF_S, INF_R, INF_F, INF_C};
@@ -38,8 +38,7 @@ int	parse_info(char *line, t_all **all)
 	return (parse_bonus(line, all));
 }
 
-
-int	parse_map(char *line, t_all **all)
+int			parse_map(char *line, t_all **all)
 {
 	static char str_char[NB_CHAR_B] = {WALL, OBJ, EMPT, HOLE, NORTH,
 									SOUTH, EAST, WEST, OBJ1, DOOR};
@@ -70,9 +69,9 @@ int	parse_map(char *line, t_all **all)
 
 static int	fill_bonus(char *line, t_all **all, int i)
 {
-    int j;
+	int j;
 
-	j = 0; 
+	j = 0;
 	if (!((*all)->bonus.path[i] = malloc(sizeof(char) * (ft_strlen(line) + 1))))
 		exit_error(all, line, MAL_ERR);
 	while (line[j])
@@ -85,7 +84,7 @@ static int	fill_bonus(char *line, t_all **all, int i)
 	return (read_file(all));
 }
 
-int     	parse_bonus(char *line, t_all **all)
+int			parse_bonus(char *line, t_all **all)
 {
 	static char *str_info[NB_BON] = {BON_W0, BON_W1, BON_W2, BON_W3, BON_S1,
 	BON_SA, BON_DN, BON_DS, BON_DE, BON_DW, BON_LIFE, BON_LOSE, BON_WIN};
@@ -118,8 +117,9 @@ void		check_door(t_all **all)
 		{
 			if ((*all)->map[i][j] == DOOR)
 			{
-				if (((*all)->map[i - 1][j] != WALL || (*all)->map[i + 1][j] != WALL)
-				&& ((*all)->map[i][j - 1] != WALL || (*all)->map[i][j + 1] != WALL))
+				if (((*all)->map[i - 1][j] != WALL || (*all)->map[i + 1][j]
+				!= WALL) && ((*all)->map[i][j - 1] != WALL ||
+				(*all)->map[i][j + 1] != WALL))
 					exit_error(all, NULL, MAP_ERR);
 			}
 			j++;

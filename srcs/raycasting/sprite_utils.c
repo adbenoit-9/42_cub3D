@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:45:49 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 16:46:34 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:07:25 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	add_dist(t_all **all, t_sprite *sp, void (*sort)(t_sprite *))
 	i = 0;
 	while (i < sp->count)
 	{
-		sp->dist[i] = pow((*all)->player.map[X] - sp->coor[i][X], 2) +
-					pow((*all)->player.map[Y] - sp->coor[i][Y], 2);
+		sp->dist[i] = pow((*all)->player.pos[X] - sp->coor[i][X], 2) +
+					pow((*all)->player.pos[Y] - sp->coor[i][Y], 2);
 		i++;
 	}
 	sort(sp);

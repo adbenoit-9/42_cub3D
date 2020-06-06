@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:27:48 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/31 18:03:29 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:48:26 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void		init_game(t_all **all)
 	(*all)->map = NULL;
 	(*all)->player.start_pos = 0;
 	(*all)->wall.dist = NULL;
-	(*all)->win_ptr = NULL;
+	(*all)->win = NULL;
 	(*all)->img.ptr = NULL;
 	if (!((*all)->path = malloc(sizeof(char *) * 6)))
 		exit_error(all, NULL, MAL_ERR);
@@ -106,7 +106,7 @@ void		finish_init(t_all **all, t_sprite *sp)
 	}
 }
 
-void	init_player(t_all **all, char o)
+void		init_player(t_all **all, char o)
 {
 	if (o == 'N')
 	{
@@ -129,4 +129,3 @@ void	init_player(t_all **all, char o)
 		(*all)->player.dir[Y] = 0;
 	}
 }
-

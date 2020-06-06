@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 17:42:13 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/31 12:18:13 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:48:26 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int		create_image(t_all **all)
 	(*all)->bonus.loop++;
 	if ((*all)->img.ptr != NULL)
 	{
-		mlx_destroy_image((*all)->mlx_ptr, (*all)->img.ptr);
-		mlx_clear_window((*all)->mlx_ptr, (*all)->win_ptr);
+		mlx_destroy_image((*all)->mlx, (*all)->img.ptr);
+		mlx_clear_window((*all)->mlx, (*all)->win);
 		(*all)->img.ptr = NULL;
 	}
-	(*all)->img.ptr = mlx_new_image((*all)->mlx_ptr, (*all)->r[X],
+	(*all)->img.ptr = mlx_new_image((*all)->mlx, (*all)->r[X],
 					(*all)->r[Y]);
 	(*all)->img.bpp = 32;
 	(*all)->img.size_line = (*all)->r[X] * 4;
@@ -32,7 +32,7 @@ int		create_image(t_all **all)
 	(*all)->screen.column = 0;
 	draw_wall(all);
 	draw_sprite(all, &(*all)->sp);
-	mlx_put_image_to_window((*all)->mlx_ptr, (*all)->win_ptr,
+	mlx_put_image_to_window((*all)->mlx, (*all)->win,
 		(*all)->img.ptr, 0, 0);
 	return (NO_ERR);
 }

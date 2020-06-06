@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:30:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/05 15:24:12 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:07:25 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,12 @@ int			parse_res(t_all **all, char *line)
 	return (read_file(all));
 }
 
-void	init_player_pos(t_all **all, char *line, int i, int j)
+void		init_player_pos(t_all **all, char *line, int i, int j)
 {
 	if (i > 3 && i < 8)
 	{
-		(*all)->player.map[X] = j + 0.5;
-		(*all)->player.map[Y] = (*all)->map_size + 0.5;
+		(*all)->player.pos[X] = j + 0.5;
+		(*all)->player.pos[Y] = (*all)->map_size + 0.5;
 		(*all)->player.start_o = line[j];
 		(*all)->player.start_pos++;
 	}

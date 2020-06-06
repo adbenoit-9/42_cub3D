@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:46:47 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 16:57:47 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:07:25 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void		raycast_sprite(t_all **all, t_sprite *sp, t_img *sp_img)
 	int		i;
 
 	i = sp->index;
-	sp->pos[i][X] = sp->coor[i][X] - (*all)->player.map[X];
-	sp->pos[i][Y] = sp->coor[i][Y] - (*all)->player.map[Y];
+	sp->pos[i][X] = sp->coor[i][X] - (*all)->player.pos[X];
+	sp->pos[i][Y] = sp->coor[i][Y] - (*all)->player.pos[Y];
 	sp->transf[X] = (*all)->invdet * ((*all)->player.dir[Y] * sp->pos[i][X] -
 					(*all)->player.dir[X] * sp->pos[i][Y]);
 	sp->transf[Y] = (*all)->invdet * ((*all)->screen.plane[X] * sp->pos[i][Y] -

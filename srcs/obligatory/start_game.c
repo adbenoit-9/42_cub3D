@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 17:43:24 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/31 18:05:28 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/06 22:48:26 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	start_game(t_all **all)
 {
-	if (!((*all)->mlx_ptr = mlx_init()))
+	if (!((*all)->mlx = mlx_init()))
 		exit_error(all, NULL, MLX_ERR);
-	if (!((*all)->win_ptr = mlx_new_window((*all)->mlx_ptr,
+	if (!((*all)->win = mlx_new_window((*all)->mlx,
 					(*all)->r[X], (*all)->r[Y], "Cub3D")))
 		exit_error(all, NULL, MLX_ERR);
 	finish_init(all, &(*all)->sp);

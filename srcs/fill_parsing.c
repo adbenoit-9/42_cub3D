@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_parsing.c                                         :+:      :+:    :+:   */
+/*   fill_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 14:42:10 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/30 18:35:01 by adbenoit         ###   ########.fr       */
+/*   Created: 2020/06/05 16:10:10 by adbenoit          #+#    #+#             */
+/*   Updated: 2020/06/05 16:11:11 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	fill_map(char *line, t_all **all)
 		exit_error(all, line, MAL_ERR);
 	while (line[i])
 	{
-		set_sprite_coor(all, line,  i);
+		set_sprite_coor(all, line, i);
 		(*all)->map[(*all)->map_size - 1][i] = line[i];
 		i++;
 	}
@@ -62,12 +62,11 @@ int	fill_res(char *line, int *i, int max)
 	j -= *i;
 	if (!(x = malloc(sizeof(char) * (j + 1))))
 		return (-1);
-	j = 0;
+	j = -1;
 	while (line[*i] >= '0' && line[*i] <= '9')
 	{
-		x[j] = line[*i];
+		x[++j] = line[*i];
 		(*i)++;
-		j++;
 	}
 	x[j] = 0;
 	while (line[*i] == ' ')
