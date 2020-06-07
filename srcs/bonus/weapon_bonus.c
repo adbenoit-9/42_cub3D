@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:22:03 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 23:39:38 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 23:47:41 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,22 @@ static int	init_draw_weapon(t_all **all, t_draw *draw)
 void		draw_weapon(t_all **all, t_tab_img *weap)
 {
 	t_draw	draw;
-	int		pull;
+	int		state;
 	int		col;
 	int		i;
 
-	pull = init_draw_weapon(all, &draw);
+	state = init_draw_weapon(all, &draw);
 	while (++draw.start[X] < draw.end[X])
 	{
 		draw.index[Y] = 0;
-		draw.pix[X] = draw.index[X] * weap->dim[pull][X] / draw.w;
+		draw.pix[X] = draw.index[X] * weap->dim[state][X] / draw.w;
 		draw.start[Y] = (*all)->r[Y] - draw.h - 1;
 		draw.end[Y] = draw.start[Y] + draw.h + 1;
 		while (++draw.start[Y] < draw.end[Y])
 		{
-			draw.pix[Y] = draw.index[Y] * weap->dim[pull][Y]
+			draw.pix[Y] = draw.index[Y] * weap->dim[state][Y]
 				/ draw.h;
-			col = weap->data[pull][(int)(weap->dim
+			col = weap->data[state][(int)(weap->dim
 					[pull][X] * draw.pix[Y] + draw.pix[X])];
 			i = draw.start[X] + (*all)->r[X] * draw.start[Y];
 			if (col != -16777216)

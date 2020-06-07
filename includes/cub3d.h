@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:15:00 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/06 23:08:46 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 23:49:51 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void			set_wall_side(t_all **all);
 void			draw_sprite(t_all **all, t_sprite *sp);
 void			load_image(t_all **all, t_img *img, char *path);
 void			load_tab_of_image(t_all **all, t_tab_img *img, char **path,
-                int start_game);
+				int start_game);
 void			raycast_sprite(t_all **all, t_sprite *sp, t_img *sp_img);
 void			draw_wall_pixel(t_all **all, t_tab_img *text, int i);
 void			save_bmp(t_all **all);
