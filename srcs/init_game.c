@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:27:48 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/06 22:48:26 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 17:47:45 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ static void	init_bonus(t_all **all)
 	i = 0;
 	while (i < 4)
 	{
-		(*all)->bonus.door.ptr[i] = NULL;
-		(*all)->bonus.weap.ptr[i] = NULL;
+		(*all)->bonus.door.img.ptr[i] = NULL;
+		(*all)->bonus.weap.img.ptr[i] = NULL;
 		i++;
 	}
 	(*all)->bonus.heart.ptr = NULL;
-	(*all)->bonus.dead.ptr = NULL;
-	(*all)->bonus.win.ptr = NULL;
+	(*all)->bonus.lose_game.ptr = NULL;
+	(*all)->bonus.win_game.ptr = NULL;
 	(*all)->bonus.foe = 0;
 	(*all)->bonus.map_c = 0;
 }
@@ -81,10 +81,10 @@ void		finish_init(t_all **all, t_sprite *sp)
 {
 	int i;
 
-	(*all)->bonus.loop = 0;
-	(*all)->bonus.col = 0;
+	(*all)->bonus.loop[0]= 0;
+	(*all)->bonus.hurt = 0;
 	(*all)->bonus.life = 5;
-	(*all)->bonus.pull = 3;
+	(*all)->bonus.weap.state = 3;
 	if (!((*all)->wall.dist = malloc(sizeof(double) * (*all)->r[X])))
 		exit_error(all, NULL, MAL_ERR);
 	if (!(sp->pos = malloc(sizeof(double *) * sp->count)))

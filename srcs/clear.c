@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:56:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/06 22:48:26 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 17:29:24 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	clear_textures(t_all **all)
 	{
 		if ((*all)->text.ptr[i])
 			mlx_destroy_image((*all)->mlx, (*all)->text.ptr[i]);
-		if ((*all)->bonus.door.ptr[i])
-			mlx_destroy_image((*all)->mlx, (*all)->bonus.door.ptr[i]);
-		if ((*all)->bonus.weap.ptr[i])
-			mlx_destroy_image((*all)->mlx, (*all)->bonus.weap.ptr[i]);
+		if ((*all)->bonus.door.img.ptr[i])
+			mlx_destroy_image((*all)->mlx, (*all)->bonus.door.img.ptr[i]);
+		if ((*all)->bonus.weap.img.ptr[i])
+			mlx_destroy_image((*all)->mlx, (*all)->bonus.weap.img.ptr[i]);
 		i++;
 	}
 }
@@ -49,10 +49,10 @@ void	clear_bonus(t_all **all)
 {
 	if ((*all)->bonus.heart.ptr)
 		mlx_destroy_image((*all)->mlx, (*all)->bonus.heart.ptr);
-	if ((*all)->bonus.dead.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->bonus.dead.ptr);
-	if ((*all)->bonus.win.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->bonus.win.ptr);
+	if ((*all)->bonus.lose_game.ptr)
+		mlx_destroy_image((*all)->mlx, (*all)->bonus.lose_game.ptr);
+	if ((*all)->bonus.win_game.ptr)
+		mlx_destroy_image((*all)->mlx, (*all)->bonus.win_game.ptr);
 	free_tab_nb((void **)(*all)->bonus.path, NB_BON);
 }
 

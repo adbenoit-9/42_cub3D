@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 13:21:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/06 22:07:25 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 17:52:25 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_wall(t_all **all, t_wall *w)
 {
 	w->pos[X] = (int)(*all)->player.pos[X];
 	w->pos[Y] = (int)(*all)->player.pos[Y];
-	w->camx = 2 * (*all)->screen.column / (double)((*all)->r[X]) - 1;
+	w->camx = 2 * (*all)->screen.x / (double)((*all)->r[X]) - 1;
 	w->raydir[X] = (*all)->player.dir[X] + (*all)->screen.plane[X] * w->camx;
 	w->raydir[Y] = (*all)->player.dir[Y] + (*all)->screen.plane[Y] * w->camx;
 	w->delta_dist[X] = 0;

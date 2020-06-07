@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:17:17 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 21:36:04 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 16:32:27 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_key_press(int key, t_all **all)
 	if (key == KEY_D && (*all)->bonus.life != 0 && (*all)->bonus.foe != 0)
 		(*all)->key.d = TRUE;
 	if (key == KEY_F && (*all)->bonus.life != 0 && (*all)->bonus.foe != 0)
-		open_door(all);
+		deal_door(all);
 	return (NO_ERR);
 }
 

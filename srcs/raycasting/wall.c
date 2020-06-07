@@ -6,27 +6,29 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 17:15:32 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/06 22:07:25 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 17:52:25 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void static	init_drawing(t_all **all, int *start, int *end, t_tab_img *t)
+void	init_drawing(t_all **all, int *start, int *end, t_tab_img *t)
 {
 	int i;
 
-	i = (*all)->screen.column;
+	i = (*all)->screen.x;
 	(*all)->wall.dist[i] = set_wall_dist(all, &(*all)->wall);
 	if ((*all)->wall.side % 2 == 0)
-		(*all)->wall.hit = (*all)->player.pos[Y] + (*all)->wall.dist[i] * (*all)->wall.raydir[Y];
+		(*all)->wall.hit = (*all)->player.pos[Y] + (*all)->wall.dist[i]
+							* (*all)->wall.raydir[Y];
 	else
-		(*all)->wall.hit = (*all)->player.pos[X] + (*all)->wall.dist[i] * (*all)->wall.raydir[X];
+		(*all)->wall.hit = (*all)->player.pos[X] + (*all)->wall.dist[i] *
+							(*all)->wall.raydir[X];
 	(*all)->wall.hit -= (int)(*all)->wall.hit;
 	t->pix[X] = (int)((*all)->wall.hit * (double)t->dim[(*all)->wall.side][X]);
-	if((*all)->wall.side == 0 && (*all)->wall.raydir[X] > 0)
+	if ((*all)->wall.side == 0 && (*all)->wall.raydir[X] > 0)
 		t->pix[X] = t->dim[(*all)->wall.side][X] - t->pix[X] - 1;
-	if((*all)->wall.side == 1 && (*all)->wall.raydir[Y] < 0)
+	if ((*all)->wall.side == 1 && (*all)->wall.raydir[Y] < 0)
 		t->pix[X] = t->dim[(*all)->wall.side][X] - t->pix[X] - 1;
 	(*all)->wall.slice_h = (*all)->r[Y] / (*all)->wall.dist[i];
 	*start = -1 * (*all)->wall.slice_h / 2 + (*all)->r[Y] / 2;
@@ -37,7 +39,7 @@ void static	init_drawing(t_all **all, int *start, int *end, t_tab_img *t)
 		*end = (*all)->r[Y] - 1;
 }
 
-void		draw_wall_pixel(t_all **all, t_tab_img *text, int i)
+void	draw_wall_pixel(t_all **all, t_tab_img *text, int i)
 {
 	int		end;
 	int		start;
@@ -50,28 +52,29 @@ void		draw_wall_pixel(t_all **all, t_tab_img *text, int i)
 	pix = (start - (*all)->r[Y] / 2 + (*all)->wall.slice_h / 2) * step;
 	k = -1;
 	while (++k < start)
-		(*all)->img.data[i + (*all)->r[X] * k] = (*all)->c + (*all)->bonus.col;
+		(*all)->img.data[i + (*all)->r[X] * k] = (*all)->c + (*all)->bonus.hurt;
 	while (start < end)
 	{
 		text->pix[Y] = (int)pix;
 		pix += step;
-		(*all)->img.data[i + (*all)->r[X] * start] = text->data[(*all)->wall.side]
-			[(int)(text->dim[(*all)->wall.side][X] * text->pix[Y] + text->pix[X])] + (*all)->bonus.col;
+		(*all)->img.data[i + (*all)->r[X] * start] =
+			text->data[(*all)->wall.side][(int)(text->dim[(*all)->wall.side][X]
+			* text->pix[Y] + text->pix[X])] + (*all)->bonus.hurt;
 		start++;
 	}
 	k = start - 1;
 	while (++k < (*all)->r[Y])
-		(*all)->img.data[i + (*all)->r[X] * k] = (*all)->f + (*all)->bonus.col;
+		(*all)->img.data[i + (*all)->r[X] * k] = (*all)->f + (*all)->bonus.hurt;
 }
 
 void	draw_wall(t_all **all)
 {
-	while ((*all)->screen.column < (*all)->r[X])
+	while ((*all)->screen.x < (*all)->r[X])
 	{
 		init_wall(all, &(*all)->wall);
 		set_side_dist(all, &(*all)->wall);
 		set_wall_side(all);
-		draw_wall_pixel(all, &(*all)->text, (*all)->screen.column);
-		(*all)->screen.column++;
+		draw_wall_pixel(all, &(*all)->text, (*all)->screen.x);
+		(*all)->screen.x++;
 	}
 }

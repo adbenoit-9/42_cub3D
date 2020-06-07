@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:19:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/06 22:07:25 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 17:47:27 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		restart_game(t_all **all)
 	init_player(all, (*all)->player.start_o);
 	(*all)->screen.plane[X] = ((*all)->player.dir[X] == 0) ? 0.66 : 0;
 	(*all)->screen.plane[Y] = ((*all)->player.dir[Y] == 0) ? 0.66 : 0;
-	(*all)->bonus.col = 0;
+	(*all)->bonus.hurt = 0;
 	(*all)->bonus.life = 5;
 	(*all)->bonus.map_c = 0;
 	i = 0;

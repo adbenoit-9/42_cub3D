@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:14:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/06 22:57:38 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 17:52:52 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct	s_screen
 {
 	double	plane[2];
 	double	old_plane[2];
-	int		column;
+	int		x;
 
 }				t_screen;
 
@@ -137,26 +137,39 @@ typedef struct	s_key
 	int f;
 }				t_key;
 
+typedef struct	s_door
+{
+	t_tab_img	img;
+	char		tmp;
+	int			side;
+	int			dir[2];
+
+}				t_door;
+
+typedef struct	s_weap
+{
+	t_tab_img	img;
+	char		state;
+
+}				t_weap;
+
 typedef struct	s_bonus
 {
-	int				loop;
-	int				loop2;
-	t_tab_img		weap;
-	t_tab_img		door;
-	char			door_tmp;
-	char			map_c;
-	int				door_side;
-	char			**path;
-	int				pull;
-	int				life;
-	int				mm_dim;
-	t_img			heart;
-	t_sprite		s1;
-	t_sprite		sa;
-	t_img			dead;
-	t_img			win;
-	int				foe;
-	int				col;
+	int			loop[2];
+	t_weap		weap;
+	t_door		door;
+	char		map_c;
+	char		**path;
+	int			pull;
+	int			life;
+	int			mm_dim;
+	t_img		heart;
+	t_sprite	s1;
+	t_sprite	sa;
+	t_img		lose_game;
+	t_img		win_game;
+	int			foe;
+	int			hurt;
 }				t_bonus;
 
 typedef struct	s_all

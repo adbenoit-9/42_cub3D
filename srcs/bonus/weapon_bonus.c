@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:22:03 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/05 15:59:48 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 18:21:20 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ static void	pull_weapon(t_all **all)
 
 	if ((*all)->key.space == TRUE)
 	{
-		(*all)->bonus.loop = 0;
-		(*all)->bonus.pull = -1;
+		(*all)->bonus.loop[0] = 0;
+		(*all)->bonus.weap.state = -1;
 	}
-	if ((*all)->bonus.pull < 3 && (*all)->bonus.loop ==
-							((*all)->bonus.pull + 1) * 4)
-		(*all)->bonus.pull++;
+	if ((*all)->bonus.weap.state < 3 && (*all)->bonus.loop[0] ==
+							((*all)->bonus.weap.state + 1) * 4)
+		(*all)->bonus.weap.state++;
 	i = -1;
 	while (++i < (*all)->sp.count)
 	{
-		if ((*all)->bonus.pull == 1 && (*all)->sp.see[i] == TRUE &&
+		if ((*all)->bonus.weap.state == 1 && (*all)->sp.see[i] == TRUE &&
 			(*all)->sp.type[i] == OBJ1 && (*all)->sp.dead[i] == FALSE)
 		{
 			(*all)->bonus.foe--;
@@ -38,7 +38,7 @@ static void	pull_weapon(t_all **all)
 		}
 	}
 	if ((*all)->bonus.foe == 0)
-		draw_replay(all, &(*all)->bonus.win, 1, 1);
+		draw_replay(all, &(*all)->bonus.win_game, 1, 1);
 }
 
 static int	init_draw_weapon(t_all **all, t_draw *draw)
@@ -50,10 +50,10 @@ static int	init_draw_weapon(t_all **all, t_draw *draw)
 	draw->end[X] = draw->start[X] + draw->w;
 	draw->index[X] = 0;
 	draw->start[X]--;
-	return ((*all)->bonus.pull);
+	return ((*all)->bonus.weap.state);
 }
 
-void		draw_weapon(t_all **all)
+void		draw_weapon(t_all **all, t_tab_img *weap)
 {
 	t_draw	draw;
 	int		pull;
@@ -64,14 +64,14 @@ void		draw_weapon(t_all **all)
 	while (++draw.start[X] < draw.end[X])
 	{
 		draw.index[Y] = 0;
-		draw.pix[X] = draw.index[X] * (*all)->bonus.weap.dim[pull][X] / draw.w;
+		draw.pix[X] = draw.index[X] * weap->dim[pull][X] / draw.w;
 		draw.start[Y] = (*all)->r[Y] - draw.h - 1;
 		draw.end[Y] = draw.start[Y] + draw.h + 1;
 		while (++draw.start[Y] < draw.end[Y])
 		{
-			draw.pix[Y] = draw.index[Y] * (*all)->bonus.weap.dim[pull][Y]
+			draw.pix[Y] = draw.index[Y] * weap->dim[pull][Y]
 				/ draw.h;
-			col = (*all)->bonus.weap.data[pull][(int)((*all)->bonus.weap.dim
+			col = weap->data[pull][(int)(weap->dim
 					[pull][X] * draw.pix[Y] + draw.pix[X])];
 			i = draw.start[X] + (*all)->r[X] * draw.start[Y];
 			if (col != -16777216)

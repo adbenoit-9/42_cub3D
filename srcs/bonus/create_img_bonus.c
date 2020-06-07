@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:16:38 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/06 22:52:31 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 18:21:47 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	ray_casting(t_all **all)
 {
-	(*all)->screen.column = 0;
+	(*all)->screen.x = 0;
 	ft_move(all);
 	draw_door(all);
 	draw_all_sprites(all, &(*all)->sp);
-	draw_weapon(all);
+	draw_weapon(all, (*all)->weap.img);
 	draw_mini_map(all);
 	draw_hearts(all);
 }
@@ -27,8 +27,8 @@ int			create_image(t_all **all)
 {
 	int i;
 
-	(*all)->bonus.loop2++;
-	(*all)->bonus.loop++;
+	(*all)->bonus.loop[1]++;
+	(*all)->bonus.loop[0]++;
 	if ((*all)->img.ptr != NULL)
 	{
 		mlx_destroy_image((*all)->mlx, (*all)->img.ptr);

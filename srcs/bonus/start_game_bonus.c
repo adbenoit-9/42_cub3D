@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:21:45 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/06 22:48:26 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 17:29:24 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	start_game(t_all **all)
 	(*all)->screen.plane[X] = ((*all)->player.dir[X] == 0) ? 0.66 : 0;
 	(*all)->screen.plane[Y] = ((*all)->player.dir[Y] == 0) ? 0.66 : 0;
 	load_tab_of_image(all, &(*all)->text, (*all)->path, 0);
-	load_tab_of_image(all, &(*all)->bonus.weap, (*all)->bonus.path, 0);
-	load_tab_of_image(all, &(*all)->bonus.door, (*all)->bonus.path, DN);
+	load_tab_of_image(all, &(*all)->bonus.weap.img, (*all)->bonus.path, 0);
+	load_tab_of_image(all, &(*all)->bonus.door.img, (*all)->bonus.path, DN);
 	load_image(all, &(*all)->sp.img, (*all)->path[S]);
 	load_image(all, &(*all)->bonus.s1.img, (*all)->bonus.path[S1]);
 	load_image(all, &(*all)->bonus.sa.img, (*all)->bonus.path[SA]);
 	load_image(all, &(*all)->bonus.heart, (*all)->bonus.path[LIFE]);
-	load_image(all, &(*all)->bonus.dead, (*all)->bonus.path[LOSE]);
-	load_image(all, &(*all)->bonus.win, (*all)->bonus.path[WIN]);
+	load_image(all, &(*all)->bonus.lose_game, (*all)->bonus.path[LOSE]);
+	load_image(all, &(*all)->bonus.win_game, (*all)->bonus.path[WIN]);
 	create_image(all);
 	if ((*all)->save == TRUE)
 		save_bmp(all);
