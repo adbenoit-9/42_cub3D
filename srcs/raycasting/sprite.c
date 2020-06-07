@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:46:47 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 17:47:27 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 23:06:04 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	draw_sprite_pixel(t_all **all, t_sprite *sp, t_img *s_im, int *end)
 						s_im->dim[Y]) / sp->h) / 256;
 			if (s_im->data[(int)(s_im->dim[X] * px[Y] + px[X])] != -16777216)
 				(*all)->img.data[s[X] + (*all)->r[X] * s[Y]] = s_im->data[(int)
-							(s_im->dim[X] * px[Y] + px[X])] + (*all)->bonus.hurt;
+						(s_im->dim[X] * px[Y] + px[X])] + (*all)->bonus.hurt;
 			s[Y]++;
 		}
 	}

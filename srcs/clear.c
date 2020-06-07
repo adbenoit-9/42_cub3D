@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:56:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 17:29:24 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 23:28:22 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	clear_bonus(t_all **all)
 void	clear_utils(t_all **all)
 {
 	free_tab_char((*all)->map);
-	free_tab_nb((void **)(*all)->path, 4);
+	free_tab_nb((void **)(*all)->path, 5);
 	free((*all)->wall.dist);
 	if ((*all)->img.ptr)
 		mlx_destroy_image((*all)->mlx, (*all)->img.ptr);

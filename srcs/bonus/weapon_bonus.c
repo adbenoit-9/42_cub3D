@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:22:03 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 18:21:20 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 23:39:38 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ static void	pull_weapon(t_all **all)
 			break ;
 		}
 	}
-	if ((*all)->bonus.foe == 0)
-		draw_replay(all, &(*all)->bonus.win_game, 1, 1);
 }
 
 static int	init_draw_weapon(t_all **all, t_draw *draw)

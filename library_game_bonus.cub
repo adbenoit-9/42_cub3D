@@ -1,4 +1,4 @@
-R 150000 700000
+R 1900 1000
 NO ./xpm/library_game/planks_oak.xpm
 SO ./xpm/library_game/planks_oak.xpm
 WE ./xpm/library_game/bookshelf.xpm

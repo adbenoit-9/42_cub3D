@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:16:38 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 18:21:47 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 23:40:11 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ static void	ray_casting(t_all **all)
 	ft_move(all);
 	draw_door(all);
 	draw_all_sprites(all, &(*all)->sp);
-	draw_weapon(all, (*all)->weap.img);
+	draw_weapon(all, &(*all)->bonus.weap.img);
 	draw_mini_map(all);
 	draw_hearts(all);
+	if ((*all)->bonus.foe == 0)
+		draw_replay(all, &(*all)->bonus.win_game, 1, 1);
 }
 
 int			create_image(t_all **all)

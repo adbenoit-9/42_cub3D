@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:19:45 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 18:17:50 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 23:17:35 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ void		draw_door(t_all **all)
 {
 	char type;
 
-	if (!((*all)->wall.dist = malloc(sizeof(double) * (*all)->r[X])))
-		exit_error(all, NULL, MAL_ERR);
 	while ((*all)->screen.x < (*all)->r[X])
 	{
 		init_wall(all, &(*all)->wall);

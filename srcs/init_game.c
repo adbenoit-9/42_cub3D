@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:27:48 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 17:47:45 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 23:10:20 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void		finish_init(t_all **all, t_sprite *sp)
 {
 	int i;
 
-	(*all)->bonus.loop[0]= 0;
+	(*all)->bonus.loop[0] = 0;
 	(*all)->bonus.hurt = 0;
 	(*all)->bonus.life = 5;
 	(*all)->bonus.weap.state = 3;

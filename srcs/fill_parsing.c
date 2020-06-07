@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 16:10:10 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/05 16:11:11 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/07 23:28:15 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	fill_res(char *line, int *i, int max)
 		x[++j] = line[*i];
 		(*i)++;
 	}
-	x[j] = 0;
+	x[j + 1] = 0;
 	while (line[*i] == ' ')
 		(*i)++;
 	if (line[*i] < '0' && line[*i] > '9')
