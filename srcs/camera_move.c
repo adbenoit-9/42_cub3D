@@ -6,56 +6,56 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:35:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 16:36:02 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 14:39:06 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_turnleft(t_all **all)
+void	ft_turnleft(t_game **game)
 {
-	(*all)->player.old_dir[X] = (*all)->player.dir[X];
-	(*all)->player.dir[X] = (*all)->player.dir[X] * cos(ROTSPEED * -1) -
-							(*all)->player.dir[Y] * sin(ROTSPEED * -1);
-	(*all)->player.dir[Y] = (*all)->player.old_dir[X] * sin(ROTSPEED * -1) +
-							(*all)->player.dir[Y] * cos(ROTSPEED * -1);
-	(*all)->screen.old_plane[X] = (*all)->screen.plane[X];
-	(*all)->screen.plane[X] = (*all)->screen.plane[X] * cos(ROTSPEED * -1) -
-								(*all)->screen.plane[Y] * sin(ROTSPEED * -1);
-	(*all)->screen.plane[Y] = (*all)->screen.old_plane[X] * sin(ROTSPEED * -1) +
-								(*all)->screen.plane[Y] * cos(ROTSPEED * -1);
+	(*game)->player.old_dir[X] = (*game)->player.dir[X];
+	(*game)->player.dir[X] = (*game)->player.dir[X] * cos(ROTSPEED * -1) -
+							(*game)->player.dir[Y] * sin(ROTSPEED * -1);
+	(*game)->player.dir[Y] = (*game)->player.old_dir[X] * sin(ROTSPEED * -1) +
+							(*game)->player.dir[Y] * cos(ROTSPEED * -1);
+	(*game)->screen.old_plane[X] = (*game)->screen.plane[X];
+	(*game)->screen.plane[X] = (*game)->screen.plane[X] * cos(ROTSPEED * -1) -
+								(*game)->screen.plane[Y] * sin(ROTSPEED * -1);
+	(*game)->screen.plane[Y] = (*game)->screen.old_plane[X] * sin(ROTSPEED * -1) +
+								(*game)->screen.plane[Y] * cos(ROTSPEED * -1);
 }
 
-void	ft_turnright(t_all **all)
+void	ft_turnright(t_game **game)
 {
-	(*all)->player.old_dir[X] = (*all)->player.dir[X];
-	(*all)->player.dir[X] = (*all)->player.dir[X] * cos(ROTSPEED) -
-							(*all)->player.dir[Y] * sin(ROTSPEED);
-	(*all)->player.dir[Y] = (*all)->player.old_dir[X] * sin(ROTSPEED) +
-							(*all)->player.dir[Y] * cos(ROTSPEED);
-	(*all)->screen.old_plane[X] = (*all)->screen.plane[X];
-	(*all)->screen.plane[X] = (*all)->screen.plane[X] * cos(ROTSPEED) -
-								(*all)->screen.plane[Y] * sin(ROTSPEED);
-	(*all)->screen.plane[Y] = (*all)->screen.old_plane[X] * sin(ROTSPEED) +
-								(*all)->screen.plane[Y] * cos(ROTSPEED);
+	(*game)->player.old_dir[X] = (*game)->player.dir[X];
+	(*game)->player.dir[X] = (*game)->player.dir[X] * cos(ROTSPEED) -
+							(*game)->player.dir[Y] * sin(ROTSPEED);
+	(*game)->player.dir[Y] = (*game)->player.old_dir[X] * sin(ROTSPEED) +
+							(*game)->player.dir[Y] * cos(ROTSPEED);
+	(*game)->screen.old_plane[X] = (*game)->screen.plane[X];
+	(*game)->screen.plane[X] = (*game)->screen.plane[X] * cos(ROTSPEED) -
+								(*game)->screen.plane[Y] * sin(ROTSPEED);
+	(*game)->screen.plane[Y] = (*game)->screen.old_plane[X] * sin(ROTSPEED) +
+								(*game)->screen.plane[Y] * cos(ROTSPEED);
 }
 
-void	ft_move(t_all **all)
+void	ft_move(t_game **game)
 {
-	if ((*all)->player.start_o == NORTH || (*all)->player.start_o == EAST)
+	if ((*game)->player.start_o == NORTH || (*game)->player.start_o == EAST)
 	{
-		(*all)->key.left == TRUE ? ft_turnleft(all) : FALSE;
-		(*all)->key.right == TRUE ? ft_turnright(all) : FALSE;
-		(*all)->key.a == TRUE ? ft_leftward(all, &(*all)->player) : FALSE;
-		(*all)->key.d == TRUE ? ft_rightward(all, &(*all)->player) : FALSE;
+		(*game)->key.left == TRUE ? ft_turnleft(game) : FALSE;
+		(*game)->key.right == TRUE ? ft_turnright(game) : FALSE;
+		(*game)->key.a == TRUE ? ft_leftward(game, &(*game)->player) : FALSE;
+		(*game)->key.d == TRUE ? ft_rightward(game, &(*game)->player) : FALSE;
 	}
 	else
 	{
-		(*all)->key.right == TRUE ? ft_turnleft(all) : FALSE;
-		(*all)->key.left == TRUE ? ft_turnright(all) : FALSE;
-		(*all)->key.d == TRUE ? ft_leftward(all, &(*all)->player) : FALSE;
-		(*all)->key.a == TRUE ? ft_rightward(all, &(*all)->player) : FALSE;
+		(*game)->key.right == TRUE ? ft_turnleft(game) : FALSE;
+		(*game)->key.left == TRUE ? ft_turnright(game) : FALSE;
+		(*game)->key.d == TRUE ? ft_leftward(game, &(*game)->player) : FALSE;
+		(*game)->key.a == TRUE ? ft_rightward(game, &(*game)->player) : FALSE;
 	}
-	(*all)->key.w == TRUE ? ft_forward(all, &(*all)->player) : FALSE;
-	(*all)->key.s == TRUE ? ft_backward(all, &(*all)->player) : FALSE;
+	(*game)->key.w == TRUE ? ft_forward(game, &(*game)->player) : FALSE;
+	(*game)->key.s == TRUE ? ft_backward(game, &(*game)->player) : FALSE;
 }

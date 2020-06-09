@@ -6,70 +6,70 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:16:52 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 17:53:46 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:26:07 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-static void	set_open_dir(t_all **all, int *open_dirx, int *open_diry)
+static void	set_open_dir(t_game **game, int *open_dirx, int *open_diry)
 {
-	if ((*all)->wall.side == NO)
+	if ((*game)->wall.side == NO)
 	{
 		*open_dirx = 1;
 		*open_diry = -1;
 	}
-	else if ((*all)->wall.side == EA)
+	else if ((*game)->wall.side == EA)
 	{
 		*open_dirx = 1;
 		*open_diry = -1;
 	}
-	else if ((*all)->wall.side == SO)
+	else if ((*game)->wall.side == SO)
 	{
 		*open_dirx = 1;
 		*open_diry = 1;
 	}
-	else if ((*all)->wall.side == WE)
+	else if ((*game)->wall.side == WE)
 	{
 		*open_dirx = -1;
 		*open_diry = -1;
 	}
 }
 
-static void	set_open_side(t_all **all)
+static void	set_open_side(t_game **game)
 {
-	if ((*all)->wall.side == NO)
-		(*all)->bonus.door.side = EA;
-	else if ((*all)->wall.side == SO)
-		(*all)->bonus.door.side = EA;
-	else if ((*all)->wall.side == EA)
-		(*all)->bonus.door.side = NO;
-	else if ((*all)->wall.side == WE)
-		(*all)->bonus.door.side = NO;
+	if ((*game)->wall.side == NO)
+		(*game)->door.side = EA;
+	else if ((*game)->wall.side == SO)
+		(*game)->door.side = EA;
+	else if ((*game)->wall.side == EA)
+		(*game)->door.side = NO;
+	else if ((*game)->wall.side == WE)
+		(*game)->door.side = NO;
 }
 
-void		deal_door(t_all **all)
+void		deal_door(t_game **game)
 {
 	int x;
 	int y;
 	int door_dir[2];
 	int	open_dir[2];
 
-	door_dir[X] = (*all)->bonus.door.dir[X];
-	door_dir[Y] = (*all)->bonus.door.dir[Y];
-	set_open_dir(all, &open_dir[X], &open_dir[Y]);
-	x = (*all)->player.pos[X];
-	y = (*all)->player.pos[Y];
-	if ((*all)->map[y + door_dir[Y]][x + door_dir[X]] == OPEN)
+	door_dir[X] = (*game)->door.dir[X];
+	door_dir[Y] = (*game)->door.dir[Y];
+	set_open_dir(game, &open_dir[X], &open_dir[Y]);
+	x = (*game)->player.pos[X];
+	y = (*game)->player.pos[Y];
+	if ((*game)->map[y + door_dir[Y]][x + door_dir[X]] == OPEN)
 	{
-		(*all)->map[y + door_dir[Y]][x + door_dir[X]] = DOOR;
-		(*all)->map[y + open_dir[Y]][x + open_dir[X]] = (*all)->bonus.door.tmp;
+		(*game)->map[y + door_dir[Y]][x + door_dir[X]] = DOOR;
+		(*game)->map[y + open_dir[Y]][x + open_dir[X]] = (*game)->door.tmp;
 	}
-	else if ((*all)->map[y + door_dir[Y]][x + door_dir[X]] == DOOR)
+	else if ((*game)->map[y + door_dir[Y]][x + door_dir[X]] == DOOR)
 	{
-		set_open_side(all);
-		(*all)->map[y + door_dir[Y]][x + door_dir[X]] = OPEN;
-		(*all)->bonus.door.tmp = (*all)->map[y + open_dir[Y]][x + open_dir[X]];
-		(*all)->map[y + open_dir[Y]][x + open_dir[X]] = O_DOOR;
+		set_open_side(game);
+		(*game)->map[y + door_dir[Y]][x + door_dir[X]] = OPEN;
+		(*game)->door.tmp = (*game)->map[y + open_dir[Y]][x + open_dir[X]];
+		(*game)->map[y + open_dir[Y]][x + open_dir[X]] = O_DOOR;
 	}
 }

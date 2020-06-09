@@ -6,53 +6,53 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:19:45 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 23:17:35 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 23:04:04 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-static void	set_door_dir(t_all **all)
+static void	set_door_dir(t_game **game)
 {
-	if ((*all)->wall.side == NO)
+	if ((*game)->wall.side == NO)
 	{
-		(*all)->bonus.door.dir[X] = 0;
-		(*all)->bonus.door.dir[Y] = -1;
+		(*game)->door.dir[X] = 0;
+		(*game)->door.dir[Y] = -1;
 	}
-	else if ((*all)->wall.side == EA)
+	else if ((*game)->wall.side == EA)
 	{
-		(*all)->bonus.door.dir[X] = 1;
-		(*all)->bonus.door.dir[Y] = 0;
+		(*game)->door.dir[X] = 1;
+		(*game)->door.dir[Y] = 0;
 	}
-	else if ((*all)->wall.side == SO)
+	else if ((*game)->wall.side == SO)
 	{
-		(*all)->bonus.door.dir[X] = 0;
-		(*all)->bonus.door.dir[Y] = 1;
+		(*game)->door.dir[X] = 0;
+		(*game)->door.dir[Y] = 1;
 	}
-	else if ((*all)->wall.side == WE)
+	else if ((*game)->wall.side == WE)
 	{
-		(*all)->bonus.door.dir[X] = -1;
-		(*all)->bonus.door.dir[Y] = 0;
+		(*game)->door.dir[X] = -1;
+		(*game)->door.dir[Y] = 0;
 	}
 }
 
-static void	set_side_direction(t_all **all, t_wall *wall)
+static void	set_side_direction(t_game **game, t_wall *wall)
 {
 	if (wall->side_dist[X] < wall->side_dist[Y])
 	{
 		wall->side_dist[X] += wall->delta_dist[X];
 		wall->pos[X] += wall->step[X];
-		wall->side = wall->pos[X] < (*all)->player.pos[X] ? WE : EA;
+		wall->side = wall->pos[X] < (*game)->player.pos[X] ? WE : EA;
 	}
 	else
 	{
 		wall->side_dist[Y] += wall->delta_dist[Y];
 		wall->pos[Y] += wall->step[Y];
-		wall->side = wall->pos[Y] < (*all)->player.pos[Y] ? NO : SO;
+		wall->side = wall->pos[Y] < (*game)->player.pos[Y] ? NO : SO;
 	}
 }
 
-static char	set_wall_type(t_all **all, t_wall *wall)
+static char	set_wall_type(t_game **game, t_wall *wall)
 {
 	char	type;
 	int		set;
@@ -61,34 +61,36 @@ static char	set_wall_type(t_all **all, t_wall *wall)
 	set = 0;
 	while (type != WALL && type != DOOR && type != O_DOOR)
 	{
-		set_side_direction(all, wall);
-		type = (*all)->map[(int)wall->pos[Y]][(int)wall->pos[X]];
+		set_side_direction(game, wall);
+		type = (*game)->map[(int)wall->pos[Y]][(int)wall->pos[X]];
 		if (type == OPEN)
 		{
-			set_door_dir(all);
+			set_door_dir(game);
 			set = 1;
 		}
 	}
 	if (set == 0)
-		set_door_dir(all);
+		set_door_dir(game);
 	return (type);
 }
 
-void		draw_door(t_all **all)
+void		draw_door(t_game **game)
 {
-	char type;
+	char	type;
+	int		side;
 
-	while ((*all)->screen.x < (*all)->r[X])
+	while ((*game)->screen.x < (*game)->r[X])
 	{
-		init_wall(all, &(*all)->wall);
-		set_side_dist(all, &(*all)->wall);
-		type = set_wall_type(all, &(*all)->wall);
+		init_wall(game, &(*game)->wall);
+		set_side_dist(game, &(*game)->wall);
+		type = set_wall_type(game, &(*game)->wall);
+		side = (*game)->wall.side;
 		if (type == DOOR)
-			draw_wall_pixel(all, &(*all)->bonus.door.img, (*all)->screen.x);
-		else if (type == O_DOOR && (*all)->wall.side == (*all)->bonus.door.side)
-			draw_wall_pixel(all, &(*all)->bonus.door.img, (*all)->screen.x);
+			draw_wall_pixel(game, &(*game)->door.img, (*game)->screen.x, side);
+		else if (type == O_DOOR && side == (*game)->door.side)
+			draw_wall_pixel(game, &(*game)->door.img, (*game)->screen.x, side);
 		else
-			draw_wall_pixel(all, &(*all)->text, (*all)->screen.x);
-		(*all)->screen.x++;
+			draw_wall_pixel(game, &(*game)->text, (*game)->screen.x, side);
+		(*game)->screen.x++;
 	}
 }

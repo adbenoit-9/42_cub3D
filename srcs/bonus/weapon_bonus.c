@@ -6,74 +6,74 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:22:03 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 23:47:41 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:26:07 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-static void	pull_weapon(t_all **all)
+static void	pull_weapon(t_game **game)
 {
 	int i;
 
-	if ((*all)->key.space == TRUE)
+	if ((*game)->key.space == TRUE)
 	{
-		(*all)->bonus.loop[0] = 0;
-		(*all)->bonus.weap.state = -1;
+		(*game)->loop[0] = 0;
+		(*game)->weap.state = -1;
 	}
-	if ((*all)->bonus.weap.state < 3 && (*all)->bonus.loop[0] ==
-							((*all)->bonus.weap.state + 1) * 4)
-		(*all)->bonus.weap.state++;
+	if ((*game)->weap.state < 3 && (*game)->loop[0] ==
+							((*game)->weap.state + 1) * 4)
+		(*game)->weap.state++;
 	i = -1;
-	while (++i < (*all)->sp.count)
+	while (++i < (*game)->sp.count)
 	{
-		if ((*all)->bonus.weap.state == 1 && (*all)->sp.see[i] == TRUE &&
-			(*all)->sp.type[i] == OBJ1 && (*all)->sp.dead[i] == FALSE)
+		if ((*game)->weap.state == 1 && (*game)->sp.see[i] == TRUE &&
+			(*game)->sp.type[i] == OBJ1 && (*game)->sp.dead[i] == FALSE)
 		{
-			(*all)->bonus.foe--;
-			(*all)->sp.dead[i] = 1;
-			(*all)->map[(int)(*all)->sp.coor[i][Y]][(int)
-						(*all)->sp.coor[i][X]] = DEAD;
+			(*game)->nb_foe--;
+			(*game)->sp.dead[i] = 1;
+			(*game)->map[(int)(*game)->sp.coor[i][Y]][(int)
+						(*game)->sp.coor[i][X]] = DEAD;
 			break ;
 		}
 	}
 }
 
-static int	init_draw_weapon(t_all **all, t_draw *draw)
+static int	init_draw_weapon(t_game **game, t_draw *draw)
 {
-	pull_weapon(all);
-	draw->h = abs((int)((*all)->r[Y] / 3));
-	draw->w = abs((int)((*all)->r[Y] / 2));
-	draw->start[X] = (*all)->r[X] / 2 - draw->w / 2;
+	pull_weapon(game);
+	draw->h = abs((int)((*game)->r[Y] / 3));
+	draw->w = abs((int)((*game)->r[Y] / 2));
+	draw->start[X] = (*game)->r[X] / 2 - draw->w / 2;
 	draw->end[X] = draw->start[X] + draw->w;
 	draw->index[X] = 0;
 	draw->start[X]--;
-	return ((*all)->bonus.weap.state);
+	return ((*game)->weap.state);
 }
 
-void		draw_weapon(t_all **all, t_tab_img *weap)
+void		draw_weapon(t_game **game, t_tab_img *weap)
 {
 	t_draw	draw;
 	int		state;
 	int		col;
 	int		i;
 
-	state = init_draw_weapon(all, &draw);
+	state = init_draw_weapon(game, &draw);
 	while (++draw.start[X] < draw.end[X])
 	{
 		draw.index[Y] = 0;
 		draw.pix[X] = draw.index[X] * weap->dim[state][X] / draw.w;
-		draw.start[Y] = (*all)->r[Y] - draw.h - 1;
+		draw.start[Y] = (*game)->r[Y] - draw.h - 1;
 		draw.end[Y] = draw.start[Y] + draw.h + 1;
 		while (++draw.start[Y] < draw.end[Y])
 		{
 			draw.pix[Y] = draw.index[Y] * weap->dim[state][Y]
 				/ draw.h;
 			col = weap->data[state][(int)(weap->dim
-					[pull][X] * draw.pix[Y] + draw.pix[X])];
-			i = draw.start[X] + (*all)->r[X] * draw.start[Y];
+					[state][X] * draw.pix[Y] + draw.pix[X])];
+			i = draw.start[X] + (*game)->r[X] * draw.start[Y];
 			if (col != -16777216)
-				(*all)->img.data[i] = col;
+				(*game)->img.data[i] = col;
 			draw.index[Y]++;
 		}
 		draw.index[X]++;

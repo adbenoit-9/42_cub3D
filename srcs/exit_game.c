@@ -6,30 +6,30 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:11:18 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/31 17:31:50 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 14:39:06 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		exit_game(t_all **all)
+void		exit_game(t_game **game)
 {
-	clear_sprites(all);
-	clear_bonus(all);
-	clear_textures(all);
-	clear_utils(all);
+	clear_sprites(game);
+	clear_bonus(game);
+	clear_textures(game);
+	clear_utils(game);
 	write(1, "Game exit.\n", 11);
 	exit(EXIT_SUCCESS);
 }
 
-void		exit_error(t_all **all, char *line, char *err)
+void		exit_error(t_game **game, char *line, char *err)
 {
 	free(line);
 	line = NULL;
-	clear_sprites(all);
-	clear_bonus(all);
-	clear_textures(all);
-	clear_utils(all);
+	clear_sprites(game);
+	clear_bonus(game);
+	clear_textures(game);
+	clear_utils(game);
 	print_error(err);
 }
 

@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:45:49 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/06 22:07:25 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 14:37:22 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ void	sort_sprite(t_sprite *sp)
 	}
 }
 
-void	add_dist(t_all **all, t_sprite *sp, void (*sort)(t_sprite *))
+void	add_dist(t_game **game, t_sprite *sp, void (*sort)(t_sprite *))
 {
 	int i;
 
 	i = 0;
 	while (i < sp->count)
 	{
-		sp->dist[i] = pow((*all)->player.pos[X] - sp->coor[i][X], 2) +
-					pow((*all)->player.pos[Y] - sp->coor[i][Y], 2);
+		sp->dist[i] = pow((*game)->player.pos[X] - sp->coor[i][X], 2) +
+					pow((*game)->player.pos[Y] - sp->coor[i][Y], 2);
 		i++;
 	}
 	sort(sp);

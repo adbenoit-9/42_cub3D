@@ -6,48 +6,48 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 16:10:10 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 23:28:15 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 14:39:06 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	fill_path(char *line, t_all **all, int i)
+int	fill_path(char *line, t_game **game, int i)
 {
 	int j;
 
 	j = 0;
-	if ((*all)->path[i])
-		exit_error(all, line, IMG_ERR);
-	if (!((*all)->path[i] = ft_realloc((*all)->path[i], ft_strlen(line) + 1)))
-		exit_error(all, line, "MAL_ERR");
+	if ((*game)->path[i])
+		exit_error(game, line, IMG_ERR);
+	if (!((*game)->path[i] = ft_realloc((*game)->path[i], ft_strlen(line) + 1)))
+		exit_error(game, line, "MAL_ERR");
 	while (line[j])
 	{
-		(*all)->path[i][j] = line[j];
+		(*game)->path[i][j] = line[j];
 		j++;
 	}
-	(*all)->path[i][j] = 0;
+	(*game)->path[i][j] = 0;
 	free(line);
-	return (read_file(all));
+	return (read_file(game));
 }
 
-int	fill_map(char *line, t_all **all)
+int	fill_map(char *line, t_game **game)
 {
 	int i;
 
 	i = 0;
-	if (!((*all)->map[(*all)->map_size - 1] = malloc(sizeof(char)
+	if (!((*game)->map[(*game)->map_size - 1] = malloc(sizeof(char)
 									* (ft_strlen(line) + 1))))
-		exit_error(all, line, MAL_ERR);
+		exit_error(game, line, MAL_ERR);
 	while (line[i])
 	{
-		set_sprite_coor(all, line, i);
-		(*all)->map[(*all)->map_size - 1][i] = line[i];
+		set_sprite_coor(game, line, i);
+		(*game)->map[(*game)->map_size - 1][i] = line[i];
 		i++;
 	}
-	(*all)->map[(*all)->map_size - 1][i] = 0;
+	(*game)->map[(*game)->map_size - 1][i] = 0;
 	free(line);
-	return (read_file(all));
+	return (read_file(game));
 }
 
 int	fill_res(char *line, int *i, int max)

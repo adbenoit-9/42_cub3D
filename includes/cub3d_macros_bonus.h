@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:14:27 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/06 23:09:04 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:23:27 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define BON_W1 "W1 "
 # define BON_W2 "W2 "
 # define BON_W3 "W3 "
-# define BON_S1 "S1 "
-# define BON_SA "SA "
+# define BON_SF "SF "
+# define BON_SD "SD "
 # define BON_DN "DN "
 # define BON_DS "DS "
 # define BON_DE "DE "
@@ -33,8 +33,8 @@
 # define W1 1
 # define W2 2
 # define W3 3
-# define S1 4
-# define SA 5
+# define SF 4
+# define SD 5
 # define DN 6
 # define DS 7
 # define DE 8

@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:15:00 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 23:49:51 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:34:23 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,21 @@
 # define TRUE 1
 # define FALSE 0
 
-void			finish_init(t_all **all, t_sprite *sp);
-void			init_game(t_all **all);
-void			init_player(t_all **all, char o);
-void			init_player_pos(t_all **all, char *line, int i, int j);
-void			set_sprite_coor(t_all **all, char *line, int i);
-int				mlx_handle(t_all *all);
+void			finish_init(t_game **game, t_sprite *sp);
+void			init_game(t_game **game);
+void			init_player(t_game **game, char o);
+void			init_player_pos(t_game **game, char *line, int i, int j);
+void			set_sprite_coor(t_game **game, char *line, int i);
+int				mlx_handle(t_game *game);
 
 double			**realloc_doub(double **ptr, int newsize);
-void			all_null(t_all **all);
-void			clear_sprites(t_all **all);
-void			clear_textures(t_all **all);
-void			clear_bonus(t_all **all);
-void			clear_utils(t_all **all);
-void			exit_error(t_all **all, char *line, char *err);
-void			exit_game(t_all **all);
+void			game_null(t_game **game);
+void			clear_sprites(t_game **game);
+void			clear_textures(t_game **game);
+void			clear_bonus(t_game **game);
+void			clear_utils(t_game **game);
+void			exit_error(t_game **game, char *line, char *err);
+void			exit_game(t_game **game);
 void			free_tab_char(char **ptr);
 void			free_tab_nb(void **ptr, int size);
 void			ft_bzero(void *s, size_t n);
@@ -58,50 +58,50 @@ int				ft_rgb(int r, int g, int b);
 int				ft_strlen(char *str);
 int				ft_strncmp(char *s1, char *s2, int n);
 
-void			ft_turnleft(t_all **all);
-void			ft_turnright(t_all **all);
-void			ft_forward(t_all **all, t_player *p);
-void			ft_backward(t_all **all, t_player *p);
-void			ft_rightward(t_all **all, t_player *p);
-void			ft_leftward(t_all **all, t_player *p);
+void			ft_turnleft(t_game **game);
+void			ft_turnright(t_game **game);
+void			ft_forward(t_game **game, t_player *p);
+void			ft_backward(t_game **game, t_player *p);
+void			ft_rightward(t_game **game, t_player *p);
+void			ft_leftward(t_game **game, t_player *p);
 
-int				parse_color(t_all **all, char *line, int ident);
+int				parse_color(t_game **game, char *line, int ident);
 int				fill_col(char *line, char *col, int i);
-int				fill_map(char *line, t_all **all);
-int				fill_path(char *line, t_all **all, int i);
+int				fill_map(char *line, t_game **game);
+int				fill_path(char *line, t_game **game, int i);
 int				fill_res(char *line, int *i, int max);
-int				parse_res(t_all **all, char *line);
-int				read_file(t_all **all);
-int				parse_info(char *line, t_all **all);
-int				parse_map(char *line, t_all **all);
-int				check_map_border(t_all **all);
-int				check_map_end(t_all **all, char **map, int i);
-int				open_file(char *arg, t_all **all, int save);
+int				parse_res(t_game **game, char *line);
+int				read_file(t_game **game);
+int				parse_info(char *line, t_game **game);
+int				parse_map(char *line, t_game **game);
+int				check_map_border(t_game **game);
+int				check_map_end(t_game **game, char **map, int i);
+int				open_file(char *arg, t_game **game, int save);
 
-double			dist_screen(t_all **all, int x, int y);
-double			set_wall_dist(t_all **all, t_wall *w);
-void			add_dist(t_all **all, t_sprite *sp, void (*sort)(t_sprite *));
-void			complete_text(t_all **all);
-void			init_wall(t_all **all, t_wall *w);
-void			ft_move(t_all **all);
-void			draw_wall(t_all **all);
-void			set_wall_side(t_all **all);
-void			draw_sprite(t_all **all, t_sprite *sp);
-void			load_image(t_all **all, t_img *img, char *path);
-void			load_tab_of_image(t_all **all, t_tab_img *img, char **path,
+double			dist_screen(t_game **game, int x, int y);
+double			set_wall_dist(t_game **game, t_wall *w);
+void			add_dist(t_game **game, t_sprite *sp, void (*sort)(t_sprite *));
+void			complete_text(t_game **game);
+void			init_wall(t_game **game, t_wall *w);
+void			ft_move(t_game **game);
+void			draw_wall(t_game **game);
+void			set_wall_side(t_game **game);
+void			draw_sprite(t_game **game, t_sprite *sp);
+void			load_image(t_game **game, t_img *img, char *path);
+void			load_tab_of_image(t_game **game, t_tab_img *img, char **path,
 				int start_game);
-void			raycast_sprite(t_all **all, t_sprite *sp, t_img *sp_img);
-void			draw_wall_pixel(t_all **all, t_tab_img *text, int i);
-void			save_bmp(t_all **all);
-void			set_side_dist(t_all **all, t_wall *w);
+void			raycast_sprite(t_game **game, t_sprite *sp, t_img *sp_img);
+void			draw_wall_pixel(t_game **game, t_tab_img *text, int i, int side);
+void			save_bmp(t_game **game);
+void			set_side_dist(t_game **game, t_wall *w);
 void			sort_sprite(t_sprite *sp);
-void			start_game(t_all **all);
-int				create_image(t_all **all);
-int				ft_close(t_all **all);
-int				key_init(t_all **all);
-int				ft_key_release(int key, t_all **all);
-int				ft_key_press(int key, t_all **all);
+void			start_game(t_game **game);
+int				create_image(t_game **game);
+int				ft_close(t_game **game);
+int				key_init(t_game **game);
+int				ft_key_release(int key, t_game **game);
+int				ft_key_press(int key, t_game **game);
 
-int				parse_bonus(char *line, t_all **all);
+int				parse_bonus(char *line, t_game **game);
 
 #endif

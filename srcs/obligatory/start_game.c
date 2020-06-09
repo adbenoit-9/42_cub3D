@@ -6,26 +6,26 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 17:43:24 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/06 22:48:26 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 14:39:06 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	start_game(t_all **all)
+void	start_game(t_game **game)
 {
-	if (!((*all)->mlx = mlx_init()))
-		exit_error(all, NULL, MLX_ERR);
-	if (!((*all)->win = mlx_new_window((*all)->mlx,
-					(*all)->r[X], (*all)->r[Y], "Cub3D")))
-		exit_error(all, NULL, MLX_ERR);
-	finish_init(all, &(*all)->sp);
-	init_player(all, (*all)->player.start_o);
-	(*all)->screen.plane[X] = ((*all)->player.dir[X] == 0) ? 0.66 : 0;
-	(*all)->screen.plane[Y] = ((*all)->player.dir[Y] == 0) ? 0.66 : 0;
-	load_tab_of_image(all, &(*all)->text, (*all)->path, 0);
-	load_image(all, &(*all)->sp.img, (*all)->path[S]);
-	create_image(all);
-	if ((*all)->save == TRUE)
-		save_bmp(all);
+	if (!((*game)->mlx = mlx_init()))
+		exit_error(game, NULL, MLX_ERR);
+	if (!((*game)->win = mlx_new_window((*game)->mlx,
+					(*game)->r[X], (*game)->r[Y], "Cub3D")))
+		exit_error(game, NULL, MLX_ERR);
+	finish_init(game, &(*game)->sp);
+	init_player(game, (*game)->player.start_o);
+	(*game)->screen.plane[X] = ((*game)->player.dir[X] == 0) ? 0.66 : 0;
+	(*game)->screen.plane[Y] = ((*game)->player.dir[Y] == 0) ? 0.66 : 0;
+	load_tab_of_image(game, &(*game)->text, (*game)->path, 0);
+	load_image(game, &(*game)->sp.img, (*game)->path[S]);
+	create_image(game);
+	if ((*game)->save == TRUE)
+		save_bmp(game);
 }

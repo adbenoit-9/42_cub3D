@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:14:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 17:52:52 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:31:56 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,51 +153,45 @@ typedef struct	s_weap
 
 }				t_weap;
 
-typedef struct	s_bonus
-{
-	int			loop[2];
-	t_weap		weap;
-	t_door		door;
-	char		map_c;
-	char		**path;
-	int			pull;
-	int			life;
-	int			mm_dim;
-	t_img		heart;
-	t_sprite	s1;
-	t_sprite	sa;
-	t_img		lose_game;
-	t_img		win_game;
-	int			foe;
-	int			hurt;
-}				t_bonus;
 
-typedef struct	s_all
+typedef struct	s_game
 {
-	char			**path;
+	enum e_state	state;
 	char			**map;
+	char			**path;
+	char			**path_bonus;
 	int				r[2];
 	int				f;
 	int				c;
-	int				map_size;
-	int				fd;
-	int				ret;
-	int				save;
-	t_key			key;
-	enum e_state	state;
-	t_player		player;
 	void			*mlx;
 	void			*win;
-	t_screen		screen;
-	t_wall			wall;
+	char			map_c;
+	int				map_size;
+	int				loop[2];
+	int				save;
+	int				fd;
+	int				ret;
 	t_img			img;
+	t_wall			wall;
+	t_screen		screen;
+	t_player		player;
 	t_tab_img		text;
 	t_sprite		sp;
-	t_bonus			bonus;
+	t_sprite		sp_foe;
+	t_sprite		sp_dead;
+	t_img			heart;
+	t_img			lose_game;
+	t_img			win_game;
+	t_weap			weap;
+	t_door			door;
+	t_key			key;
 	double			invdet;
+	int				mm_dim;
+	int				life;
+	int				nb_foe;
+	int				hit;
+}				t_game;
 
-}				t_all;
-
-typedef int	(*t_function)(char *, t_all **);
+typedef int	(*t_function)(char *, t_game **);
 
 #endif

@@ -6,67 +6,67 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:56:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/07 23:28:22 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:37:01 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	clear_sprites(t_all **all)
+void	clear_sprites(t_game **game)
 {
-	free_tab_nb((void **)(*all)->sp.coor, (*all)->sp.count);
-	free_tab_nb((void **)(*all)->sp.pos, (*all)->sp.count);
-	free((*all)->sp.dead);
-	free((*all)->sp.see);
-	free((*all)->sp.dist);
-	free((*all)->sp.type);
-	if ((*all)->sp.img.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->sp.img.ptr);
-	if ((*all)->bonus.s1.img.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->bonus.s1.img.ptr);
-	if ((*all)->bonus.sa.img.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->bonus.sa.img.ptr);
+	free_tab_nb((void **)(*game)->sp.coor, (*game)->sp.count);
+	free_tab_nb((void **)(*game)->sp.pos, (*game)->sp.count);
+	free((*game)->sp.dead);
+	free((*game)->sp.see);
+	free((*game)->sp.dist);
+	free((*game)->sp.type);
+	if ((*game)->sp.img.ptr)
+		mlx_destroy_image((*game)->mlx, (*game)->sp.img.ptr);
+	if ((*game)->sp_foe.img.ptr)
+		mlx_destroy_image((*game)->mlx, (*game)->sp_foe.img.ptr);
+	if ((*game)->sp_dead.img.ptr)
+		mlx_destroy_image((*game)->mlx, (*game)->sp_dead.img.ptr);
 }
 
-void	clear_textures(t_all **all)
+void	clear_textures(t_game **game)
 {
 	int	i;
 
 	i = 0;
 	while (i < 4)
 	{
-		if ((*all)->text.ptr[i])
-			mlx_destroy_image((*all)->mlx, (*all)->text.ptr[i]);
-		if ((*all)->bonus.door.img.ptr[i])
-			mlx_destroy_image((*all)->mlx, (*all)->bonus.door.img.ptr[i]);
-		if ((*all)->bonus.weap.img.ptr[i])
-			mlx_destroy_image((*all)->mlx, (*all)->bonus.weap.img.ptr[i]);
+		if ((*game)->text.ptr[i])
+			mlx_destroy_image((*game)->mlx, (*game)->text.ptr[i]);
+		if ((*game)->door.img.ptr[i])
+			mlx_destroy_image((*game)->mlx, (*game)->door.img.ptr[i]);
+		if ((*game)->weap.img.ptr[i])
+			mlx_destroy_image((*game)->mlx, (*game)->weap.img.ptr[i]);
 		i++;
 	}
 }
 
-void	clear_bonus(t_all **all)
+void	clear_bonus(t_game **game)
 {
-	if ((*all)->bonus.heart.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->bonus.heart.ptr);
-	if ((*all)->bonus.lose_game.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->bonus.lose_game.ptr);
-	if ((*all)->bonus.win_game.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->bonus.win_game.ptr);
-	free_tab_nb((void **)(*all)->bonus.path, NB_BON);
+	if ((*game)->heart.ptr)
+		mlx_destroy_image((*game)->mlx, (*game)->heart.ptr);
+	if ((*game)->lose_game.ptr)
+		mlx_destroy_image((*game)->mlx, (*game)->lose_game.ptr);
+	if ((*game)->win_game.ptr)
+		mlx_destroy_image((*game)->mlx, (*game)->win_game.ptr);
+	free_tab_nb((void **)(*game)->path_bonus, NB_BON);
 }
 
-void	clear_utils(t_all **all)
+void	clear_utils(t_game **game)
 {
-	free_tab_char((*all)->map);
-	free_tab_nb((void **)(*all)->path, 5);
-	free((*all)->wall.dist);
-	if ((*all)->img.ptr)
-		mlx_destroy_image((*all)->mlx, (*all)->img.ptr);
-	if ((*all)->win)
+	free_tab_char((*game)->map);
+	free_tab_nb((void **)(*game)->path, 5);
+	free((*game)->wall.dist);
+	if ((*game)->img.ptr)
+		mlx_destroy_image((*game)->mlx, (*game)->img.ptr);
+	if ((*game)->win)
 	{
-		mlx_clear_window((*all)->mlx, (*all)->win);
-		mlx_destroy_window((*all)->mlx, (*all)->win);
+		mlx_clear_window((*game)->mlx, (*game)->win);
+		mlx_destroy_window((*game)->mlx, (*game)->win);
 	}
 	// system("leaks Cub3D");
 }

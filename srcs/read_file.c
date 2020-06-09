@@ -6,50 +6,50 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 16:13:17 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/05 16:13:18 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 14:39:06 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	open_file(char *arg, t_all **all, int save)
+int	open_file(char *arg, t_game **game, int save)
 {
-	if (!((*all) = (t_all *)malloc(sizeof(t_all))))
-		exit_error(all, NULL, MAL_ERR);
-	init_game(all);
-	(*all)->save = save;
-	if (((*all)->fd = open(arg, O_RDONLY)) == -1)
-		exit_error(all, NULL, FILE_ERR);
-	read_file(all);
-	close((*all)->fd);
+	if (!((*game) = (t_game *)malloc(sizeof(t_game))))
+		exit_error(game, NULL, MAL_ERR);
+	init_game(game);
+	(*game)->save = save;
+	if (((*game)->fd = open(arg, O_RDONLY)) == -1)
+		exit_error(game, NULL, FILE_ERR);
+	read_file(game);
+	close((*game)->fd);
 	return (NO_ERR);
 }
 
-int	read_file(t_all **all)
+int	read_file(t_game **game)
 {
 	char				*line;
 	static t_function	process[3] = {parse_info, parse_bonus, parse_map};
 
 	line = NULL;
-	(*all)->ret = get_next_line((*all)->fd, &line);
+	(*game)->ret = get_next_line((*game)->fd, &line);
 	if (line[0] == 0)
 	{
-		if ((*all)->ret == 0 || (*all)->state == MAP)
+		if ((*game)->ret == 0 || (*game)->state == MAP)
 		{
-			(*all)->state = END;
-			check_map_end(all, (*all)->map, (*all)->map_size);
-			if ((*all)->ret == 0)
+			(*game)->state = END;
+			check_map_end(game, (*game)->map, (*game)->map_size);
+			if ((*game)->ret == 0)
 			{
 				free(line);
 				return (NO_ERR);
 			}
 		}
 		free(line);
-		read_file(all);
+		read_file(game);
 	}
-	else if (line[0] != 0 && (*all)->state == END)
-		exit_error(all, line, MAP_ERR);
+	else if (line[0] != 0 && (*game)->state == END)
+		exit_error(game, line, MAP_ERR);
 	else
-		process[(*all)->state](line, all);
+		process[(*game)->state](line, game);
 	return (NO_ERR);
 }
