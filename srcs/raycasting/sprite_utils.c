@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:45:49 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/08 14:37:22 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/01 19:49:23 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,20 @@ void	add_dist(t_game **game, t_sprite *sp, void (*sort)(t_sprite *))
 		i++;
 	}
 	sort(sp);
+}
+
+void	draw_sprite(t_game **game, t_sprite *sp)
+{
+	int		i;
+
+	i = 0;
+	add_dist(game, sp, sort_sprite);
+	(*game)->invdet = 1.0 / ((*game)->screen.plane[X] * (*game)->player.dir[Y] -
+					(*game)->player.dir[X] * (*game)->screen.plane[Y]);
+	while (i < sp->count)
+	{
+		sp->index = i;
+		raycast_sprite(game, sp, &sp->img);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:14:41 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/05/29 15:14:42 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/07/05 22:23:44 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@
 # define WEST 'W'
 
 # define NB_CHAR 8
-
-# define BUFFER_SIZE 4096
 
 # define X 0
 # define Y 1

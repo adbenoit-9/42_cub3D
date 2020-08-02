@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:46:47 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/08 15:26:07 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/01 17:59:51 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ static void	draw_sprite_pix(t_game **game, t_sprite *sp, t_img *s_im, int *end)
 		while (s[Y] < end[Y] && sp->transf[Y] > 0 && s[X] > 0 && s[X]
 				< (*game)->r[X] && sp->transf[Y] < (*game)->wall.dist[s[X]])
 		{
-			sp->see[sp->index] = TRUE;
 			px[Y] = (((s[Y] * 256 - (*game)->r[Y] * 128 + sp->h * 128) *
 						s_im->dim[Y]) / sp->h) / 256;
 			if (s_im->data[(int)(s_im->dim[X] * px[Y] + px[X])] != -16777216)
 				(*game)->img.data[s[X] + (*game)->r[X] * s[Y]] = s_im->data[
-					(int)(s_im->dim[X] * px[Y] + px[X])] + (*game)->hit;
+					(int)(s_im->dim[X] * px[Y] + px[X])];
 			s[Y]++;
 		}
 	}
@@ -64,20 +63,4 @@ void		raycast_sprite(t_game **game, t_sprite *sp, t_img *sp_img)
 	if (end[X] >= (*game)->r[X])
 		end[X] = (*game)->r[X] - 1;
 	draw_sprite_pix(game, sp, sp_img, end);
-}
-
-void		draw_sprite(t_game **game, t_sprite *sp)
-{
-	int		i;
-
-	i = 0;
-	add_dist(game, sp, sort_sprite);
-	(*game)->invdet = 1.0 / ((*game)->screen.plane[X] * (*game)->player.dir[Y] -
-					(*game)->player.dir[X] * (*game)->screen.plane[Y]);
-	while (i < sp->count)
-	{
-		sp->index = i;
-		raycast_sprite(game, sp, &sp->img);
-		i++;
-	}
 }

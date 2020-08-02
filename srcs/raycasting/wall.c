@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 17:15:32 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/08 22:55:54 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/01 18:00:22 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,19 @@ void	draw_wall_pixel(t_game **game, t_tab_img *text, int i, int side)
 	pix = (start - (*game)->r[Y] / 2 + (*game)->wall.slice_h / 2) * step;
 	k = -1;
 	while (++k < start)
-		(*game)->img.data[i + (*game)->r[X] * k] = (*game)->c + (*game)->hit;
+		(*game)->img.data[i + (*game)->r[X] * k] = (*game)->c;
 	while (start < end)
 	{
 		text->pix[Y] = (int)pix;
 		pix += step;
 		(*game)->img.data[i + (*game)->r[X] * start] =
 			text->data[side][(int)(text->dim[side][X] *
-			text->pix[Y] + text->pix[X])] + (*game)->hit;
+			text->pix[Y] + text->pix[X])];
 		start++;
 	}
 	k = start - 1;
 	while (++k < (*game)->r[Y])
-		(*game)->img.data[i + (*game)->r[X] * k] = (*game)->f + (*game)->hit;
+		(*game)->img.data[i + (*game)->r[X] * k] = (*game)->f;
 }
 
 void	draw_wall(t_game **game)

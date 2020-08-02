@@ -3,7 +3,7 @@ NO ./xpm/library_game/planks_oak.xpm
 SO ./xpm/library_game/planks_oak.xpm
 WE ./xpm/library_game/bookshelf.xpm
 EA ./xpm/library_game/bookshelf.xpm
-S ./xpm/dye_powder_cyan.xpm
+S ./xpm/library_game/brain.xpm
 F 200,230,225
 C 120,120,255
 
@@ -14,11 +14,11 @@ W0 ./xpm/weapon/bow_pulling_0.xpm
 W1 ./xpm/weapon/bow_pulling_1.xpm
 W2 ./xpm/weapon/bow_pulling_2.xpm
 W3 ./xpm/weapon/bow_standby.xpm
-DN ./xpm/door/door_wood.xpm
-DS ./xpm/door/door_otherside.xpm
-DE ./xpm/door/door_wood.xpm
-DW ./xpm/door/door_otherside.xpm
-LI ./xpm/heart.xpm
+DN ./xpm/door/trapdoor.xpm
+DS ./xpm/door/trapdoor.xpm
+DE ./xpm/door/trapdoor.xpm
+DW ./xpm/door/trapdoor.xpm
+LI ./xpm/library_game/brain.xpm
 LO ./xpm/replay_button.xpm
 WI ./xpm/win_game.xpm
 
