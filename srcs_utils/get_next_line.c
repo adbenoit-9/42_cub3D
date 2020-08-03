@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 15:44:13 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/07/01 19:03:31 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/03 16:27:43 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int		ft_ret(char **line, t_tab *tab, t_list **lst, char *buf)
 			break ;
 	}
 	buf[ret] = 0;
-	if (ret == -1)
+	if (ret == -1 || (k = ft_linesize(buf, &tab->size, lst)) == 0)
 		return (-1);
-	if (ret < BUFFER_SIZE && ft_linesize(buf, &tab->size, lst) == -1)
+	if (ret < BUFFER_SIZE && k == -1)
 	{
 		if (!((*line) = malloc(sizeof(char) * (tab->size + 1))))
 			return (-1);
@@ -97,12 +97,15 @@ int		get_next_line(int fd, char **line)
 	t_tab			tab;
 	static char		buf[BUFFER_SIZE + 1];
 	t_list			*lst;
+	int				k;
 
 	tab.size = 0;
 	tab.fd = fd;
 	if (!(lst = ft_lstnew('\0')) || fd < 0 || !line)
 		return (ft_err(&lst));
-	if (ft_linesize(buf, &tab.size, &lst) == 1 && buf[0] != 0)
+	if ((k = ft_linesize(buf, &tab.size, &lst)) == 0)
+		return (-1);
+	if (k == 1 && buf[0] != 0)
 		ft_strcpy(buf);
 	else
 	{

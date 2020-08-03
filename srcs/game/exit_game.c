@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:11:18 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/08/02 23:38:03 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/03 16:22:50 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ void		exit_game(t_game **game)
 
 void		exit_error(t_game **game, char *line, char *err)
 {
-	printf("line = %s\n", line);
 	free(line);
 	line = NULL;
-	clear_sprites(game);
-	clear_textures(game);
-	clear_utils(game);
+	if (*game)
+	{
+		clear_sprites(game);
+		clear_textures(game);
+		clear_utils(game);
+	}
 	print_error(err);
 }
 
