@@ -6,7 +6,7 @@
 #    By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/08/02 22:55:26 by adbenoit         ###   ########.fr        #
+#    Updated: 2020/08/03 12:41:42 by adbenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ PARS_PATH_BONUS	=	srcs_bonus/parsing/
 RAYC_PATH_BONUS	=	srcs_bonus/raycasting/
 UTILS_PATH		=	srcs_utils/
 
-# ************************************* UTILS ******************************** #
+# ********************************** SRCS UTILS ****************************** #
 
 UTILS	=	ft_atoi.c			ft_bzero.c\
 			ft_free.c			ft_memcpy.c\
