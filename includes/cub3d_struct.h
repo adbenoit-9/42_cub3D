@@ -6,12 +6,19 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:14:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/08/01 18:34:40 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/03 14:36:26 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_STRUCT_H
 # define CUB3D_STRUCT_H
+
+enum	e_state
+{
+	INFO,
+	MAP,
+	END
+};
 
 typedef struct	s_draw
 {
@@ -144,5 +151,45 @@ typedef struct	s_weap
 	char		state;
 
 }				t_weap;
+
+typedef struct	s_game
+{
+	enum e_state	state;
+	char			**map;
+	char			**path;
+	char			**path_bonus;
+	int				r[2];
+	int				f;
+	int				c;
+	void			*mlx;
+	void			*win;
+	char			map_c;
+	int				map_size;
+	int				loop[2];
+	int				save;
+	int				fd;
+	int				ret;
+	t_img			img;
+	t_wall			wall;
+	t_screen		screen;
+	t_player		player;
+	t_tab_img		text;
+	t_sprite		sp;
+	t_sprite		sp_foe;
+	t_sprite		sp_dead;
+	t_img			heart;
+	t_img			lose_game;
+	t_img			win_game;
+	t_weap			weap;
+	t_door			door;
+	t_key			key;
+	double			invdet;
+	int				mm_dim;
+	int				life;
+	int				nb_foe;
+	int				hit;
+}				t_game;
+
+typedef int	(*t_function)(char *, t_game **);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file_bonus.c                                  :+:      :+:    :+:   */
+/*   handle_file_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 16:13:17 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/08/02 14:18:43 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/03 14:39:01 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	parse_file(char *arg, t_game **game, int save)
 int	read_file(t_game **game)
 {
 	char				*line;
-	static t_function	process[3] = {parse_info, parse_bonus, parse_map};
+	static t_function	process[2] = {parse_info, parse_map};
 
 	line = NULL;
 	(*game)->ret = get_next_line((*game)->fd, &line);

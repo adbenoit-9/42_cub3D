@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 16:16:19 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/08/02 22:58:09 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/03 14:38:44 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int			parse_info(char *line, t_game **game)
 				return (parse_color(game, line, i));
 		}
 	}
-	(*game)->state = BONUS;
 	return (parse_bonus(line, game));
 }
 
