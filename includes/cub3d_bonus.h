@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 14:58:52 by Adeline           #+#    #+#             */
-/*   Updated: 2020/08/04 17:50:52 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/05 00:31:41 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			draw_door(t_game **game);
 void			draw_hearts(t_game **game);
 void			draw_mini_map(t_game **game);
 void			draw_replay(t_game **game, t_img *im, int k1, int k2);
-void            draw_target(t_game **game);
+void			draw_target(t_game **game);
 void			draw_weapon(t_game **game, t_tab_img *weap);
 void			manage_life(t_game **game, char c);
 int				ft_mouse(int button, int x, int y, t_game **game);

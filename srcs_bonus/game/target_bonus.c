@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 22:55:09 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/08/05 00:25:05 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/05 00:30:34 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ void		draw_target(t_game **game)
 	{
 		vertical_axis(game, len, k);
 		horizontal_axis(game, len, k);
-        if (mid[X] + k + (*game)->r[X] * mid[Y] !=
-        mid[X] + k + (*game)->r[X] * mid[X])
-		    (*game)->img.data[mid[X] + k + (*game)->r[X] * mid[Y]] = red;
-        if (mid[X] + (*game)->r[X] * (mid[Y] + k) !=
-        mid[Y] + (*game)->r[X] * (mid[Y] + k))
-		    (*game)->img.data[mid[X] + (*game)->r[X] * (mid[Y] + k)] = red;
+		if (mid[X] + k + (*game)->r[X] * mid[Y] !=
+		mid[X] + k + (*game)->r[X] * mid[X])
+			(*game)->img.data[mid[X] + k + (*game)->r[X] * mid[Y]] = red;
+		if (mid[X] + (*game)->r[X] * (mid[Y] + k) !=
+		mid[Y] + (*game)->r[X] * (mid[Y] + k))
+			(*game)->img.data[mid[X] + (*game)->r[X] * (mid[Y] + k)] = red;
 	}
 }
