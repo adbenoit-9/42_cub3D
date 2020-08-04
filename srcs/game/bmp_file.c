@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:27:44 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/09 16:21:04 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/04 22:44:03 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ void		save_bmp(t_game **game)
 	write(fd, pixel, (*game)->r[X] * (*game)->r[Y] * 4);
 	free(pixel);
 	close(fd);
+	exit_game(game);
 }

@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:27:44 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/07/05 20:17:14 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/04 22:49:14 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	set_bmp(t_game **game, unsigned char **head)
 	int x;
 	int y;
 
+	if (!((*head) = malloc(sizeof(char) * 54)))
+		exit_error(game, NULL, MAL_ERR);
 	x = (*game)->r[X];
 	y = (*game)->r[Y];
 	ft_bzero(*head, 54);
@@ -48,8 +50,7 @@ void		save_bmp(t_game **game)
 	int				*pixel;
 	int				k;
 
-	if (!(head = malloc(sizeof(char) * 54)))
-		exit_error(game, NULL, MAL_ERR);
+	head = NULL;
 	set_bmp(game, &head);
 	fd = open("cub3d.bmp", O_CREAT | O_WRONLY | O_TRUNC, 0755);
 	write(fd, head, 54);
@@ -67,4 +68,5 @@ void		save_bmp(t_game **game)
 	write(fd, pixel, (*game)->r[X] * (*game)->r[Y] * 4);
 	free(pixel);
 	close(fd);
+	exit_game(game);
 }
