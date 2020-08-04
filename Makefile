@@ -6,7 +6,7 @@
 #    By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/08/03 12:41:42 by adbenoit         ###   ########.fr        #
+#    Updated: 2020/08/04 17:52:30 by adbenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ GAME_BONUS	+=	bmp_file_bonus.c		deal_door_bonus.c\
 				rotation_bonus.c		create_img_bonus.c\
 				deal_sprite_bonus.c		heart_bonus.c\
 				life_bonus.c			move_bonus.c\
-				start_game_bonus.c
+				start_game_bonus.c		target_bonus.c
 
 BONUS		+=	$(UTILS)
 BONUS		+=	$(PARS_BONUS)

@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:16:38 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/06/09 15:00:04 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/04 17:51:23 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	ray_casting(t_game **game)
 	draw_weapon(game, &(*game)->weap.img);
 	draw_mini_map(game);
 	draw_hearts(game);
+	draw_target(game);
 	if ((*game)->nb_foe == 0)
 		draw_replay(game, &(*game)->win_game, 1, 1);
 }
