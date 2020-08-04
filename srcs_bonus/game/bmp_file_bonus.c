@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:27:44 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/08/04 22:49:14 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/05 00:10:53 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,24 @@
 
 static void	set_bmp(t_game **game, unsigned char **head)
 {
-	int x;
 	int y;
 
 	if (!((*head) = malloc(sizeof(char) * 54)))
 		exit_error(game, NULL, MAL_ERR);
-	x = (*game)->r[X];
 	y = (*game)->r[Y];
 	ft_bzero(*head, 54);
 	(*head)[0] = 'B';
 	(*head)[1] = 'M';
-	(*head)[2] = (unsigned char)(54 + 4 * x * y);
-	(*head)[3] = (unsigned char)((54 + 4 * x * y) >> 8);
-	(*head)[4] = (unsigned char)((54 + 4 * x * y) >> 16);
-	(*head)[5] = (unsigned char)((54 + 4 * x * y) >> 24);
+	(*head)[2] = (unsigned char)(54 + 4 * (*game)->r[X] * y);
+	(*head)[3] = (unsigned char)((54 + 4 * (*game)->r[X] * y) >> 8);
+	(*head)[4] = (unsigned char)((54 + 4 * (*game)->r[X] * y) >> 16);
+	(*head)[5] = (unsigned char)((54 + 4 * (*game)->r[X] * y) >> 24);
 	(*head)[10] = 54;
 	(*head)[14] = 40;
-	(*head)[18] = (unsigned char)x;
-	(*head)[19] = (unsigned char)(x >> 8);
-	(*head)[20] = (unsigned char)(x >> 16);
-	(*head)[21] = (unsigned char)(x >> 24);
+	(*head)[18] = (unsigned char)(*game)->r[X];
+	(*head)[19] = (unsigned char)((*game)->r[X] >> 8);
+	(*head)[20] = (unsigned char)((*game)->r[X] >> 16);
+	(*head)[21] = (unsigned char)((*game)->r[X] >> 24);
 	(*head)[22] = (unsigned char)y;
 	(*head)[23] = (unsigned char)(y >> 8);
 	(*head)[24] = (unsigned char)(y >> 16);
