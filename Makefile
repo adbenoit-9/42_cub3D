@@ -6,11 +6,11 @@
 #    By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/08/04 17:52:30 by adbenoit         ###   ########.fr        #
+#    Updated: 2020/08/07 14:41:52 by adbenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= Cub3D
+NAME		= cub3D
 
 INC			= includes/
 
