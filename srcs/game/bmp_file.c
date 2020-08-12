@@ -12,26 +12,26 @@
 
 #include "cub3d.h"
 
-static void	set_bmp(t_game **game, unsigned char **head)
+static void		set_bmp(t_game **game, unsigned char **head)
 {
 	int y;
+	int x;
 
-	if (!((*head) = malloc(sizeof(char) * 54)))
-		exit_error(game, NULL, MAL_ERR);
 	y = (*game)->r[Y];
+	x = (*game)->r[X];
 	ft_bzero(*head, 54);
 	(*head)[0] = 'B';
 	(*head)[1] = 'M';
-	(*head)[2] = (unsigned char)(54 + 4 * (*game)->r[X] * y);
-	(*head)[3] = (unsigned char)((54 + 4 * (*game)->r[X] * y) >> 8);
-	(*head)[4] = (unsigned char)((54 + 4 * (*game)->r[X] * y) >> 16);
-	(*head)[5] = (unsigned char)((54 + 4 * (*game)->r[X] * y) >> 24);
+	(*head)[2] = (unsigned char)(54 + 4 * x * y);
+	(*head)[3] = (unsigned char)((54 + 4 * x * y) >> 8);
+	(*head)[4] = (unsigned char)((54 + 4 * x * y) >> 16);
+	(*head)[5] = (unsigned char)((54 + 4 * x * y) >> 24);
 	(*head)[10] = 54;
 	(*head)[14] = 40;
-	(*head)[18] = (unsigned char)(*game)->r[X];
-	(*head)[19] = (unsigned char)((*game)->r[X] >> 8);
-	(*head)[20] = (unsigned char)((*game)->r[X] >> 16);
-	(*head)[21] = (unsigned char)((*game)->r[X] >> 24);
+	(*head)[18] = (unsigned char)x;
+	(*head)[19] = (unsigned char)(x >> 8);
+	(*head)[20] = (unsigned char)(x >> 16);
+	(*head)[21] = (unsigned char)(x >> 24);
 	(*head)[22] = (unsigned char)y;
 	(*head)[23] = (unsigned char)(y >> 8);
 	(*head)[24] = (unsigned char)(y >> 16);
@@ -40,19 +40,12 @@ static void	set_bmp(t_game **game, unsigned char **head)
 	(*head)[28] = 32;
 }
 
-void		save_bmp(t_game **game)
+static void		put_image_in_bmp(t_game **game, int fd)
 {
-	int				fd;
-	int				index[2];
-	unsigned char	*head;
-	int				*pixel;
-	int				k;
+	int	index[2];
+	int	*pixel;
+	int	k;
 
-	head = NULL;
-	set_bmp(game, &head);
-	fd = open("cub3d.bmp", O_CREAT | O_WRONLY | O_TRUNC, 0755);
-	write(fd, head, 54);
-	free(head);
 	if (!(pixel = malloc(sizeof(int) * (*game)->r[Y] * (*game)->r[X])))
 		exit_error(game, NULL, MAL_ERR);
 	index[X] = (*game)->r[Y];
@@ -65,6 +58,21 @@ void		save_bmp(t_game **game)
 	}
 	write(fd, pixel, (*game)->r[X] * (*game)->r[Y] * 4);
 	free(pixel);
+}
+
+void			save_bmp(t_game **game)
+{
+	unsigned char	*head;
+	int				fd;
+
+	if (!(head = malloc(sizeof(char) * 54)))
+		exit_error(game, NULL, MAL_ERR);
+	set_bmp(game, &head);
+	create_image(game);
+	fd = open("cub3d.bmp", O_CREAT | O_WRONLY | O_TRUNC, 0755);
+	write(fd, head, 54);
+	free(head);
+	put_image_in_bmp(game, fd);
 	close(fd);
 	exit_game(game);
 }

@@ -6,7 +6,7 @@
 #    By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/08/07 14:41:52 by adbenoit         ###   ########.fr        #
+#    Updated: 2020/08/13 00:40:19 by adbenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,9 @@ GAME_PATH		=	srcs/game/
 PARS_PATH		=	srcs/parsing/
 RAYC_PATH		=	srcs/raycasting/
 BONUS_PATH		=	srcs_bonus/
-GAME_PATH_BONUS	=	srcs_bonus/game/
-PARS_PATH_BONUS	=	srcs_bonus/parsing/
-RAYC_PATH_BONUS	=	srcs_bonus/raycasting/
+GAME_PATH_BONUS	=	srcs_bonus/game_bonus/
+PARS_PATH_BONUS	=	srcs_bonus/parsing_bonus/
+RAYC_PATH_BONUS	=	srcs_bonus/raycasting_bonus/
 UTILS_PATH		=	srcs_utils/
 
 # ********************************** SRCS UTILS ****************************** #

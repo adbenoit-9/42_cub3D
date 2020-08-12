@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:30:51 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/08/02 23:56:03 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/10 14:23:00 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,13 @@ int			parse_color(t_game **game, char *line, int ident)
 int			parse_res(t_game **game, char *line)
 {
 	int		i;
-	int		w_max;
-	int		h_max;
 
-	w_max = 0;
-	h_max = 0;
-	mlx_mscreen_resolution(&w_max, &h_max);
 	if ((*game)->r[X] != -1 || (*game)->r[Y] != -1)
 		exit_error(game, line, RES_ERR);
 	i = 0;
-	if (((*game)->r[X] = fill_res(line, &i, w_max)) == -1)
+	if (((*game)->r[X] = fill_res(line, &i)) == -1)
 		exit_error(game, line, RES_ERR);
-	if (((*game)->r[Y] = fill_res(line, &i, h_max)) == -1)
+	if (((*game)->r[Y] = fill_res(line, &i)) == -1)
 		exit_error(game, line, RES_ERR);
 	if (i != ft_strlen(line))
 		exit_error(game, line, RES_ERR);

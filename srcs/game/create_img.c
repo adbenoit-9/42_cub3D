@@ -12,12 +12,11 @@
 
 #include "cub3d.h"
 
-int	create_image(t_game **game)
+void	create_image(t_game **game)
 {
 	if ((*game)->img.ptr != NULL)
 	{
 		mlx_destroy_image((*game)->mlx, (*game)->img.ptr);
-		mlx_clear_window((*game)->mlx, (*game)->win);
 		(*game)->img.ptr = NULL;
 	}
 	(*game)->img.ptr = mlx_new_image((*game)->mlx, (*game)->r[X],
@@ -31,6 +30,11 @@ int	create_image(t_game **game)
 	(*game)->screen.x = 0;
 	draw_wall(game);
 	draw_sprite(game, &(*game)->sp);
+}
+
+int		create_window(t_game **game)
+{
+	create_image(game);
 	mlx_put_image_to_window((*game)->mlx, (*game)->win,
 		(*game)->img.ptr, 0, 0);
 	return (NO_ERR);

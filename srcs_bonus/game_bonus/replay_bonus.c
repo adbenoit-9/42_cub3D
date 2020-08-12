@@ -32,7 +32,7 @@ void		draw_replay(t_game **game, t_img *im, int k1, int k2)
 		{
 			draw.pix[Y] = draw.index[Y] * im->dim[Y] / draw.h;
 			col = im->data[(int)(im->dim[X] * draw.pix[Y] + draw.pix[X])];
-			if (col != -16777216)
+			if (col != 0)
 				(*game)->img.data[draw.start[X] +
 				(*game)->r[X] * draw.start[Y]] = col;
 			draw.index[Y]++;

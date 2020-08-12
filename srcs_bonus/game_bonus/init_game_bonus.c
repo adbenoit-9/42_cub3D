@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:27:48 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/08/03 13:43:47 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/13 00:34:08 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void		init_game(t_game **game)
 	(*game)->player.start_pos = 0;
 	(*game)->wall.dist = NULL;
 	(*game)->win = NULL;
+	(*game)->mlx = NULL;
 	(*game)->img.ptr = NULL;
 	if (!((*game)->path = malloc(sizeof(char *) * 6)))
 		exit_error(game, NULL, MAL_ERR);

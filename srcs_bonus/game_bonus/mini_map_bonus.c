@@ -31,7 +31,6 @@ static int	max_len(t_game **game)
 static void	draw_square(t_game **game, int *j, int *i, int *index)
 {
 	int k;
-	int col;
 	int	x;
 	int	y;
 
@@ -41,10 +40,7 @@ static void	draw_square(t_game **game, int *j, int *i, int *index)
 	while (k < (*game)->mm_dim)
 	{
 		if ((*game)->map[x][y] == WALL || (*game)->map[x][y] == DOOR)
-		{
-			col = (*game)->img.data[*j + (*game)->r[X] * *i];
 			(*game)->img.data[*i + (*game)->r[X] * *j] = ft_rgb(151, 153, 131);
-		}
 		if (y == (int)(*game)->player.pos[X] &&
 		x == (int)(*game)->player.pos[Y])
 			(*game)->img.data[*i + (*game)->r[X] * *j] = ft_rgb(33, 81, 116);

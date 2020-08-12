@@ -52,7 +52,7 @@ static void	lose_life(t_game **game, char c)
 		while (++i < (*game)->sp.count)
 		{
 			if ((*game)->sp.see[i] == TRUE && (*game)->sp.type[i] == OBJ1
-			&& (*game)->sp.dead[i] == FALSE && (*game)->loop[1] > 60
+			&& (*game)->sp.dead[i] == FALSE && (*game)->loop[1] > 50
 			&& (*game)->life > 0)
 			{
 				(*game)->hit = 100;

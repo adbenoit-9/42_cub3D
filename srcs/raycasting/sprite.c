@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 16:46:47 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/08/01 17:59:51 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/13 00:29:13 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ static void	draw_sprite_pix(t_game **game, t_sprite *sp, t_img *s_im, int *end)
 		while (s[Y] < end[Y] && sp->transf[Y] > 0 && s[X] > 0 && s[X]
 				< (*game)->r[X] && sp->transf[Y] < (*game)->wall.dist[s[X]])
 		{
-			px[Y] = (((s[Y] * 256 - (*game)->r[Y] * 128 + sp->h * 128) *
-						s_im->dim[Y]) / sp->h) / 256;
+			if ((px[Y] = (((s[Y] * 256 - (*game)->r[Y] * 128 + sp->h * 128) *
+			s_im->dim[Y]) / sp->h) / 256) < 0)
+				px[Y] = 0;
 			if (s_im->data[(int)(s_im->dim[X] * px[Y] + px[X])] != -16777216)
 				(*game)->img.data[s[X] + (*game)->r[X] * s[Y]] = s_im->data[
-					(int)(s_im->dim[X] * px[Y] + px[X])];
+				(int)(s_im->dim[X] * px[Y] + px[X])];
 			s[Y]++;
 		}
 	}

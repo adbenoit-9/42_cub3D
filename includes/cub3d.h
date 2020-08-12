@@ -31,7 +31,7 @@
 
 int				fill_map(char *line, t_game **game);
 int				fill_path(char *line, t_game **game, char **path);
-int				fill_res(char *line, int *i, int max);
+int				fill_res(char *line, int *i);
 int				finish_parse_map(t_game **game);
 int				parse_color(t_game **game, char *line, int ident);
 int				parse_file(char *arg, t_game **game, int save);
@@ -40,7 +40,7 @@ int				parse_map(char *line, t_game **game);
 int				parse_res(t_game **game, char *line);
 int				read_file(t_game **game);
 
-int				create_image(t_game **game);
+void			create_image(t_game **game);
 void			finish_init(t_game **game, t_sprite *sp);
 void			init_game(t_game **game);
 void			init_player_dir(t_game **game, char o);
@@ -49,6 +49,7 @@ void			load_image(t_game **game, t_img *img, char *path);
 void			load_tab_of_image(t_game **game, t_tab_img *img, char **path,
 				int start_game);
 void			save_bmp(t_game **game);
+int				create_window(t_game **game);
 int				mlx_handle(t_game *game);
 
 double			dist_screen(t_game **game, int x, int y);

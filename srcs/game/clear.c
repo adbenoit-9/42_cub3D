@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:56:05 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/08/03 00:02:55 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/13 00:33:24 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,6 @@ void	clear_utils(t_game **game)
 		mlx_clear_window((*game)->mlx, (*game)->win);
 		mlx_destroy_window((*game)->mlx, (*game)->win);
 	}
+	free((*game)->mlx);
+	free(*game);
 }

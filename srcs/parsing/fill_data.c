@@ -69,7 +69,7 @@ int			fill_map(char *line, t_game **game)
 	return (read_file(game));
 }
 
-int			fill_res(char *line, int *i, int max)
+int			fill_res(char *line, int *i)
 {
 	int		nb;
 
@@ -81,6 +81,5 @@ int			fill_res(char *line, int *i, int max)
 		nb = -1;
 	while (line[*i] >= '0' && line[*i] <= '9')
 		(*i)++;
-	nb = nb > max ? max : nb;
 	return (nb);
 }
