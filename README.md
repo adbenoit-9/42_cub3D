@@ -36,14 +36,14 @@ Ennemies : eyes
 
 ### keys of the keyboard
 
-`left arrow`, `right arrow` : look left and right
-
-`W`,` A`, `S`, `D` : move
-
-`F` : open doors
-
-`SPACE` : shoot
-
+`left arrow`/`right arrow` | look left and right
+ -------------------------------------------------
+`W`/`A`/`S`/`D`            | move                 
+--------------------------------------------------
+`F`                        | open doors
+--------------------------------------------------
+`SPACE`                    | shoot
+--------------------------------------------------
 # Preview
 
 ![Example](img/screenshot.png)
