@@ -6,7 +6,7 @@
 #    By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 18:38:18 by adbenoit          #+#    #+#              #
-#    Updated: 2020/08/13 00:40:19 by adbenoit         ###   ########.fr        #
+#    Updated: 2020/08/10 14:19:28 by adbenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,23 +106,29 @@ OBJ_BONUS		=	$(addprefix $(OBJ_PATH_BONUS),$(OBJ_NAME_BONUS))
 
 CC				=	gcc
 
-CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	-Wall -Werror -Wextra -g
 
 MLX_DIR			=	minilibx
 
 MLX				=	$(MLX_DIR)/libmlx.a
 
-MLX_LIBS		=	-lmlx -lXext -lX11
+MLX_LIBS		=	-lbsd -lXext -lX11
 
 
 # ************************************ RULES ******************************** #
 
 all: $(MLX) $(NAME)
+ifeq ("$(shell ls -R $(OBJS) 2>/dev/null)", "")
+	@rm -rf $(OBJ_PATH_BONUS)
+endif
 
 bonus: $(MLX) $(OBJ_BONUS)
+ifeq ("$(shell ls -R $(OBJ_BONUS) 2>/dev/null)", "")
+	@rm -rf $(OBJ_PATH)
 	@printf "\n"
-	@$(CC) -o $(NAME) $^ -framework OpenGL -framework AppKit
+	@$(CC) -o $(NAME) $(OBJ_BONUS) $(MLX) -lm -lXext -lX11
 	@echo "Compilation of \033[33;1m$(NAME) bonus\033[0;1m: [\033[1;32mOK\033[0;1m]"
+endif
 
 $(MLX) :
 	@make -C $(MLX_DIR) $(MLX_LIBS)
@@ -130,7 +136,7 @@ $(MLX) :
 
 $(NAME): $(OBJS)
 	@printf "\n"
-	@$(CC) -o $(NAME) $(OBJS) $(MLX) -framework OpenGL -framework AppKit
+	@$(CC) -o $(NAME) $(OBJS) $(MLX) -lm -lXext -lX11
 	@echo "Compilation of \033[33;1m$(NAME)\033[0;1m: [\033[1;32mOK\033[0;1m]"
 
 $(OBJ_PATH)%.o:	$(SRCS_PATH)%.c $(HEADER)

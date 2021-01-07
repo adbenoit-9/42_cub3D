@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:22:03 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/08/13 00:41:58 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/03 13:35:18 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void		draw_weapon(t_game **game, t_tab_img *weap)
 			col = weap->data[state][(int)(weap->dim
 					[state][X] * draw.pix[Y] + draw.pix[X])];
 			i = draw.start[X] + (*game)->r[X] * draw.start[Y];
-			if (col != -16777216)
+			if (col != 0)
 				(*game)->img.data[i] = col;
 			draw.index[Y]++;
 		}

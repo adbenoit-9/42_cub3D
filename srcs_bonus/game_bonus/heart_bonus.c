@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:17:32 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/08/13 00:42:16 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:26:07 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	draw_heart_pixel(t_game **game, t_draw *draw)
 			k = draw->start[X] + (*game)->r[X] * draw->start[Y];
 			col = (*game)->heart.data[(int)
 				((*game)->heart.dim[X] * draw->pix[Y] + draw->pix[X])];
-			if (col != -16777216)
+			if (col != 0)
 				(*game)->img.data[k] = col;
 			draw->start[Y]++;
 			draw->index[Y]++;

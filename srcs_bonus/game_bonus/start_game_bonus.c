@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 21:21:45 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/08/13 00:10:11 by adbenoit         ###   ########.fr       */
+/*   Updated: 2020/08/02 23:49:42 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	screen_resize(t_game **game)
 	int	x_max;
 	int	y_max;
 
-	mlx_mscreen_resolution(&x_max, &y_max);
+	mlx_get_screen_size((*game)->mlx, &x_max, &y_max);
 	if ((*game)->r[X] > x_max)
 		(*game)->r[X] = x_max;
 	if ((*game)->r[Y] > y_max)
