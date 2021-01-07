@@ -1,6 +1,6 @@
 # CUB3D
 
-"My first RayCaster with miniLibX"
+*"My first RayCaster with miniLibX"*
 
 ## Objective
 
