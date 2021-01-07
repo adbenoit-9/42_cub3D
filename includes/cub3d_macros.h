@@ -6,7 +6,7 @@
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 15:14:41 by adbenoit          #+#    #+#             */
-/*   Updated: 2020/07/05 22:23:44 by adbenoit         ###   ########.fr       */
+/*   Updated: 2021/01/07 12:55:36 by adbenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 # define X 0
 # define Y 1
 
-# define ROTSPEED 0.05
-# define MOVESPEED 0.1
+# define ROTSPEED 0.3
+# define MOVESPEED 0.5
 
 #endif
