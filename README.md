@@ -15,7 +15,7 @@ To conclude cub3D is a remarkable playground to explore the playful practical ap
 # How to play
 
 ### Linux
-if you prefer the linux version
+On linux :
 
 `git checkout linux`
 
@@ -31,7 +31,8 @@ To finish the game, the player must traverse through the area to kill all the en
 The player's lives are represented by brains starting at 5, which are diminished when he is shot or attacked by enemies, but he can also gains lives by finding brains. If the player's lives falls to zero, he dies and loses the game.
 
 Weapon : bow and arrows
-ennemies : eyes
+
+Ennemies : eyes
 
 ### keys of the keyboard
 
