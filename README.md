@@ -34,13 +34,12 @@ Weapon : bow and arrows
 
 Ennemies : eyes
 
-   _keys of the keyboard_  |
----------------------------|----------------------
+_keys of the keyboard_ | test
+-----------------------|------
 `left arrow`/`right arrow` | look left and right
-`W`/`A`/`S`/`D`            | move                 
-`F`                        | open doors
-`SPACE`                    | shoot
----------------------------|----------------------
+`W`/`A`/`S`/`D` | move                 
+`F` | open doors
+`SPACE` | shoot
 # Preview
 
 ![Example](img/screenshot.png)
