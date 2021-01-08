@@ -15,9 +15,7 @@ To conclude cub3D is a remarkable playground to explore the playful practical ap
 # How to play
 
 ### Linux
-On linux :
-
-`git checkout linux`
+If you are on linux, you need to get the appropriate version of cub3d. Please do `git checkout linux`
 
 ### Compilation
 `make bonus`
