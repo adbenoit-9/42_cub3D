@@ -6,7 +6,7 @@
 
 This project is inspired by the world-famous eponymous 90’s game, which was the first FPS ever.
 
-This project’s objectives are similar to all this first year’s objectives: Rigor, use of C, use of basic algorithms, information research etc.
+This project’s objectives are : Rigor, use of C, use of basic algorithms, information research etc.
 
 As a graphic design project, cub3D will enable you to improve skills in these areas: windows, colors, events, fill shapes, etc.
 
