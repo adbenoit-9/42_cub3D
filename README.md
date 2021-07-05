@@ -16,12 +16,18 @@ To conclude cub3D is a remarkable playground to explore the playful practical ap
 
 ### Linux
 If you are on linux, you need to get the appropriate version of cub3d : `git checkout linux`
-
+```
+$ git clone https://github.com/adbenoit-9/42_cub3D.git
+$ cd 42_cub3D/
+```
 ### Compilation
-`make bonus`
+```
+$ make bonus
+```
 ### Execution
-`./cub3D game_map/library_game_bonus.cub`
-
+```
+$ ./cub3D game_map/library_game_bonus.cub
+```
 ### Rules
 
 To finish the game, the player must traverse through the area to kill all the ennemies.
